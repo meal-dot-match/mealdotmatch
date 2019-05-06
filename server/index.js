@@ -12,6 +12,80 @@ const app = express()
 const socketio = require('socket.io')
 module.exports = app
 
+const express_graphql = require('express-graphql')
+const {buildSchema} = require('graphql')
+
+const {GraphQLServer} = require('graphql-yoga')
+const fetch = require('node-fetch')
+
+const {edamamApi} = require('../secrets')
+
+//GraphQL Schema
+const schema = buildSchema(`
+  type Query{
+    recipes: [Recipe]
+  }
+
+  type Recipe{
+    id: Int
+    label: String
+    img: String
+    url: String
+    ingredientLines: String
+    ingredients: [String]
+  }
+`)
+
+// const getCourse = args => {
+//   let id = args.id
+//   return coursesData.filter(course => {
+//     return course.id === id
+//   })[0]
+// }
+
+// Root Resolver - every time the client makes a Query, we dispatch the function corresponding with the Query type.
+
+const baseURL = `https://api.edamam.com/search?app_id=${edamamApi.id}&app_key=${
+  edamamApi.key
+}`
+
+const resolvers = {
+  Query: {
+    recipes: async () => {
+      const res = await fetch(`${baseURL}?q=dishType=dinner`)
+      console.log(res.json())
+    }
+    // user: (parent, args) => {
+    //   const {id} = args
+    //   return fetch(`${baseURL}/users/${id}`).then(res => res.json())
+    // },
+    // posts: () => {
+    //   return fetch(`${baseURL}/posts`).then(res => res.json())
+    // },
+    // post: (parent, args) => {
+    //   const {id} = args
+    //   return fetch(`${baseURL}/blog/posts/${id}`).then(res => res.json())
+    // }
+  }
+}
+
+// const server = new GraphQLServer({
+//   typeDefs: './src/schema.graphql',
+//   resolvers
+// })
+
+// server.start(() => console.log(`Server is running on http://localhost:4000`))
+
+//Create an express server for graphiQL interface
+app.use(
+  '/graphql',
+  express_graphql({
+    schema: schema,
+    rootValue: resolvers,
+    graphiql: true
+  })
+)
+
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
 if (process.env.NODE_ENV === 'test') {
