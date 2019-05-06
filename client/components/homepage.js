@@ -1,33 +1,35 @@
-import React from 'react'
+import React from 'react';
+import { graphql, ApolloProvider } from 'react-apollo'
+import ApolloClient, { gql } from 'apollo-boost'
+
+
+
+const getMealsQuery = gql`
+	query recipeList {
+		label
+		
+	}
+`;
 
 class HomePage extends React.Component {
     constructor() {
-        super()
-        this.getStuff = this.getStuff.bind(this)
+        super();
+        this.getStuff = this.getStuff.bind(this);
     }
-
     getStuff() {
-
-        fetch('/graphql', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({ query: '{url, image}' })
-
-        }).then(r => console.log(r))
-        // .then(data => console.log('data returned', data))
-
+        console.log('this props.data', this.props)
     }
     render() {
+        // console.log('In RENDER', this.props);
         return (
-            <div>
-                <button onClick={() => this.getStuff()}>Hello</button>
+            // <ApolloProvider client={client}>
+            <div>Hey!
+                    <button onClick={() => this.getStuff()}>CLICK ME</button>
             </div>
+            // </ApolloProvider>
         )
     }
-
 }
 
-export default HomePage
+
+export default graphql(getMealsQuery)(HomePage)
