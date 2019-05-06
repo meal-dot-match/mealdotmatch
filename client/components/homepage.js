@@ -1,12 +1,15 @@
 import React from 'react';
-import { graphql, ApolloProvider } from 'react-apollo'
-import ApolloClient, { gql } from 'apollo-boost'
+import { graphql } from 'react-apollo'
+import { gql } from 'apollo-boost'
 
 
 
 const getMealsQuery = gql`
 	query recipeList {
-		label
+        recipeList{
+           q
+        }
+        
 		
 	}
 `;
@@ -18,6 +21,7 @@ class HomePage extends React.Component {
     }
     getStuff() {
         console.log('this props.data', this.props)
+
     }
     render() {
         // console.log('In RENDER', this.props);
