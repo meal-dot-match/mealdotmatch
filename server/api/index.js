@@ -106,12 +106,9 @@ const baseURL = `https://api.edamam.com/search?app_id=${edamamApi.id}&app_key=${
   edamamApi.key
   }`
 
-
-
 const resolvers = {
   recipeList: () => {
     console.log('did this hit the resolver???????????????????????????????????????????????????????????????????')
-    // return ({ 'test': 'test' })
     request({
       url: 'https://api.edamam.com/search?app_id=20c61bd6&app_key=0658e7c199304f1b0b9c869e76e4548d&q=chicken+tomato&from=0&to=10',
       method: 'GET',
@@ -121,18 +118,12 @@ const resolvers = {
 
     }, function (error, response, body) {
       if (!error && response.statusCode === 200) {
-        // Print out the response body
         console.log(body)
         return body
       }
     })
 
   }
-  // .then(res => {
-  //   console.log('this is the response bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy', res);
-  //   return res
-  // })
-  // console.log(res.json())
 }
 
 
