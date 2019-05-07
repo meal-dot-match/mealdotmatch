@@ -81,6 +81,21 @@ app.listen(4000, () =>
   console.log('Express GraphQL Server Now Running On localhost:4000/graphql')
 )
 
+app.get('/questions', async (req, res, next) => {
+  const questions = [
+    {
+      id: 1,
+      question: 'What is the meal?',
+      image: [
+        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
+        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
+        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg'
+      ],
+      name: ['breakfast', 'lunch', 'dinner']
+    }
+  ]
+  res.send(questions)
+})
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
 if (process.env.NODE_ENV === 'test') {

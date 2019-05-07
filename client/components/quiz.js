@@ -2,11 +2,17 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {CuttingBoard} from './Index'
 import {QuizQuestions} from './Index'
+import axios from 'axios'
 
 export default class Quiz extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  async componentWillMount() {
+    const {data} = await axios.get('/api/questions')
+    return data
   }
 
   handleClick() {}
@@ -29,7 +35,10 @@ export default class Quiz extends React.Component {
 }
 
 {
-  /* <h3>What meal would you like to make?</h3>
+  /*Images - array of images; 
+  Names - array of names
+  PK - quiz
+  <h3>What meal would you like to make?</h3>
 <button type="button">Breakfast</button>
 <button type="button">Lunch</button>
 <button type="button">Dinner</button>
