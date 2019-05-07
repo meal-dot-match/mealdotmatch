@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {CuttingBoard} from './index'
+import {QuizQuestions} from './index'
 
 export default class Quiz extends React.Component {
   constructor(props) {
@@ -16,19 +17,24 @@ export default class Quiz extends React.Component {
         <div>
           <CuttingBoard />
         </div>
+        <QuizQuestions />
         <div>
-          <h3>What meal would you like to make?</h3>
-          <button type="button">Breakfast</button>
-          <button type="button">Lunch</button>
-          <button type="button">Dinner</button>
-          <button type="button">Dessert</button>
-          <br />
+          {/* can use history? */}
           <button>Previous</button>
           <button>Next</button>
         </div>
       </div>
     )
   }
+}
+
+{
+  /* <h3>What meal would you like to make?</h3>
+<button type="button">Breakfast</button>
+<button type="button">Lunch</button>
+<button type="button">Dinner</button>
+<button type="button">Dessert</button>
+<br /> */
 }
 
 // const mapStateToProps
