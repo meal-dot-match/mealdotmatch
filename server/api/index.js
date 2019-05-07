@@ -11,32 +11,19 @@ const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
 const cors = require('cors')
-const https = require('https')
-const request = require('request')
-const axios = require('axios')
 const schema = require('./schema')
 
 module.exports = app
 
 // eslint-disable-next-line camelcase
 const express_graphql = require('express-graphql')
-const {buildSchema} = require('graphql')
-
-// const fetch = require('node-fetch')
-
-const {edamamApi} = require('../../secrets')
 
 app.use(cors())
 
 const createApp = () => {
-  // logging middleware
   app.use(morgan('dev'))
-
-  // body parsing middleware
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
-
-  // compression middleware
   app.use(compression())
 
   // session middleware with passport
@@ -81,68 +68,12 @@ const createApp = () => {
     res.status(err.status || 500).send(err.message || 'Internal server error.')
   })
 }
-//GraphQL Schema
-// const schema = buildSchema(`
-//   type Query{
-//     recipe: Recipe
-//   }
-
-//   type Recipe{
-//     uri: String
-//     url: String
-//     label: String
-//     image: String
-//     calories: Int
-//     ingredientLines: [String]
-//     ingredients: [String]
-
-//   }
-// `)
-
-// id: Int
-// label: String
-// img: String
-// url: String
-// ingredientLines: String
-// ingredients: [String]
-// const baseURL = `https://api.edamam.com/search?app_id=${edamamApi.id}&app_key=${
-//   edamamApi.key
-//   }`
-
-// const resolvers = {
-//   recipe: () => {
-//     console.log('did this hit the resolver???????????????????????????????????????????????????????????????????')
-//     request({
-//       url: 'https://api.edamam.com/search?app_id=20c61bd6&app_key=0658e7c199304f1b0b9c869e76e4548d&q=chicken+tomato&from=0&to=1',
-//       method: 'GET',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-
-//     }, function async(error, response) {
-//       if (!error && response.statusCode === 200) {
-//         // console.log("what is my body? ????????????????????????????????????", body)
-//         // console.log("what are my hits????????????????????????????????????", body.hits)
-//         console.log("what is my response.body.hits? ????????????????????????????????????", response.body.hits)
-//         console.log('what is the type of my body??????????', typeof (JSON.parse(response.body)))
-//         const data = JSON.parse(response.body)
-//         const results = data.hits.map((recipes) => {
-//           // console.log("did this work????????????????", recipes.recipe)
-//           return recipes.recipe
-//         })
-//         console.log("what is the result at 0??????", results[0])
-//         return results[0]
-//       }
-//     })
-
-//   }
-// }
 
 app.use(
   '/graphql',
   express_graphql({
     schema: schema,
-    // rootValue: resolvers,
+    // root: resolvers,
     graphiql: true
   })
 )

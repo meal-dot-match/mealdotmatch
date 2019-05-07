@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { Navbar } from './components'
+import {Navbar} from './components'
 import Routes from './routes'
 
-const App = (props) => {
-  console.log('THIS IS LOGGING IN THE APPPPPPPPPPPPPPP', props)
+const App = () => {
   return (
     <div>
       <Navbar />
