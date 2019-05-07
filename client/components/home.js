@@ -18,7 +18,9 @@ export default class Home extends React.Component {
 
         <label>Been here before?</label>
         <br />
-        <button>Match me!</button>
+        <Link to="/quiz">
+          <button>Match me!</button>
+        </Link>
         <label>New Users</label>
       </div>
     )
