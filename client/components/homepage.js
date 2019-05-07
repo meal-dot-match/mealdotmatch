@@ -20,7 +20,7 @@ class HomePage extends React.Component {
         this.getStuff = this.getStuff.bind(this);
     }
     getStuff() {
-        console.log('this props.data', this.props)
+        console.log('this props.data', this.props.data)
 
     }
     render() {

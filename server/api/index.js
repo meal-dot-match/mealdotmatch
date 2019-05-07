@@ -11,6 +11,10 @@ const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
 const cors = require('cors');
+const https = require('https');
+const request = require('request');
+
+
 
 module.exports = app
 
@@ -18,7 +22,7 @@ module.exports = app
 const express_graphql = require('express-graphql')
 const { buildSchema } = require('graphql')
 
-const fetch = require('node-fetch')
+// const fetch = require('node-fetch')
 
 const { edamamApi } = require('../../secrets')
 
@@ -81,11 +85,13 @@ const createApp = () => {
 //GraphQL Schema
 const schema = buildSchema(`
   type Query{
-    recipeList: [Recipe]
+    recipeList: Recipe
   }
 
   type Recipe{
    q: String
+   from: Int
+   to: Int
   }
 `)
 
@@ -100,16 +106,37 @@ const baseURL = `https://api.edamam.com/search?app_id=${edamamApi.id}&app_key=${
   edamamApi.key
   }`
 
+
+
 const resolvers = {
   recipeList: () => {
     console.log('did this hit the resolver???????????????????????????????????????????????????????????????????')
     // return ({ 'test': 'test' })
-    fetch(`https://api.edamam.com/search?app_id=20c61bd6&app_key=0658e7c199304f1b0b9c869e76e4548d&q=chicken+tomato&from=0&to=10`).then(res => res.json())
-    // console.log(res.json())
+    request({
+      url: 'https://api.edamam.com/search?app_id=20c61bd6&app_key=0658e7c199304f1b0b9c869e76e4548d&q=chicken+tomato&from=0&to=10',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    }, function (error, response, body) {
+      if (!error && response.statusCode === 200) {
+        // Print out the response body
+        console.log(body)
+        return body
+      }
+    })
+
   }
-
-
+  // .then(res => {
+  //   console.log('this is the response bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy', res);
+  //   return res
+  // })
+  // console.log(res.json())
 }
+
+
+
 
 
 app.use(
