@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {CuttingBoard} from './index'
-import {QuizQuestions} from './index'
+import {CuttingBoard} from './Index'
+import {QuizQuestions} from './Index'
 
 export default class Quiz extends React.Component {
   constructor(props) {
