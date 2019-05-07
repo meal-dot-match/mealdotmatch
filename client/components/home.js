@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -18,9 +18,11 @@ export default class Home extends React.Component {
 
         <label>Been here before?</label>
         <br />
+
         <Link to="/quiz">
-          <button>Match me!</button>
+          <button type="button">Match me!</button>
         </Link>
+
         <label>New Users</label>
       </div>
     )
