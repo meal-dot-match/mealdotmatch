@@ -85,13 +85,11 @@ const createApp = () => {
 //GraphQL Schema
 const schema = buildSchema(`
   type Query{
-    recipeList: Recipe
+    recipe: Recipe
   }
 
   type Recipe{
-   q: String
-   from: Int
-   to: Int
+    count: Int
   }
 `)
 
@@ -107,10 +105,10 @@ const baseURL = `https://api.edamam.com/search?app_id=${edamamApi.id}&app_key=${
   }`
 
 const resolvers = {
-  recipeList: () => {
+  recipe: () => {
     console.log('did this hit the resolver???????????????????????????????????????????????????????????????????')
     request({
-      url: 'https://api.edamam.com/search?app_id=20c61bd6&app_key=0658e7c199304f1b0b9c869e76e4548d&q=chicken+tomato&from=0&to=10',
+      url: 'https://api.edamam.com/search?app_id=20c61bd6&app_key=0658e7c199304f1b0b9c869e76e4548d&q=chicken+tomato&from=0&to=1',
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

@@ -1,13 +1,14 @@
 import React from 'react';
-import { graphql } from 'react-apollo'
+import { graphql, Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
 
 
 
+
 const getMealsQuery = gql`
-	query recipeList {
-        recipeList{
-           q
+	query recipe {
+        recipe{
+           count
         }
         
 		
@@ -15,23 +16,31 @@ const getMealsQuery = gql`
 `;
 
 class HomePage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.getStuff = this.getStuff.bind(this);
     }
-    getStuff() {
-        console.log('this props.data', this.props.data)
+    async getStuff() {
+        // const { data } = await client.query({
+        //     query: getMealsQuery,
+        // })
+        console.log('this data within the GET STUFF FUNCTION', this.props)
 
     }
     render() {
-        // console.log('In RENDER', this.props);
-        return (
-            // <ApolloProvider client={client}>
-            <div>Hey!
-                    <button onClick={() => this.getStuff()}>CLICK ME</button>
-            </div>
-            // </ApolloProvider>
-        )
+        console.log('In RENDER', this.props);
+
+        return <Query query={getMealsQuery}>
+            {({ loading, error, data }) => {
+                if (loading) return null;
+                if (error) return `Error! ${error}`;
+
+                return (
+                    <div>
+                        {Object.keys(data)}</div>
+                );
+            }}
+        </Query>
     }
 }
 
