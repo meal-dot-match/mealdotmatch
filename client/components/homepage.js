@@ -6,9 +6,10 @@ import { gql } from 'apollo-boost'
 
 
 const getMealsQuery = gql`
-	query recipe {
-        recipe{
-           count
+	query searchRecipes {
+        searchRecipes{
+           uri
+           url
         }
         
 		
