@@ -7,7 +7,7 @@ import {logout} from '../store'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <h1>
-      <img src="logo.png" />
+      <img src="logo.png" height="400" />
     </h1>
     <nav>
       {isLoggedIn ? (

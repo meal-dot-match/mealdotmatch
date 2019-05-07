@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter, Route, Switch } from 'react-router-dom'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome } from './components'
-import { me } from './store'
-import HomePage from './components/homepage';
+import {Login, Signup, UserHome, Home} from './components'
+import {me} from './store'
+import HomePage from './components/homepage'
 
 /**
  * COMPONENT
@@ -15,15 +15,19 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
-    console.log('THIS IS LOGGING IN THE ROUTESSSSSSSSSSSSSSSSSSSSSSSSSS', this.props.client)
+    const {isLoggedIn} = this.props
+    console.log(
+      'THIS IS LOGGING IN THE ROUTESSSSSSSSSSSSSSSSSSSSSSSSSS',
+      this.props.client
+    )
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path='/homepage' component={HomePage} />
+        <Route path="/homepage" component={HomePage} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
