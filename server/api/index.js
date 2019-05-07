@@ -6,30 +6,27 @@ const session = require('express-session')
 const passport = require('passport')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('../db')
-const sessionStore = new SequelizeStore({ db })
+const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
-const cors = require('cors');
-const https = require('https');
-const request = require('request');
-const axios = require('axios');
+const cors = require('cors')
+const https = require('https')
+const request = require('request')
+const axios = require('axios')
 const schema = require('./schema')
-
-
 
 module.exports = app
 
 // eslint-disable-next-line camelcase
 const express_graphql = require('express-graphql')
-const { buildSchema } = require('graphql')
+const {buildSchema} = require('graphql')
 
 // const fetch = require('node-fetch')
 
-const { edamamApi } = require('../../secrets')
+const {edamamApi} = require('../../secrets')
 
-app.use(cors());
-
+app.use(cors())
 
 const createApp = () => {
   // logging middleware
@@ -37,7 +34,7 @@ const createApp = () => {
 
   // body parsing middleware
   app.use(express.json())
-  app.use(express.urlencoded({ extended: true }))
+  app.use(express.urlencoded({extended: true}))
 
   // compression middleware
   app.use(compression())
@@ -102,7 +99,6 @@ const createApp = () => {
 //   }
 // `)
 
-
 // id: Int
 // label: String
 // img: String
@@ -142,10 +138,6 @@ const createApp = () => {
 //   }
 // }
 
-
-
-
-
 app.use(
   '/graphql',
   express_graphql({
@@ -154,7 +146,9 @@ app.use(
     graphiql: true
   })
 )
-app.listen(4000, () => console.log('Express GraphQL Server Now Running On localhost:4000/graphql'));
+app.listen(4000, () =>
+  console.log('Express GraphQL Server Now Running On localhost:4000/graphql')
+)
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
@@ -183,8 +177,6 @@ passport.deserializeUser(async (id, done) => {
     done(err)
   }
 })
-
-
 
 const startListening = () => {
   // start listening (and create a 'server' object representing our server)
