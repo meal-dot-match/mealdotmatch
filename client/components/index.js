@@ -3,12 +3,12 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
-export {default as Navbar} from './Navbar'
-export {default as UserHome} from './User-Home'
-export {Login, Signup} from './Auth-Form'
-export {default as HomePage} from './Homepage'
-export {default as Home} from './Home'
-export {default as Quiz} from './Quiz'
-export {default as CuttingBoard} from './CuttingBoard'
-export {default as QuizQuestions} from './QuizQuestions'
-export {default as About} from './About'
+export {default as Navbar} from './navbar'
+export {default as UserHome} from './user-home'
+export {Login, Signup} from './auth-form'
+export {default as HomePage} from './homepage'
+export {default as Home} from './home'
+export {default as Quiz} from './quiz'
+export {default as CuttingBoard} from './cuttingBoard'
+export {default as QuizQuestions} from './quizQuestions'
+export {default as About} from './about'
