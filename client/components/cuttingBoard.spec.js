@@ -4,19 +4,20 @@ import {expect} from 'chai'
 import React from 'react'
 import enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import About from './about'
+import CuttingBoard from './cuttingBoard'
 
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-describe('About', () => {
-  let aboutPage
+describe('CuttingBoard', () => {
+  let cuttingBoard
 
   beforeEach(() => {
-    aboutPage = shallow(<About />)
+    cuttingBoard = shallow(<CuttingBoard />)
+    console.log(cuttingBoard)
   })
 
   it('renders a title in h1 tags', () => {
-    expect(aboutPage.find('h1').text()).to.be.equal('Our Story')
+    expect(cuttingBoard.find('h3').text()).to.be.equal('Your Cutting Board:')
   })
 })
