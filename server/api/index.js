@@ -12,6 +12,7 @@ const app = express()
 const socketio = require('socket.io')
 const cors = require('cors')
 const schema = require('./schema')
+const Question = require('../db/models/questions')
 
 module.exports = app
 
@@ -81,6 +82,10 @@ app.listen(4000, () =>
   console.log('Express GraphQL Server Now Running On localhost:4000/graphql')
 )
 
+app.get('/questions', async (req, res, next) => {
+  const questions = await Question.findAll()
+  res.send(questions)
+})
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
 if (process.env.NODE_ENV === 'test') {

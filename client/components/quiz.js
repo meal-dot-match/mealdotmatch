@@ -1,43 +1,94 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {CuttingBoard, QuizQuestions} from './index'
+import {CuttingBoard} from './index'
+import axios from 'axios'
 
 export default class Quiz extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleClick = this.handleClick.bind(this)
+  constructor() {
+    super()
+    this.state = {
+      count: 0,
+      ingredients: [],
+      data: [],
+      meal: ''
+    }
+    this.increaseCount = this.increaseCount.bind(this)
+    this.addToIngredients = this.addToIngredients.bind(this)
   }
 
-  handleClick() {}
+  async componentDidMount() {
+    const {data} = await axios.get('/api/questions')
+    this.setState({data: data})
+  }
+
+  addToIngredients(event) {
+    if (this.state.count === 0) {
+      this.setState({
+        meal: event.target.alt
+      })
+    } else {
+      this.setState({
+        ingredients: [...this.state.ingredients, event.target.alt]
+      })
+    }
+  }
+
+  increaseCount() {
+    let newCount = this.state.count + 1
+    this.setState({count: newCount})
+  }
+
+  decreaseCount() {
+    let newCount = this.state.count - 1
+    this.setState({count: newCount})
+  }
 
   render() {
-    return (
+    const questions = this.state.data[this.state.count]
+    console.log('what is my state??????', this.state)
+    return this.state.data[0] ? (
       <div>
         <div>
           <CuttingBoard />
         </div>
-        <QuizQuestions />
+        <h2>{questions.question}</h2>
+        {questions.image.map((picture, index) => {
+          return (
+            <div key={Math.random()}>
+              <button
+                type="button"
+                className="button"
+                onClick={() => this.addToIngredients(event)}
+              >
+                <div className="container">
+                  <div className="centered">{questions.name[index]}</div>
+                  <img
+                    className="options"
+                    src={picture}
+                    alt={questions.name[index]}
+                  />
+                </div>
+              </button>
+            </div>
+          )
+        })}
         <div>
-          {/* can use history? */}
-          <button>Previous</button>
-          <button>Next</button>
+          {this.state.count > 0 ? (
+            <button type="button" onClick={() => this.decreaseCount()}>
+              Previous
+            </button>
+          ) : null}
+          {this.state.count === this.state.data.length - 1 ? (
+            <button type="button">Get Matches</button>
+          ) : (
+            <button type="button" onClick={() => this.increaseCount()}>
+              Next
+            </button>
+          )}
         </div>
       </div>
+    ) : (
+      'Loading'
     )
   }
 }
-
-{
-  /* <h3>What meal would you like to make?</h3>
-<button type="button">Breakfast</button>
-<button type="button">Lunch</button>
-<button type="button">Dinner</button>
-<button type="button">Dessert</button>
-<br /> */
-}
-
-// const mapStateToProps
-
-// const mapDispatchToProps
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Quiz)
