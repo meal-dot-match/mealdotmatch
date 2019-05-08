@@ -1,13 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
 export default class CuttingBoard extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  handleClick() {}
-
   render() {
     console.log('this is props on the cutting board!!!', this.props)
     return (
