@@ -47,44 +47,50 @@ export default class Quiz extends React.Component {
     const questions = this.state.data[this.state.count]
     console.log('what is my state??????', this.state)
     return this.state.data[0] ? (
-      <div>
-        <div>
-          <CuttingBoard />
+      <div className="row">
+        <div className="column">
+          <CuttingBoard
+            ingredients={this.state.ingredients}
+            meal={this.state.meal}
+          />
         </div>
-        <h2>{questions.question}</h2>
-        {questions.image.map((picture, index) => {
-          return (
-            <div key={Math.random()}>
-              <button
-                type="button"
-                className="button"
-                onClick={() => this.addToIngredients(event)}
-              >
-                <div className="container">
-                  <div className="centered">{questions.name[index]}</div>
-                  <img
-                    className="options"
-                    src={picture}
-                    alt={questions.name[index]}
-                  />
-                </div>
+        <div className="column">
+          <h2>{questions.question}</h2>
+          {questions.image.map((picture, index) => {
+            return (
+              <div key={Math.random()}>
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => this.addToIngredients(event)}
+                >
+                  <div className="container">
+                    <div className="centered">{questions.name[index]}</div>
+                    <img
+                      className="options"
+                      src={picture}
+                      alt={questions.name[index]}
+                    />
+                  </div>
+                </button>
+              </div>
+            )
+          })}
+
+          <div>
+            {this.state.count > 0 ? (
+              <button type="button" onClick={() => this.decreaseCount()}>
+                Previous
               </button>
-            </div>
-          )
-        })}
-        <div>
-          {this.state.count > 0 ? (
-            <button type="button" onClick={() => this.decreaseCount()}>
-              Previous
-            </button>
-          ) : null}
-          {this.state.count === this.state.data.length - 1 ? (
-            <button type="button">Get Matches</button>
-          ) : (
-            <button type="button" onClick={() => this.increaseCount()}>
-              Next
-            </button>
-          )}
+            ) : null}
+            {this.state.count === this.state.data.length - 1 ? (
+              <button type="button">Get Matches</button>
+            ) : (
+              <button type="button" onClick={() => this.increaseCount()}>
+                Next
+              </button>
+            )}
+          </div>
         </div>
       </div>
     ) : (
