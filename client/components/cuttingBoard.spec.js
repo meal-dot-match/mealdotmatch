@@ -16,7 +16,7 @@ describe('CuttingBoard', () => {
     cuttingBoard = shallow(<CuttingBoard />)
   })
 
-  it('renders a title in h1 tags', () => {
+  it('renders a cuttingBoard in h3 tags', () => {
     expect(cuttingBoard.find('h3').text()).to.be.equal('Your Cutting Board:')
   })
 })
