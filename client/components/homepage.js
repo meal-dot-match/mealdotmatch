@@ -5,7 +5,7 @@ import {gql} from 'apollo-boost'
 //must have
 const getMealsQuery = gql`
   query searchRecipes {
-    searchRecipes () {
+    searchRecipes {
       label
       url
       image

@@ -25,7 +25,6 @@ const Recipe = new GraphQLObjectType({
     label: {type: GraphQLString},
     image: {type: GraphQLString},
     calories: {type: GraphQLFloat},
-    //totalTime: {type: GraphQLFloat},
     ingredientLines: {type: new GraphQLList(GraphQLString)},
     ingredients: {type: new GraphQLList(Ingredient)}
   })

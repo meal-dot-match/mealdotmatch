@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {CuttingBoard} from './index'
 import axios from 'axios'
 import {graphql, Query} from 'react-apollo'
@@ -7,13 +6,9 @@ import {gql} from 'apollo-boost'
 
 const getMealsQuery = gql`
   query searchRecipes {
-    searchRecipes () {
-      label
+    searchRecipes {
+      uri
       url
-      image
-      ingredients
-      ingredientLines
-      calories
     }
   }
 `
@@ -49,10 +44,6 @@ class Quiz extends React.Component {
     }
   }
 
-  getStuff() {
-
-  }
-
   increaseCount() {
     let newCount = this.state.count + 1
     this.setState({count: newCount})
@@ -66,74 +57,74 @@ class Quiz extends React.Component {
   render() {
     const questions = this.state.data[this.state.count]
     console.log('what is my state??????', this.state)
-    return this.state.data[0] ? (
-      <div className="row">
-        <div className="column">
-          <CuttingBoard
-            ingredients={this.state.ingredients}
-            meal={this.state.meal}
-          />
-        </div>
-        <div className="column">
-          <h2>{questions.question}</h2>
-          {questions.image.map((picture, index) => {
-            return (
-              <div key={Math.random()}>
-                <button
-                  type="button"
-                  className="button"
-                  onClick={() => this.addToIngredients(event)}
-                >
-                  <div className="container">
-                    <div className="centered">{questions.name[index]}</div>
-                    <img
-                      className="options"
-                      src={picture}
-                      alt={questions.name[index]}
-                    />
-                  </div>
-                </button>
-              </div>
-            )
-          })}
 
-          <div>
-            {this.state.count > 0 ? (
-              <button type="button" onClick={() => this.decreaseCount()}>
-                Previous
-              </button>
-            ) : null}
-            {this.state.count === this.state.data.length - 1 ? (
-              <button type="button">Get Matches</button>
-            ) : (
-              <button type="button" onClick={() => this.increaseCount()}>
-                Next
-              </button>
-<<<<<<< HEAD
+    return (
+      <Query query={getMealsQuery}>
+        {({loading, error, data}) => {
+          if (loading) return 'Loading...'
+          if (error) return `Error! ${error.message}`
+
+          return this.state.data[0] ? (
+            <div className="row">
+              <div className="column">
+                <CuttingBoard
+                  ingredients={this.state.ingredients}
+                  meal={this.state.meal}
+                />
+              </div>
+              <div className="column">
+                <h2>{questions.question}</h2>
+                {questions.image.map((picture, index) => {
+                  return (
+                    <div key={Math.random()}>
+                      <button
+                        type="button"
+                        className="button"
+                        onClick={() => this.addToIngredients(event)}
+                      >
+                        <div className="container">
+                          <div className="centered">
+                            {questions.name[index]}
+                          </div>
+                          <img
+                            className="options"
+                            src={picture}
+                            alt={questions.name[index]}
+                          />
+                        </div>
+                      </button>
+                    </div>
+                  )
+                })}
+
+                <div>
+                  {this.state.count > 0 ? (
+                    <button type="button" onClick={() => this.decreaseCount()}>
+                      Previous
+                    </button>
+                  ) : null}
+                  {this.state.count === this.state.data.length - 1 ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        this.graphQLQuery()
+                      }}
+                    >
+                      Get Matches
+                    </button>
+                  ) : (
+                    <button type="button" onClick={() => this.increaseCount()}>
+                      Next
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-          )
-        })}
-        <div>
-          {this.state.count > 0 ? (
-            <button type="button" onClick={() => this.decreaseCount()}>
-              Previous
-            </button>
-          ) : null}
-          {this.state.count === this.state.data.length - 1 ? (
-            <button type="button" onClick={()=>this.getStuff()}>Get Matches</button>
           ) : (
-            <button type="button" onClick={() => this.increaseCount()}>
-              Next
-            </button>
-          )}
-=======
-            )}
-          </div>
->>>>>>> cbdbb9b7350cdac069f8b24b95d069a1a26b88f0
-        </div>
-      </div>
-    ) : (
-      'Loading'
+            'Loading'
+          )
+        }}
+      </Query>
     )
   }
 }
