@@ -6,9 +6,12 @@ import {gql} from 'apollo-boost'
 const getMealsQuery = gql`
   query searchRecipes {
     searchRecipes {
-      uri
+      label
       url
       image
+      ingredients
+      ingredientLines
+      calories
     }
   }
 `
@@ -21,10 +24,10 @@ class HomePage extends React.Component {
     // const { data } = await client.query({
     //     query: getMealsQuery,
     // })
-    console.log('this data within the GET STUFF FUNCTION', this.props)
+    // console.log('this data within the GET STUFF FUNCTION', this.props)
   }
   render() {
-    console.log('In RENDER', this.props)
+    // console.log('In RENDER', this.props)
 
     return (
       <Query query={getMealsQuery}>
