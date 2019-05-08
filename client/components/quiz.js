@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {CuttingBoard} from './index'
 import axios from 'axios'
+
 export default class Quiz extends React.Component {
   constructor() {
     super()
@@ -44,7 +45,7 @@ export default class Quiz extends React.Component {
 
   render() {
     const questions = this.state.data[this.state.count]
-
+    console.log('what is my state??????', this.state)
     return this.state.data[0] ? (
       <div>
         <div>

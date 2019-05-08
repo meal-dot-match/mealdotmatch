@@ -51,7 +51,7 @@ form div {
   opacity: 0.75;
 }
 
-.selection {
+.selected {
   border-color: #0cded7;
   border: 2px;
 }

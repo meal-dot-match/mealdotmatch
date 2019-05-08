@@ -2,6 +2,7 @@ import React from 'react'
 import {graphql, Query} from 'react-apollo'
 import {gql} from 'apollo-boost'
 
+//must have
 const getMealsQuery = gql`
   query searchRecipes {
     searchRecipes {
@@ -27,6 +28,8 @@ class HomePage extends React.Component {
 
     return (
       <Query query={getMealsQuery}>
+        {' '}
+        {/*must have <Query>*/}
         {({loading, error, data}) => {
           if (loading) return null
           if (error) return `Error! ${error}`
@@ -38,4 +41,5 @@ class HomePage extends React.Component {
   }
 }
 
+//must have
 export default graphql(getMealsQuery)(HomePage)
