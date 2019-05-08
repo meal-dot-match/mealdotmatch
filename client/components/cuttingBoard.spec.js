@@ -14,7 +14,6 @@ describe('CuttingBoard', () => {
 
   beforeEach(() => {
     cuttingBoard = shallow(<CuttingBoard />)
-    console.log(cuttingBoard)
   })
 
   it('renders a title in h1 tags', () => {
