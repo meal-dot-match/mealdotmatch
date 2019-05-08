@@ -12,6 +12,7 @@ const app = express()
 const socketio = require('socket.io')
 const cors = require('cors')
 const schema = require('./schema')
+const Question = require('../db/models/questions')
 
 module.exports = app
 
@@ -81,78 +82,8 @@ app.listen(4000, () =>
   console.log('Express GraphQL Server Now Running On localhost:4000/graphql')
 )
 
-app.get('/questions', (req, res, next) => {
-  const questions = [
-    {
-      id: 1,
-      question: 'What meal are you cooking today?',
-      image: [
-        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
-        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
-        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg'
-      ],
-      name: ['breakfast', 'lunch', 'dinner']
-    },
-    {
-      id: 2,
-      question: 'What dairy do you want to use today?',
-      image: [
-        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
-        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
-        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg',
-        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
-        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
-        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg'
-      ],
-      name: ['Milk', 'Eggs', 'Cheese', 'Cream', 'Butter', 'Sour Cream']
-    },
-    {
-      id: 3,
-      question: 'What meat(s) do you want to use today?',
-      image: [
-        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
-        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
-        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg',
-        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
-        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
-        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg'
-      ],
-      name: ['Beef', 'Chicken', 'Pork', 'Turkey', 'Steak', 'Ham']
-    },
-    {
-      id: 4,
-      question: 'What veggies do you want to use today?',
-      image: [
-        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
-        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
-        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg',
-        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
-        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
-        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg'
-      ],
-      name: [
-        'Onions',
-        'Tomatoes',
-        'Garlic',
-        'Peppers',
-        'Cucumber',
-        'Butternut Squash'
-      ]
-    },
-    {
-      id: 5,
-      question: 'What grains do you want to use today? ',
-      image: [
-        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
-        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
-        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg',
-        'https://www.edamam.com/web-img/1c0/1c083fd6f4412a511d7f30e618ae5b5a.jpg',
-        'https://www.edamam.com/web-img/3ac/3acd6032cb158df30d138fb7af44309d.jpg',
-        'https://www.edamam.com/web-img/fb0/fb08a81382ac836ec709fee50d0f5123.jpeg'
-      ],
-      name: ['Bread', 'Rolls', 'White Rice', 'Brown Rice', 'Quinoa', 'Farro']
-    }
-  ]
+app.get('/questions', async (req, res, next) => {
+  const questions = await Question.findAll()
   res.send(questions)
 })
 // This is a global Mocha hook, used for resource cleanup.

@@ -78,7 +78,7 @@ export default class Quiz extends React.Component {
               Previous
             </button>
           ) : null}
-          {this.state.count === 4 ? (
+          {this.state.count === this.state.data.length - 1 ? (
             <button type="button">Get Matches</button>
           ) : (
             <button type="button" onClick={() => this.increaseCount()}>
