@@ -2,8 +2,23 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {CuttingBoard} from './index'
 import axios from 'axios'
+import {graphql, Query} from 'react-apollo'
+import {gql} from 'apollo-boost'
 
-export default class Quiz extends React.Component {
+const getMealsQuery = gql`
+  query searchRecipes {
+    searchRecipes () {
+      label
+      url
+      image
+      ingredients
+      ingredientLines
+      calories
+    }
+  }
+`
+
+class Quiz extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -33,6 +48,8 @@ export default class Quiz extends React.Component {
       })
     }
   }
+
+  getStuff() {}
 
   increaseCount() {
     let newCount = this.state.count + 1
@@ -99,3 +116,5 @@ export default class Quiz extends React.Component {
     )
   }
 }
+
+export default graphql(getMealsQuery)(Quiz)

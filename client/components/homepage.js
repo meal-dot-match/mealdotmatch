@@ -5,10 +5,13 @@ import {gql} from 'apollo-boost'
 //must have
 const getMealsQuery = gql`
   query searchRecipes {
-    searchRecipes {
-      uri
+    searchRecipes () {
+      label
       url
       image
+      ingredients
+      ingredientLines
+      calories
     }
   }
 `
