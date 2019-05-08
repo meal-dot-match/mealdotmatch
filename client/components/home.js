@@ -33,6 +33,9 @@ export default class Home extends React.Component {
               <Col sm={6} />
 
               <Col sm={4}>
+                <Row>
+                  <h1>Welcome to Match.Meal!</h1>
+                </Row>
                 <Link to="/quiz">
                   <Button className="btn-responsive" size="lg">
                     Match Me

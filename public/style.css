@@ -19,7 +19,9 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
+h1 {
+  align-content: center;
+}
 h3 {
   color: #0cded7;
 }
@@ -173,5 +175,5 @@ h4 {
 }
 
 body {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
