@@ -9,14 +9,6 @@ const {
   GraphQLList
 } = require('graphql')
 
-const Ingredient = new GraphQLObjectType({
-  name: 'Ingredient',
-  fields: () => ({
-    text: {type: GraphQLString},
-    weight: {type: GraphQLFloat}
-  })
-})
-
 const Recipe = new GraphQLObjectType({
   name: 'Recipe',
   fields: () => ({
@@ -25,8 +17,8 @@ const Recipe = new GraphQLObjectType({
     label: {type: GraphQLString},
     image: {type: GraphQLString},
     calories: {type: GraphQLFloat},
-    ingredientLines: {type: new GraphQLList(GraphQLString)},
-    ingredients: {type: new GraphQLList(Ingredient)}
+    totalTime: {type: GraphQLFloat},
+    ingredientLines: {type: new GraphQLList(GraphQLString)}
   })
 })
 

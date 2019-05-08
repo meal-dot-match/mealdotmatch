@@ -5,10 +5,15 @@ import {graphql, Query} from 'react-apollo'
 import {gql} from 'apollo-boost'
 
 const getMealsQuery = gql`
-  query searchRecipes {
-    searchRecipes {
+  query($food: String) {
+    searchRecipes(food: $food) {
       uri
       url
+      label
+      image
+      calories
+      totalTime
+      ingredientLines
     }
   }
 `
@@ -57,6 +62,7 @@ class Quiz extends React.Component {
   render() {
     const questions = this.state.data[this.state.count]
     console.log('what is my state??????', this.state)
+    console.log('HERE ARE THE PROPS', this.props)
 
     return (
       <Query query={getMealsQuery}>
