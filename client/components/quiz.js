@@ -13,6 +13,7 @@ export default class Quiz extends React.Component {
       meal: ''
     }
     this.increaseCount = this.increaseCount.bind(this)
+    this.decreaseCount = this.decreaseCount.bind(this)
     this.addToIngredients = this.addToIngredients.bind(this)
   }
 
