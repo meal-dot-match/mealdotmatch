@@ -19,9 +19,7 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-h1 {
-  align-content: center;
-}
+
 h3 {
   color: #0cded7;
 }
@@ -146,10 +144,14 @@ h4 {
   border-radius: 10px;
   background: #0cded7;
   border: none;
+  padding: 10px;
+  box-shadow: 2px 3px 5px #888888;
 }
 
 .btn-responsive:hover {
   background: #1fcca3;
+  border: none;
+  border-radius: 10px;
 }
 
 @media (max-width: 760px) {
@@ -171,9 +173,24 @@ h4 {
 
 .row-homepage {
   width: 100%;
-  text-align: center;
 }
 
 body {
   font-family: 'Quicksand', sans-serif;
+}
+
+.text-center::before {
+  margin-left: 50%;
+}
+
+.carousel-item {
+  height: 350px;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+}
+
+.about {
+  background-color: #000000;
+  background: rgba(5, 4, 4, 0.5);
 }

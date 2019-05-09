@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, Route} from 'react-router-dom'
-import {Row, Col, Button, Container} from 'react-bootstrap'
+import {Row, Col, Button} from 'react-bootstrap'
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -13,16 +13,6 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
-        {/* <Jumbotron>
-          <h1>Hello, world!</h1>
-          <p>
-            This is a simple hero unit, a simple jumbotron-style component for
-            calling extra attention to featured content or information.
-          </p>
-          <p>
-            <Button variant="primary">Learn more</Button>
-          </p>
-        </Jumbotron> */}
         <div className="img-wrapper">
           <img
             className="img-responsive"
@@ -32,16 +22,25 @@ export default class Home extends React.Component {
             <Row className="row-homepage">
               <Col sm={6} />
 
-              <Col sm={4}>
-                <Row>
-                  <h1>Welcome to Match.Meal!</h1>
+              <Col sm={5}>
+                <Row className="row-homepage">
+                  <h1 className="text-center">Welcome to Meal.Match</h1>
+                  <p>
+                    Have items in your pantry but not sure what make?
+                    <br />
+                    Fill out our short quiz to see recipes that match what you
+                    have, not what you need.
+                  </p>
                 </Row>
-                <Link to="/quiz">
-                  <Button className="btn-responsive" size="lg">
-                    Match Me
-                  </Button>
-                </Link>
+                <Row>
+                  <Link to="/quiz">
+                    <Button className="btn-responsive" size="lg">
+                      Match Me
+                    </Button>
+                  </Link>
+                </Row>
               </Col>
+              <Col sm={1} />
             </Row>
           </div>
         </div>
