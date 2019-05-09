@@ -22,7 +22,7 @@ const Recipe = new GraphQLObjectType({
   })
 })
 
-const RootQuery = new GraphQLObjectType({
+const RootQuery = new GraphQLObjectType({ 
   name: 'RootQueryType',
   fields: {
     searchRecipes: {
