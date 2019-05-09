@@ -64,6 +64,7 @@ const About = () => {
               roundedCircle
               height="171"
               width="180"
+              alt="Amy"
             />
           </Col>
           <Col xs={4} md={3}>
@@ -72,22 +73,25 @@ const About = () => {
               roundedCircle
               height="171"
               width="180"
+              alt="Ann"
             />
           </Col>
           <Col xs={4} md={3}>
             <Image
-              src="https://media.licdn.com/dms/image/C4E03AQF0mEdtBQamtw/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=YqDdHfd4uG5lQHCZuceTeWaNfu2rytjiMd-Wi3siJ6Q"
+              src="https://media.licdn.com/dms/image/C4E03AQGbgYoFK8BEMA/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=UiKMymrYQZDx1BsGOVjhehN5xkx44vsbkCtsXjaqqEA"
               roundedCircle
               height="171"
               width="180"
+              alt="Katie"
             />
           </Col>
           <Col xs={4} md={3}>
             <Image
-              src="https://media.licdn.com/dms/image/C4E03AQGsIKZqGKYHRQ/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=8ifVjVsAnuREJnVLp6aZW92Nz9rURnj8qd6VW6ftWpE"
+              src="/KV.png"
               roundedCircle
               height="171"
               width="180"
+              alt="KV"
             />
           </Col>
         </Row>
