@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {CuttingBoard} from './index'
 import axios from 'axios'
+import {Row, Col, Container} from 'react-bootstrap'
 
 export default class Quiz extends React.Component {
   constructor() {
@@ -47,14 +48,8 @@ export default class Quiz extends React.Component {
     const questions = this.state.data[this.state.count]
     console.log('what is my state??????', this.state)
     return this.state.data[0] ? (
-      <div className="row">
-        <div className="column">
-          <CuttingBoard
-            ingredients={this.state.ingredients}
-            meal={this.state.meal}
-          />
-        </div>
-        <div className="column">
+      <Row>
+        <Col>
           <h2>{questions.question}</h2>
           {questions.image.map((picture, index) => {
             return (
@@ -64,7 +59,7 @@ export default class Quiz extends React.Component {
                   className="button"
                   onClick={() => this.addToIngredients(event)}
                 >
-                  <div className="container">
+                  <div className="container-img">
                     <div className="centered">{questions.name[index]}</div>
                     <img
                       className="options"
@@ -91,8 +86,14 @@ export default class Quiz extends React.Component {
               </button>
             )}
           </div>
-        </div>
-      </div>
+        </Col>
+        <Col sm={5}>
+          <CuttingBoard
+            ingredients={this.state.ingredients}
+            meal={this.state.meal}
+          />
+        </Col>
+      </Row>
     ) : (
       'Loading'
     )

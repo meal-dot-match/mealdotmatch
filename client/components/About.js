@@ -1,5 +1,5 @@
 import React from 'react'
-import {Carousel} from 'react-bootstrap'
+import {Carousel, Container, Row, Col, Image} from 'react-bootstrap'
 
 const About = () => {
   return (
@@ -46,12 +46,52 @@ const About = () => {
             <p>We decided to put our talents to use and create Meal.Match!</p>
           </Carousel.Caption>
         </Carousel.Item>
-      </Carousel>;
-      <h1>Our Story</h1>
-      <p>
-        We want to create a recipe site that is personal to you and what you
-        have in your pantry.
-      </p>
+      </Carousel>
+      <Container style={{padding: '50px'}}>
+        <Row className="center-text">
+          <h1>Meet Our Founders</h1>
+        </Row>
+        <Row className="center-text">
+          <p>
+            Meet the female software engineers who brought Meal.Match from an
+            idea to an application.
+          </p>
+        </Row>
+        <Row>
+          <Col xs={4} md={3}>
+            <Image
+              src="https://media.licdn.com/dms/image/C4E03AQGYdwq4BGOlEA/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=OTaezQD1fgjg3zPKgSWemzf2txMFXp5uO8FOuG1b-Eg"
+              roundedCircle
+              height="171"
+              width="180"
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <Image
+              src="https://media.licdn.com/dms/image/C4E03AQHew4LhGULilA/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=vzOCxZW5yZL3u2Dc5RndP1jish1mQknE2XMWjqjFSxM"
+              roundedCircle
+              height="171"
+              width="180"
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <Image
+              src="https://media.licdn.com/dms/image/C4E03AQF0mEdtBQamtw/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=YqDdHfd4uG5lQHCZuceTeWaNfu2rytjiMd-Wi3siJ6Q"
+              roundedCircle
+              height="171"
+              width="180"
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <Image
+              src="https://media.licdn.com/dms/image/C4E03AQGsIKZqGKYHRQ/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=8ifVjVsAnuREJnVLp6aZW92Nz9rURnj8qd6VW6ftWpE"
+              roundedCircle
+              height="171"
+              width="180"
+            />
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
