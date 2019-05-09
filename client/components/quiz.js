@@ -1,10 +1,25 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {CuttingBoard} from './index'
 import axios from 'axios'
 import {Row, Col, Container} from 'react-bootstrap'
+import {graphql, Query} from 'react-apollo'
+import {gql} from 'apollo-boost'
 
-export default class Quiz extends React.Component {
+const getMealsQuery = gql`
+  query($food: String) {
+    searchRecipes(food: $food) {
+      uri
+      url
+      label
+      image
+      calories
+      totalTime
+      ingredientLines
+    }
+  }
+`
+
+class Quiz extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -14,6 +29,7 @@ export default class Quiz extends React.Component {
       meal: ''
     }
     this.increaseCount = this.increaseCount.bind(this)
+    this.decreaseCount = this.decreaseCount.bind(this)
     this.addToIngredients = this.addToIngredients.bind(this)
   }
 
@@ -47,55 +63,85 @@ export default class Quiz extends React.Component {
   render() {
     const questions = this.state.data[this.state.count]
     console.log('what is my state??????', this.state)
-    return this.state.data[0] ? (
-      <Row>
-        <Col>
-          <h2>{questions.question}</h2>
-          {questions.image.map((picture, index) => {
-            return (
-              <div key={Math.random()}>
-                <button
-                  type="button"
-                  className="button"
-                  onClick={() => this.addToIngredients(event)}
-                >
-                  <div className="container-img">
-                    <div className="centered">{questions.name[index]}</div>
-                    <img
-                      className="options"
-                      src={picture}
-                      alt={questions.name[index]}
-                    />
-                  </div>
-                </button>
-              </div>
-            )
-          })}
+    console.log('HERE ARE THE PROPS', this.props)
 
-          <div>
-            {this.state.count > 0 ? (
-              <button type="button" onClick={() => this.decreaseCount()}>
-                Previous
-              </button>
-            ) : null}
-            {this.state.count === this.state.data.length - 1 ? (
-              <button type="button">Get Matches</button>
-            ) : (
-              <button type="button" onClick={() => this.increaseCount()}>
-                Next
-              </button>
-            )}
-          </div>
-        </Col>
-        <Col sm={5}>
-          <CuttingBoard
-            ingredients={this.state.ingredients}
-            meal={this.state.meal}
-          />
-        </Col>
-      </Row>
-    ) : (
-      'Loading'
+    return (
+      <Query query={getMealsQuery}>
+        {({loading, error, data}) => {
+          if (loading) return 'Loading...'
+          if (error) return `Error! ${error.message}`
+
+          return this.state.data[0] ? (
+            <Container>
+              <Row>
+                <Col>
+                  <h2>{questions.question}</h2>
+                  {questions.image.map((picture, index) => {
+                    return (
+                      <div key={Math.random()}>
+                        <button
+                          type="button"
+                          className="button"
+                          onClick={() => this.addToIngredients(event)}
+                        >
+                          <div className="container">
+                            <div className="centered">
+                              {questions.name[index]}
+                            </div>
+                            <img
+                              className="options"
+                              src={picture}
+                              alt={questions.name[index]}
+                            />
+                          </div>
+                        </button>
+                      </div>
+                    )
+                  })}
+
+                  <div>
+                    {this.state.count > 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => this.decreaseCount()}
+                      >
+                        Previous
+                      </button>
+                    ) : null}
+                    {this.state.count === this.state.data.length - 1 ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          this.graphQLQuery()
+                        }}
+                      >
+                        Get Matches
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => this.increaseCount()}
+                      >
+                        Next
+                      </button>
+                    )}
+                  </div>
+                </Col>
+                <Col sm={5}>
+                  <CuttingBoard
+                    ingredients={this.state.ingredients}
+                    meal={this.state.meal}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          ) : (
+            'Loading'
+          )
+        }}
+      </Query>
     )
   }
 }
+
+export default graphql(getMealsQuery)(Quiz)
