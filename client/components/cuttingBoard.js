@@ -3,7 +3,7 @@ import {ListGroup} from 'react-bootstrap'
 
 export default class CuttingBoard extends React.Component {
   render() {
-    console.log('this is props on the cutting board!!!', this.props)
+    // console.log('this is props on the cutting board!!!', this.props)
     return (
       <div>
         <h3>Your Cutting Board:</h3>

@@ -9,14 +9,14 @@ import About from './about'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-describe('About', () => {
-  let aboutPage
+// describe('About', () => {
+//   let aboutPage
 
-  beforeEach(() => {
-    aboutPage = shallow(<About />)
-  })
+//   beforeEach(() => {
+//     aboutPage = shallow(<About />)
+//   })
 
-  it('renders a title in h1 tags', () => {
-    expect(aboutPage.find('h1').text()).to.be.equal('Our Story')
-  })
-})
+//   it('renders a title in h1 tags', () => {
+//     expect(aboutPage.find('h1').text()).to.be.equal('Our Story')
+//   })
+// })
