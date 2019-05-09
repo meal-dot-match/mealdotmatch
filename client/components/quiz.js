@@ -1,6 +1,7 @@
 import React from 'react'
 import {CuttingBoard} from './index'
 import axios from 'axios'
+import {Row, Col, Container} from 'react-bootstrap'
 import {graphql, Query} from 'react-apollo'
 import {gql} from 'apollo-boost'
 
@@ -71,61 +72,69 @@ class Quiz extends React.Component {
           if (error) return `Error! ${error.message}`
 
           return this.state.data[0] ? (
-            <div className="row">
-              <div className="column">
-                <CuttingBoard
-                  ingredients={this.state.ingredients}
-                  meal={this.state.meal}
-                />
-              </div>
-              <div className="column">
-                <h2>{questions.question}</h2>
-                {questions.image.map((picture, index) => {
-                  return (
-                    <div key={Math.random()}>
+            <Container>
+              <Row>
+                <Col>
+                  <h2>{questions.question}</h2>
+                  {questions.image.map((picture, index) => {
+                    return (
+                      <div key={Math.random()}>
+                        <button
+                          type="button"
+                          className="button"
+                          onClick={() => this.addToIngredients(event)}
+                        >
+                          <div className="container">
+                            <div className="centered">
+                              {questions.name[index]}
+                            </div>
+                            <img
+                              className="options"
+                              src={picture}
+                              alt={questions.name[index]}
+                            />
+                          </div>
+                        </button>
+                      </div>
+                    )
+                  })}
+
+                  <div>
+                    {this.state.count > 0 ? (
                       <button
                         type="button"
-                        className="button"
-                        onClick={() => this.addToIngredients(event)}
+                        onClick={() => this.decreaseCount()}
                       >
-                        <div className="container">
-                          <div className="centered">
-                            {questions.name[index]}
-                          </div>
-                          <img
-                            className="options"
-                            src={picture}
-                            alt={questions.name[index]}
-                          />
-                        </div>
+                        Previous
                       </button>
-                    </div>
-                  )
-                })}
-
-                <div>
-                  {this.state.count > 0 ? (
-                    <button type="button" onClick={() => this.decreaseCount()}>
-                      Previous
-                    </button>
-                  ) : null}
-                  {this.state.count === this.state.data.length - 1 ? (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        this.graphQLQuery()
-                      }}
-                    >
-                      Get Matches
-                    </button>
-                  ) : (
-                    <button type="button" onClick={() => this.increaseCount()}>
-                      Next
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
+                    ) : null}
+                    {this.state.count === this.state.data.length - 1 ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          this.graphQLQuery()
+                        }}
+                      >
+                        Get Matches
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => this.increaseCount()}
+                      >
+                        Next
+                      </button>
+                    )}
+                  </div>
+                </Col>
+                <Col sm={5}>
+                  <CuttingBoard
+                    ingredients={this.state.ingredients}
+                    meal={this.state.meal}
+                  />
+                </Col>
+              </Row>
+            </Container>
           ) : (
             'Loading'
           )
