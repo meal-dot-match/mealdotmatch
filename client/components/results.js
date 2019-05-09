@@ -20,30 +20,32 @@ const getMealsQuery = gql`
 class Results extends React.Component {
   constructor(props) {
     super(props)
-    // this.state = {
-    //   ingredients: [],
-    //   meal: ''
-    // }
   }
 
   sendStringToQuery() {
-    console.log('In the sendStrFunc', this.state.ingredients)
-    const stringQuery = this.state.ingredients.join('+').replace(/\s/g, '')
+    console.log('In the sendStrFunc', this.props.location.state)
+    const stringQuery = this.props.location.state.theIngredients
+      .join('+')
+      .replace(/\s/g, '')
     console.log(stringQuery)
     return stringQuery
   }
-
   render() {
     console.log('the results render props: ', this.props)
     // console.log('the state is: ', this.state)
     const {theIngredients} = this.props.location.state
     console.log('the props passed down are: ', theIngredients)
+    const food = this.sendStringToQuery()
 
     return (
       <Query query={getMealsQuery} variables={{food}}>
         {({loading, error, data}) => {
           if (loading) return 'Loading...'
           if (error) return `Error! ${error.message}`
+          console.log('the data is: ', data.searchRecipes)
+          const allRecipes = data.searchRecipes
+          console.log('allRecipes', allRecipes)
+          const numberOfMatches =
           return <h1>hello world</h1>
         }}
       </Query>
@@ -77,5 +79,4 @@ class Results extends React.Component {
   }
 }
 
-// export default graphql(getMealsQuery)(Results)
-export default Results
+export default graphql(getMealsQuery)(Results)
