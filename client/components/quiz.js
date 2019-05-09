@@ -44,9 +44,12 @@ class Quiz extends React.Component {
         meal: event.target.alt
       })
     } else {
-      this.setState({
-        ingredients: [...this.state.ingredients, event.target.alt]
-      })
+      if (!this.state.ingredients.includes(event.target.alt)) {
+        this.setState({
+          ingredients: [...this.state.ingredients, event.target.alt]
+        })
+        console.log('Ingredients on state: ', this.state.ingredients)
+      }
     }
   }
 
@@ -62,9 +65,9 @@ class Quiz extends React.Component {
 
   sendStringToQuery() {
     console.log('In the sendStrFunc', this.state.ingredients)
-    const stringQuery = this.state.ingredients.join('+').replace(/\s/g,'')
+    const stringQuery = this.state.ingredients.join('+').replace(/\s/g, '')
     console.log(stringQuery)
-    return stringQuery;
+    return stringQuery
   }
 
   render() {
@@ -77,7 +80,6 @@ class Quiz extends React.Component {
         {({loading, error, data}) => {
           if (loading) return 'Loading...'
           if (error) return `Error! ${error.message}`
-          
 
           return this.state.data[0] ? (
             <Container>
