@@ -61,15 +61,17 @@ class Quiz extends React.Component {
   }
 
   sendStringToQuery() {
+    console.log('In the sendStrFunc', this.state.ingredients)
     const stringQuery = this.state.ingredients.join('+').replace(/\s/g, '')
-    console.log('THE FOOD STRING:', stringQuery)
+    console.log(stringQuery)
     return stringQuery
   }
 
   render() {
     const questions = this.state.data[this.state.count]
-    console.log('THIS PROPS DATA VARIABLES FOOD', this.props.data)
+    console.log('Here are the props in the Quiz Component', this.props.data)
     const food = this.sendStringToQuery()
+
     return (
       <Query query={getMealsQuery} variables={{food}}>
         {({loading, error, data}) => {
