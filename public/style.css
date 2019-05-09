@@ -20,6 +20,15 @@ form div {
   display: inline-block;
 }
 
+h3 {
+  color: #0cded7;
+}
+
+h4 {
+  text-align: center;
+  color: #066562;
+}
+
 .container {
   position: relative;
   text-align: center;
@@ -27,6 +36,19 @@ form div {
   color: #0cded7;
   width: 100px;
   height: 100px;
+}
+
+.container-class {
+  background-image: url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1955&q=80');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(200, 0, 0, 2.5);
+  opacity: 1;
+  color: #383838;
+  width: 350px;
+  height: 350px;
+  border: none;
+  background-size: 350px 350px;
 }
 
 .centered {
@@ -43,6 +65,13 @@ form div {
   opacity: 0.3;
 }
 
+.cuttingboardoptions {
+  /* transform: rotate(90deg); */
+  width: 250px;
+  height: 300px;
+  opacity: 0.3;
+}
+
 .button {
   border: none;
 }
@@ -54,4 +83,95 @@ form div {
 .selected {
   border-color: #0cded7;
   border: 2px;
+}
+
+.row {
+  display: flex;
+}
+.row-ingredients {
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  flex: 50%;
+}
+
+.topcenter {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cuttingboardcenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.img-wrapper {
+  position: relative;
+  margin-top: 0%;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.img-overlay:before {
+  content: ' ';
+  display: block;
+  /* adjust 'height' to position overlay content vertically */
+  height: 20%;
+}
+
+.btn-responsive {
+  /* matches 'btn-md' */
+  padding: 10px 16px;
+  font-size: 20px;
+  line-height: 1.3333333;
+  border-radius: 10px;
+  background: #0cded7;
+  border: none;
+}
+
+.btn-responsive:hover {
+  background: #1fcca3;
+}
+
+@media (max-width: 760px) {
+  /* matches 'btn-xs' */
+  .btn-responsive {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+  }
+}
+
+.jumbotron {
+  background-image: url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1231&q=80');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.row-homepage {
+  width: 100%;
+  text-align: center;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
 }
