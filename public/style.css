@@ -29,7 +29,7 @@ h4 {
   color: #066562;
 }
 
-.container {
+.container-img {
   position: relative;
   text-align: center;
   background-color: #000000;
@@ -85,12 +85,8 @@ h4 {
   border: 2px;
 }
 
-.row {
-  display: flex;
-}
 .row-ingredients {
-  display: flex;
-  justify-content: center;
+  background-color: transparent;
 }
 
 .column {
@@ -193,4 +189,8 @@ body {
 .about {
   background-color: #000000;
   background: rgba(5, 4, 4, 0.5);
+}
+
+.center-text {
+  justify-content: center;
 }
