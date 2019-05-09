@@ -48,7 +48,6 @@ class Quiz extends React.Component {
         this.setState({
           ingredients: [...this.state.ingredients, event.target.alt]
         })
-        console.log('Ingredients on state: ', this.state.ingredients)
       }
     }
   }
