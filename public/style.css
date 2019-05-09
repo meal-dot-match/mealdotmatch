@@ -206,3 +206,18 @@ body {
   grid-column-gap: 1em;
   grid-auto-flow: column;
 }
+
+.results-image {
+  height: 250px;
+  width: 175px;
+
+  box-shadow: 2px 3px 5px #888888;
+}
+
+.results-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 1em;
+  grid-auto-flow: column;
+}
