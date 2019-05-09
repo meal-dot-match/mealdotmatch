@@ -10,6 +10,9 @@ const Question = db.define('question', {
   },
   name: {
     type: Sequelize.ARRAY(Sequelize.TEXT)
+  },
+  max: {
+    type: Sequelize.INTEGER
   }
 })
 

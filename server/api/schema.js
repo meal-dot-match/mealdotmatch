@@ -33,10 +33,15 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         console.log('IN THE RESOLVER:', args.food)
-
+        console.log(
+          'WHAT IS THE URL BEING SENT TO EDAMAM??????',
+          `https://api.edamam.com/search?q=${args.food}&from=0&to=10&app_id=${
+            ApiKey3.ID
+          }&app_key=${ApiKey3.KEY}`
+        )
         return axios
           .get(
-            `https://api.edamam.com/search?q=${args.food}&from=0&to=1&app_id=${
+            `https://api.edamam.com/search?q=${args.food}&from=0&to=10&app_id=${
               ApiKey3.ID
             }&app_key=${ApiKey3.KEY}`
           )
