@@ -47,10 +47,7 @@ class Quiz extends React.Component {
   addToIngredients(event) {
     const max = this.state.data[this.state.count].question.max
     const foodType = this.state.data[this.state.count].question.split(' ')[1]
-    // const foodTypeArray = `${foodType}Array`
     console.log('foodType: ', foodType)
-    console.log('this.state[foodType] ', this.state[foodType])
-
     if (this.state.count === 0) {
       this.setState({
         meal: event.target.alt
@@ -62,9 +59,10 @@ class Quiz extends React.Component {
         // this.state[foodType].length < max
       ) {
         this.setState({
-          ingredients: [...this.state.ingredients, event.target.alt]
-          // foodType: [...this.state[foodType], event.target.alt]
+          ingredients: [...this.state.ingredients, event.target.alt],
+          foodType: [...this.state[foodType], event.target.alt]
         })
+        console.log('this.state[`${foodType}`] ', this.state[`${foodType}`])
       }
     }
   }
