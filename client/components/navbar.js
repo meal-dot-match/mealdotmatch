@@ -5,25 +5,62 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {Navbar, Nav, FormControl, Form, Button} from 'react-bootstrap'
 
-const Navigation = ({handleClick, isLoggedIn}) => (
-  <>
-    <Navbar bg="light" variant="light">
-      <Navbar.Brand href="/">Meal.Match</Navbar.Brand>
-      <Nav className="mr-auto">
-        <Nav.Link href="/quiz">Start Quiz</Nav.Link>
-        <Nav.Link href="/about">Our Story</Nav.Link>
-      </Nav>
-      <Form inline>
-        <FormControl
-          type="text"
-          placeholder="Search recipes..."
-          className="mr-sm-2"
-        />
-        <Button variant="outline-info">Search</Button>
-      </Form>
-    </Navbar>
-  </>
-)
+class Navigation extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      value: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit(this)
+  }
+
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
+    })
+  }
+  handleSubmit() {
+    console.log('did this go through???')
+  }
+
+  render() {
+    console.log('what is the state in my navbar?????', this.state.value)
+    let test = 'hello'
+    return (
+      <>
+        <Navbar bg="light" variant="light">
+          <Navbar.Brand href="/">Meal.Match</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="/howitworks">How It Works</Nav.Link>
+            <Nav.Link href="/about">Our Story</Nav.Link>
+            <Nav.Link href="/quiz">Get Matched</Nav.Link>
+          </Nav>
+          <Form inline>
+            <FormControl
+              type="text"
+              placeholder="Search recipes..."
+              className="mr-sm-2"
+              value={this.state.value}
+              onChange={this.handleChange}
+              onSubmit={this.handleSubmit}
+            />
+            <Link
+              to={{
+                pathname: '/searchbarresults',
+                searchBar: this.state.value.replace(/\s/g, '+')
+              }}
+            >
+              <Button variant="outline-info" type="submit">
+                Search
+              </Button>
+            </Link>
+          </Form>
+        </Navbar>
+      </>
+    )
+  }
+}
 
 /**
  * CONTAINER
