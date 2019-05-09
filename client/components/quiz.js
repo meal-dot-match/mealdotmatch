@@ -49,6 +49,8 @@ class Quiz extends React.Component {
     const foodType = this.state.data[this.state.count].question.split(' ')[1]
     // const foodTypeArray = `${foodType}Array`
     console.log('foodType: ', foodType)
+    console.log('this.state[foodType] ', this.state[foodType])
+
     if (this.state.count === 0) {
       this.setState({
         meal: event.target.alt
@@ -168,5 +170,5 @@ class Quiz extends React.Component {
   }
 }
 
-// export default Quiz
-export default graphql(getMealsQuery)(Quiz)
+export default Quiz
+// export default graphql(getMealsQuery)(Quiz)
