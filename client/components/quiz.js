@@ -43,12 +43,10 @@ class Quiz extends React.Component {
       this.setState({
         meal: event.target.alt
       })
-    } else {
-      if (!this.state.ingredients.includes(event.target.alt)) {
-        this.setState({
-          ingredients: [...this.state.ingredients, event.target.alt]
-        })
-      }
+    } else if (!this.state.ingredients.includes(event.target.alt)) {
+      this.setState({
+        ingredients: [...this.state.ingredients, event.target.alt]
+      })
     }
   }
 
@@ -71,7 +69,8 @@ class Quiz extends React.Component {
 
   render() {
     const questions = this.state.data[this.state.count]
-    console.log('Here are the props in the Quiz Component', this.props.data)
+    console.log('Here is the state!', this.state)
+    console.log('Here are the props!', this.props)
     const food = this.sendStringToQuery()
 
     return (
