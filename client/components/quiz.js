@@ -62,22 +62,21 @@ class Quiz extends React.Component {
 
   sendStringToQuery() {
     console.log('In the sendStrFunc', this.state.ingredients)
-    const stringQuery = this.state.ingredients.join('+').replace(/\s/g,'')
+    const stringQuery = this.state.ingredients.join('+').replace(/\s/g, '')
     console.log(stringQuery)
-    return stringQuery;
+    return stringQuery
   }
 
   render() {
     const questions = this.state.data[this.state.count]
-    console.log('This is my state in the Quiz Component:', this.state)
     console.log('Here are the props in the Quiz Component', this.props.data)
+    const food = this.sendStringToQuery()
 
     return (
-      <Query query={getMealsQuery}>
+      <Query query={getMealsQuery} variables={{food}}>
         {({loading, error, data}) => {
           if (loading) return 'Loading...'
           if (error) return `Error! ${error.message}`
-          
 
           return this.state.data[0] ? (
             <Container>
@@ -120,7 +119,7 @@ class Quiz extends React.Component {
                       <button
                         type="button"
                         onClick={() => {
-                          this.graphQLQuery()
+                          this.sendStringToQuery()
                         }}
                       >
                         Get Matches
