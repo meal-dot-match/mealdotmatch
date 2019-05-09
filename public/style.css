@@ -28,6 +28,11 @@ h4 {
   text-align: center;
   color: #066562;
 }
+h5 {
+  padding: 10px;
+  text-align: center;
+  color: #066562;
+}
 
 .container-img {
   position: relative;
@@ -43,12 +48,19 @@ h4 {
   background-repeat: no-repeat;
   background-position: center;
   background-color: rgba(200, 0, 0, 2.5);
-  opacity: 1;
+  opacity: 0.8;
   color: #383838;
-  width: 350px;
-  height: 350px;
-  border: none;
-  background-size: 350px 350px;
+  width: 500px;
+  height: 500px;
+  border: 0px;
+  border-radius: 15px;
+
+  /* background-size: 250px 500px; */
+}
+
+.cutting-board-ingredients {
+  border-color: transparent;
+  background-color: transparent;
 }
 
 .centered {
@@ -83,14 +95,6 @@ h4 {
 .selected {
   border-color: #0cded7;
   border: 2px;
-}
-
-.row-ingredients {
-  background-color: transparent;
-}
-
-.column {
-  flex: 50%;
 }
 
 .topcenter {
@@ -193,4 +197,12 @@ body {
 
 .center-text {
   justify-content: center;
+}
+
+.list-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 1em;
+  grid-auto-flow: column;
 }

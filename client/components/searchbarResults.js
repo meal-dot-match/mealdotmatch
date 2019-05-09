@@ -6,13 +6,10 @@ import {Row, Col, Container, Image} from 'react-bootstrap'
 const searchBarQuery = gql`
   query($food: String) {
     searchRecipes(food: $food) {
-      uri
       url
       label
       image
-      calories
       totalTime
-      ingredientLines
     }
   }
 `
