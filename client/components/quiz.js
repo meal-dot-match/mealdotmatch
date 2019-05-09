@@ -60,16 +60,24 @@ class Quiz extends React.Component {
     this.setState({count: newCount})
   }
 
+  sendStringToQuery() {
+    console.log('In the sendStrFunc', this.state.ingredients)
+    const stringQuery = this.state.ingredients.join('+').replace(/\s/g,'')
+    console.log(stringQuery)
+    return stringQuery;
+  }
+
   render() {
     const questions = this.state.data[this.state.count]
-    console.log('what is my state??????', this.state)
-    console.log('HERE ARE THE PROPS', this.props)
+    console.log('This is my state in the Quiz Component:', this.state)
+    console.log('Here are the props in the Quiz Component', this.props.data)
 
     return (
       <Query query={getMealsQuery}>
         {({loading, error, data}) => {
           if (loading) return 'Loading...'
           if (error) return `Error! ${error.message}`
+          
 
           return this.state.data[0] ? (
             <Container>
