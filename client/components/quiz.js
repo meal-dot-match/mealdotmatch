@@ -44,9 +44,11 @@ class Quiz extends React.Component {
         meal: event.target.alt
       })
     } else {
-      this.setState({
-        ingredients: [...this.state.ingredients, event.target.alt]
-      })
+      if (!this.state.ingredients.includes(event.target.alt)) {
+        this.setState({
+          ingredients: [...this.state.ingredients, event.target.alt]
+        })
+      }
     }
   }
 
