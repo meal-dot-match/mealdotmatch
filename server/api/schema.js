@@ -22,7 +22,8 @@ const Recipe = new GraphQLObjectType({
   })
 })
 
-const RootQuery = new GraphQLObjectType({ 
+const RootQuery = new GraphQLObjectType({
+  //searchrecipes(food){ axios.get request http://{food} }
   name: 'RootQueryType',
   fields: {
     searchRecipes: {
@@ -31,6 +32,8 @@ const RootQuery = new GraphQLObjectType({
         food: {type: GraphQLString}
       },
       resolve(parentValue, args) {
+        console.log('IN THE RESOLVER:', args.food)
+
         return axios
           .get(
             `https://api.edamam.com/search?q=${args.food}&from=0&to=1&app_id=${

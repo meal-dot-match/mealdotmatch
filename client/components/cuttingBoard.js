@@ -3,7 +3,7 @@ import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 
 export default class CuttingBoard extends React.Component {
   render() {
-    console.log('this is props on the cutting board!!!', this.props)
+    // console.log('this is props on the cutting board!!!', this.props)
     return (
       <Container>
         <Row className="center-text">
