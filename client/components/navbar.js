@@ -3,22 +3,15 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  FormControl,
-  Form,
-  Button
-} from 'react-bootstrap'
+import {Navbar, Nav, FormControl, Form, Button} from 'react-bootstrap'
 
 const Navigation = ({handleClick, isLoggedIn}) => (
   <>
     <Navbar bg="light" variant="light">
       <Navbar.Brand href="/">Meal.Match</Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link href="/about">About Us</Nav.Link>
         <Nav.Link href="/quiz">Start Quiz</Nav.Link>
+        <Nav.Link href="/about">Our Story</Nav.Link>
       </Nav>
       <Form inline>
         <FormControl
