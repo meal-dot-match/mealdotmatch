@@ -62,9 +62,9 @@ class Quiz extends React.Component {
 
   sendStringToQuery() {
     console.log('In the sendStrFunc', this.state.ingredients)
-    const stringQuery = this.state.ingredients.join('+').replace(/\s/g,'')
+    const stringQuery = this.state.ingredients.join('+').replace(/\s/g, '')
     console.log(stringQuery)
-    return stringQuery;
+    return stringQuery
   }
 
   render() {
@@ -77,7 +77,6 @@ class Quiz extends React.Component {
         {({loading, error, data}) => {
           if (loading) return 'Loading...'
           if (error) return `Error! ${error.message}`
-          
 
           return this.state.data[0] ? (
             <Container>
@@ -152,4 +151,5 @@ class Quiz extends React.Component {
   }
 }
 
-export default graphql(getMealsQuery)(Quiz)
+export default Quiz
+// export default graphql(getMealsQuery)(Quiz)

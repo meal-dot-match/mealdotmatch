@@ -10,8 +10,9 @@ const Navigation = ({handleClick, isLoggedIn}) => (
     <Navbar bg="light" variant="light">
       <Navbar.Brand href="/">Meal.Match</Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link href="/quiz">Start Quiz</Nav.Link>
         <Nav.Link href="/about">Our Story</Nav.Link>
+        <Nav.Link href="/howitworks">How It Works</Nav.Link>
+        <Nav.Link href="/quiz">Get Matched</Nav.Link>
       </Nav>
       <Form inline>
         <FormControl
