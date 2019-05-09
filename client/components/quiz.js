@@ -24,9 +24,15 @@ class Quiz extends React.Component {
     super()
     this.state = {
       count: 0,
+      meal: '',
+      meat: [],
+      seafood: [],
+      dairy: [],
+      'vegetable(s)': [],
+      'fruit(s)': [],
+      'grain(s)': [],
       ingredients: [],
-      data: [],
-      meal: ''
+      data: []
     }
     this.increaseCount = this.increaseCount.bind(this)
     this.decreaseCount = this.decreaseCount.bind(this)
@@ -39,14 +45,23 @@ class Quiz extends React.Component {
   }
 
   addToIngredients(event) {
+    const max = this.state.data[this.state.count].question.max
+    const foodType = this.state.data[this.state.count].question.split(' ')[1]
+    // const foodTypeArray = `${foodType}Array`
+    console.log('foodType: ', foodType)
     if (this.state.count === 0) {
       this.setState({
         meal: event.target.alt
       })
     } else {
-      if (!this.state.ingredients.includes(event.target.alt)) {
+      if (
+        !this.state.ingredients.includes(event.target.alt)
+        // &&
+        // this.state[foodType].length < max
+      ) {
         this.setState({
           ingredients: [...this.state.ingredients, event.target.alt]
+          // foodType: [...this.state[foodType], event.target.alt]
         })
       }
     }
@@ -63,15 +78,15 @@ class Quiz extends React.Component {
   }
 
   sendStringToQuery() {
-    console.log('In the sendStrFunc', this.state.ingredients)
+    // console.log('In the sendStrFunc', this.state.ingredients)
     const stringQuery = this.state.ingredients.join('+').replace(/\s/g, '')
-    console.log(stringQuery)
+    // console.log(stringQuery)
     return stringQuery
   }
 
   render() {
     const questions = this.state.data[this.state.count]
-    console.log('Here are the props in the Quiz Component', this.props.data)
+    // console.log('Here are the props in the Quiz Component', this.props.data)
     const food = this.sendStringToQuery()
 
     return (
@@ -153,4 +168,6 @@ class Quiz extends React.Component {
   }
 }
 
-export default graphql(getMealsQuery)(Quiz)
+export default Quiz
+
+// export default graphql(getMealsQuery)(Quiz)
