@@ -11,7 +11,7 @@ const Question = db.define('question', {
   name: {
     type: Sequelize.ARRAY(Sequelize.TEXT)
   },
-  limit: {
+  max: {
     type: Sequelize.INTEGER
   }
 })

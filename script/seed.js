@@ -22,7 +22,7 @@ async function seed() {
         'https://images.unsplash.com/photo-1485474187873-a541e1da7c51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
       ],
       name: ['Breakfast', 'Lunch', 'Dinner', 'Dessert'],
-      limit: 1
+      max: 1
     }),
     Question.create({
       question: 'What dairy would you like to use?',
@@ -33,7 +33,7 @@ async function seed() {
         'https://images.pexels.com/photos/94443/pexels-photo-94443.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
       ],
       name: ['Cheese', 'Yogurt', 'Milk', 'Butter'],
-      limit: 3
+      max: 3
     }),
     Question.create({
       question: 'What meats would you like to use?',
@@ -45,7 +45,7 @@ async function seed() {
         'https://images.pexels.com/photos/265393/pexels-photo-265393.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
       ],
       name: ['Steak', 'Ground Beef', 'Pork', 'Bacon', 'Turkey'],
-      limit: 2
+      max: 2
     }),
     Question.create({
       question: 'What seafood would you like to use?',
@@ -58,7 +58,7 @@ async function seed() {
         'https://images.unsplash.com/photo-1537088995-030dbc4d919a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
       ],
       name: ['Salmon', 'Tuna', 'Shrimp', 'Crab', 'Lobster', 'Clams'],
-      limit: 2
+      max: 2
     }),
     Question.create({
       question: 'What vegetable(s) would you like to use?',
@@ -106,7 +106,7 @@ async function seed() {
         'Tomatoes',
         'Zucchini'
       ],
-      limit: 4
+      max: 4
     }),
     Question.create({
       question: 'What fruit(s) would you want to use?',
@@ -130,7 +130,7 @@ async function seed() {
         'Raspberries',
         'Strawberries'
       ],
-      limit: 3
+      max: 3
     }),
     Question.create({
       question: 'What grain(s) would you like to use?',
@@ -142,7 +142,7 @@ async function seed() {
         'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
       ],
       name: ['Bread', 'Oats', 'Pasta and Noodles', 'Quinoa', 'Rice'],
-      limit: 2
+      max: 2
     })
   ])
 
