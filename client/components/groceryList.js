@@ -3,6 +3,7 @@ import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 
 class GroceryList extends Component {
   render() {
+    console.log(this.props.location)
     return (
       <Container>
         <Row>
@@ -24,7 +25,7 @@ class GroceryList extends Component {
             </p>
           </Col>
         </Row>
-      </Container> 
+      </Container>
     )
   }
 }
