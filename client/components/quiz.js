@@ -66,7 +66,7 @@ export default class Quiz extends React.Component {
     const ingredientsLeft = this.state.ingredients.filter(item => {
       return item !== event.target.id
     })
-    console.log('Here is what is left on the board:', ingredientsLeft)
+    this.setState({ingredients: ingredientsLeft})
   }
 
   increaseCount() {

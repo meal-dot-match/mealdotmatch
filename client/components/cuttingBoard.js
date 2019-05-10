@@ -7,12 +7,6 @@ export default class CuttingBoard extends React.Component {
     this.functionPassed = this.functionPassed.bind(this)
   }
   functionPassed(event) {
-    console.log(
-      'In the cuttingboard but here are the props from Quiz:',
-      this.props
-    )
-    console.log('The ingredient that the x belongs to is: ', event.target.id)
-    console.log('Does this have prototypes?:', this.prototype)
     this.props.sendFunction(event)
   }
 
