@@ -44,10 +44,19 @@ export default class Quiz extends React.Component {
         !this.state.ingredients.includes(event.target.alt) &&
         this.state[foodType].length < max
       ) {
-        this.setState({
-          ingredients: [...this.state.ingredients, event.target.alt],
-          [foodType]: [...this.state[foodType], event.target.alt]
-        })
+        if (foodType === 'meats' || foodType === 'seafood') {
+          if (this.state.meats.length + this.state.seafood.length < 2) {
+            this.setState({
+              ingredients: [...this.state.ingredients, event.target.alt],
+              [foodType]: [...this.state[foodType], event.target.alt]
+            })
+          }
+        } else {
+          this.setState({
+            ingredients: [...this.state.ingredients, event.target.alt],
+            [foodType]: [...this.state[foodType], event.target.alt]
+          })
+        }
       }
     }
   }
