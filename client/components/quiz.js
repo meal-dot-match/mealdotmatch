@@ -74,83 +74,72 @@ class Quiz extends React.Component {
     const food = this.sendStringToQuery()
 
     return (
-      <Query query={getMealsQuery} variables={{food}}>
-        {({loading, error, data}) => {
-          if (loading) return 'Loading...'
-          if (error) return `Error! ${error.message}`
+      // <Query query={getMealsQuery} variables={{food}}>
+      //   {({loading, error, data}) => {
+      //     if (loading) return 'Loading...'
+      //     if (error) return `Error! ${error.message}`
 
-          return this.state.data[0] ? (
-            <Container>
-              <Row>
-                <Col>
-                  <h2>{questions.question}</h2>
-                  {questions.image.map((picture, index) => {
-                    return (
-                      <div key={Math.random()}>
-                        <button
-                          type="button"
-                          className="button"
-                          onClick={() => this.addToIngredients(event)}
-                        >
-                          <div className="container">
-                            <div className="centered">
-                              {questions.name[index]}
-                            </div>
-                            <img
-                              className="options"
-                              src={picture}
-                              alt={questions.name[index]}
-                            />
-                          </div>
-                        </button>
+      this.state.data[0] ? (
+        <Container>
+          <Row>
+            <Col>
+              <h2>{questions.question}</h2>
+              {questions.image.map((picture, index) => {
+                return (
+                  <div key={Math.random()}>
+                    <button
+                      type="button"
+                      className="button"
+                      onClick={() => this.addToIngredients(event)}
+                    >
+                      <div className="container">
+                        <div className="centered">{questions.name[index]}</div>
+                        <img
+                          className="options"
+                          src={picture}
+                          alt={questions.name[index]}
+                        />
                       </div>
-                    )
-                  })}
-
-                  <div>
-                    {this.state.count > 0 ? (
-                      <button
-                        type="button"
-                        onClick={() => this.decreaseCount()}
-                      >
-                        Previous
-                      </button>
-                    ) : null}
-                    {this.state.count === this.state.data.length - 1 ? (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          this.sendStringToQuery()
-                        }}
-                      >
-                        Get Matches
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => this.increaseCount()}
-                      >
-                        Next
-                      </button>
-                    )}
+                    </button>
                   </div>
-                </Col>
-                <Col sm={5}>
-                  <CuttingBoard
-                    ingredients={this.state.ingredients}
-                    meal={this.state.meal}
-                  />
-                </Col>
-              </Row>
-            </Container>
-          ) : (
-            'Loading'
-          )
-        }}
-      </Query>
+                )
+              })}
+
+              <div>
+                {this.state.count > 0 ? (
+                  <button type="button" onClick={() => this.decreaseCount()}>
+                    Previous
+                  </button>
+                ) : null}
+                {this.state.count === this.state.data.length - 1 ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      this.sendStringToQuery()
+                    }}
+                  >
+                    Get Matches
+                  </button>
+                ) : (
+                  <button type="button" onClick={() => this.increaseCount()}>
+                    Next
+                  </button>
+                )}
+              </div>
+            </Col>
+            <Col sm={5}>
+              <CuttingBoard
+                ingredients={this.state.ingredients}
+                meal={this.state.meal}
+              />
+            </Col>
+          </Row>
+        </Container>
+      ) : (
+        'Loading'
+      )
     )
   }
 }
 
-// export default Quiz
-export default graphql(getMealsQuery)(Quiz)
+export default Quiz
