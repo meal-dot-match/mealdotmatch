@@ -129,17 +129,10 @@ export default class Quiz extends React.Component {
       'Loading'
     )
   }
-  sendStringToQuery() {
-    // console.log('In the sendStrFunc', this.state.ingredients)
-    const stringQuery = this.state.ingredients.join('+').replace(/\s/g, '')
-    // console.log(stringQuery)
-    return stringQuery
-  }
 
   render() {
     const questions = this.state.data[this.state.count]
     // console.log('Here are the props in the Quiz Component', this.props.data)
-    const food = this.sendStringToQuery()
     if (questions) {
       const foodType = this.state.data[this.state.count].question.split(' ')[1]
       console.log('this.state[foodType] ', this.state[foodType])
@@ -178,14 +171,16 @@ export default class Quiz extends React.Component {
                 </button>
               ) : null}
               {this.state.count === this.state.data.length - 1 ? (
-                <button
-                  type="button"
-                  onClick={() => {
-                    this.sendStringToQuery()
+                <Link
+                  to={{
+                    pathname: '/results',
+                    state: {
+                      theIngredients: this.state.ingredients
+                    }
                   }}
                 >
-                  Get Matches
-                </button>
+                  <button type="button">Get Matches</button>
+                </Link>
               ) : (
                 <button type="button" onClick={() => this.increaseCount()}>
                   Next

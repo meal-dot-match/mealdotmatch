@@ -42,40 +42,11 @@ class Results extends React.Component {
         {({loading, error, data}) => {
           if (loading) return 'Loading...'
           if (error) return `Error! ${error.message}`
-          console.log('the data is: ', data.searchRecipes)
-          const allRecipes = data.searchRecipes
-          console.log('allRecipes', allRecipes)
-          const numberOfMatches =
+          console.log('the data is: ', data)
           return <h1>hello world</h1>
         }}
       </Query>
     )
-
-    //map through all recipes we get for % match
-    //sort by highest % match
-    //render top 5 matches
-    // <div>
-    //   <h1>The recipe name here</h1>
-    //   <a href="https://www.marthastewart.com/312659/rosemary-lemon-chicken-with-vegetables">
-    //     Click here to see more about the recipe
-    //   </a>
-    //   <br />
-    //   <br />
-    //   <img src="https://assets.marthastewart.com/styles/wmax-300/d24/ed102471_1106_rosemary_s/ed102471_1106_rosemary_s_vert.jpg?itok=JAnvQ5Ni" />
-    //   <h2>Calorie count: 1000</h2>
-    //   <h2>
-    //     Your % Match: (the length of the new array when we use arr.filter on
-    //     the ingredients the user input from props that match the
-    //     ingredientLines array by str.includes function) / (the ingredientLines
-    //     length){' '}
-    //   </h2>
-    //   <h3>
-    //     Your missing ingredients: filter the ingredientLines array by if our
-    //     user input array from props does NOT str.includes and will eventually
-    //     send text or to postmates API
-    //   </h3>
-    // </div>
-    // )
   }
 }
 
