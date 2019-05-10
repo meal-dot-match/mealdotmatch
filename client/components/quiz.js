@@ -95,11 +95,18 @@ class Quiz extends React.Component {
     console.log('this.state.ingredients ', this.state.ingredients)
     return (
       // <Query query={getMealsQuery} variables={{food}}>
+<<<<<<< HEAD
+      //   {({loading, error, data}) => {
+      //     if (loading) return 'Loading...'
+      //     if (error) return `Error! ${error.message}`
+
+=======
       // {({loading, error, data}) => {
       //   if (loading) return 'Loading...'
       //   if (error) return `Error! ${error.message}`
 
       // return
+>>>>>>> master
       this.state.data[0] ? (
         <Container>
           <Row>
@@ -159,11 +166,8 @@ class Quiz extends React.Component {
       ) : (
         'Loading'
       )
-      // }}
-      // </Query>
     )
   }
 }
 
 export default Quiz
-// export default graphql(getMealsQuery)(Quiz)
