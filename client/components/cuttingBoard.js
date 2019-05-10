@@ -2,8 +2,13 @@ import React from 'react'
 import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 
 export default class CuttingBoard extends React.Component {
+  removingIngredient(event) {
+    console.log('PROPS IN REMOVING INGREDIENTS', this.props)
+    console.log('INGREDIENTS ON BOARD', this.props.ingredients)
+    console.log('Is this x unique?', event.target)
+  }
+
   render() {
-    // console.log('this is props on the cutting board!!!', this.props)
     return (
       <Container>
         <Row className="center-text">
@@ -34,8 +39,13 @@ export default class CuttingBoard extends React.Component {
                                 type="button"
                                 className="close"
                                 aria-label="Close"
+                                onClick={() => {
+                                  this.removingIngredient(event)
+                                }}
                               >
-                                <span aria-hidden="true">×</span>
+                                <span aria-hidden="true" id={ingredient}>
+                                  ×
+                                </span>
                               </Button>
                             </Col>
                           </ListGroup.Item>
