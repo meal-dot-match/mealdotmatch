@@ -70,11 +70,36 @@ h5 {
   transform: translate(-50%, -50%);
 }
 
+.option-with-label {
+  margin: 7px;
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.label {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .options {
   width: 100px;
   height: 100px;
-  background-color: rgba(200, 0, 0, 2.5);
   opacity: 0.3;
+  box-shadow: 2px 3px 5px #888888;
+  border-radius: 7px;
+  /* styles below added by katie */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.options:hover {
+  opacity: 0.75;
 }
 
 .cuttingboardoptions {
@@ -86,10 +111,6 @@ h5 {
 
 .button {
   border: none;
-}
-
-.options:hover {
-  opacity: 0.75;
 }
 
 .selected {
@@ -259,6 +280,15 @@ body {
   border-color: #0cded7;
 }
 
+.prev-next-buttons {
+  margin-top: 25px;
+  justify-content: center;
+  align-content: space-between;
+}
+
+.question {
+  text-align: center;
+}
 .single-recipe-container {
   padding: 35px;
 }

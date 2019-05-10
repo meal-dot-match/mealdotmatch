@@ -86,53 +86,60 @@ export default class Quiz extends React.Component {
       <Container>
         <Row>
           <Col>
-            <h2>{questions.question}</h2>
-            {questions.image.map((picture, index) => {
-              return (
-                <div key={Math.random()}>
-                  <button
-                    type="button"
-                    className="button"
-                    onClick={() => this.addToIngredients(event)}
-                  >
-                    <div className="container">
-                      <div className="centered">{questions.name[index]}</div>
-                      <img
-                        className="options"
-                        src={picture}
-                        alt={questions.name[index]}
-                      />
-                    </div>
-                  </button>
-                </div>
-              )
-            })}
+            <h2 className="question">{questions.question}</h2>
+            <h5>(choose up to {questions.max})</h5>
+            <Row>
+              {questions.image.map((picture, index) => {
+                return (
+                  <div key={Math.random()}>
+                    <button
+                      type="button"
+                      className="button"
+                      onClick={() => this.addToIngredients(event)}
+                    >
+                      <div className="option-with-label">
+                        <div className="label">{questions.name[index]}</div>
+                        <div>
+                          <img
+                            className="options"
+                            src={picture}
+                            alt={questions.name[index]}
+                          />
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                )
+              })}
+            </Row>
 
-            <div>
-              {this.state.count > 0 ? (
-                <button type="button" onClick={() => this.decreaseCount()}>
-                  Previous
-                </button>
-              ) : null}
-              {this.state.count === this.state.data.length - 1 ? (
-                <Link
-                  to={{
-                    pathname: '/results',
-                    state: {
-                      theIngredients: this.state.ingredients,
-                      theMeats: this.state.meats,
-                      theSeafood: this.state.seafood
-                    }
-                  }}
-                >
-                  <button type="button">Get Matches</button>
-                </Link>
-              ) : (
-                <button type="button" onClick={() => this.increaseCount()}>
-                  Next
-                </button>
-              )}
-            </div>
+            <Row className="prev-next-buttons">
+              <div>
+                {this.state.count > 0 ? (
+                  <button type="button" onClick={() => this.decreaseCount()}>
+                    Previous
+                  </button>
+                ) : null}
+                {this.state.count === this.state.data.length - 1 ? (
+                  <Link
+                    to={{
+                      pathname: '/results',
+                      state: {
+                        theIngredients: this.state.ingredients,
+                        theMeats: this.state.meats,
+                        theSeafood: this.state.seafood
+                      }
+                    }}
+                  >
+                    <button type="button">Get Matches</button>
+                  </Link>
+                ) : (
+                  <button type="button" onClick={() => this.increaseCount()}>
+                    Next
+                  </button>
+                )}
+              </div>
+            </Row>
           </Col>
           <Col sm={5}>
             <CuttingBoard
