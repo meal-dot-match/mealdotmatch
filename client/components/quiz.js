@@ -104,7 +104,9 @@ export default class Quiz extends React.Component {
                   to={{
                     pathname: '/results',
                     state: {
-                      theIngredients: this.state.ingredients
+                      theIngredients: this.state.ingredients,
+                      theMeats: this.state.meats,
+                      theSeafood: this.state.seafood
                     }
                   }}
                 >
@@ -175,7 +177,9 @@ export default class Quiz extends React.Component {
                   to={{
                     pathname: '/results',
                     state: {
-                      theIngredients: this.state.ingredients
+                      theIngredients: this.state.ingredients,
+                      theMeats: this.state.meats,
+                      theSeafood: this.state.seafood
                     }
                   }}
                 >

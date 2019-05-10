@@ -23,9 +23,12 @@ class Results extends React.Component {
   }
 
   sendStringToQuery() {
-    const stringQuery = this.props.location.state.theIngredients
+    // const stringQuery = this.props.location.state.theIngredients
+    const stringQuery = this.props.location.state.theMeats
+      .concat(this.props.location.state.theSeafood)
       .join('+')
       .replace(/\s/g, '')
+    console.log(stringQuery)
     return stringQuery
   }
   render() {
@@ -91,9 +94,7 @@ class Results extends React.Component {
               {renderArr.map(x => (
                 <div>
                   <h1>{x.label}</h1>
-                  <h1>{x.calories}</h1>
-                  <h1>{x.totalTime}</h1>
-                  <h1>{x.percentage}</h1>
+                  <h1>{(Number(x.percentage) * 100).toFixed(2)} % match</h1>
                   <br />
                 </div>
               ))}
