@@ -1,36 +1,63 @@
 import React from 'react'
-import {ListGroup} from 'react-bootstrap'
+import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 
 export default class CuttingBoard extends React.Component {
+  removingIngredient(event) {
+    console.log('PROPS IN REMOVING INGREDIENTS', this.props)
+    console.log('INGREDIENTS ON BOARD', this.props.ingredients)
+    console.log('Is this x unique?', event.target)
+  }
+
   render() {
-    // console.log('this is props on the cutting board!!!', this.props)
     return (
-      <div>
-        <h3>Your Cutting Board:</h3>
-        <div className="container-class">
-          <div id="topcenter" className="row">
-            <div className="column">
-              <h4>Meal:</h4>
-              <div className="row-ingredients">{this.props.meal}</div>
-            </div>
+      <Container>
+        <Row className="center-text">
+          <h3>Your Ingredients Board</h3>
+        </Row>
+
+        <Row>
+          <h4>Meal: {this.props.meal}</h4>
+        </Row>
+        <Row>
+          <div className="container-class">
+            <Row className="center-text">
+              <h5>Ingredients:</h5>
+            </Row>
+            <Row>
+              <Col xs={4} md={4} lg={4}>
+                <ListGroup variant="flush">
+                  {this.props.ingredients[0]
+                    ? this.props.ingredients.map(ingredient => {
+                        return (
+                          <ListGroup.Item
+                            key={Math.random()}
+                            className="cutting-board-ingredients"
+                          >
+                            <Col>{ingredient}</Col>
+                            <Col>
+                              <Button
+                                type="button"
+                                className="close"
+                                aria-label="Close"
+                                onClick={() => {
+                                  this.removingIngredient(event)
+                                }}
+                              >
+                                <span aria-hidden="true" id={ingredient}>
+                                  ×
+                                </span>
+                              </Button>
+                            </Col>
+                          </ListGroup.Item>
+                        )
+                      })
+                    : null}
+                </ListGroup>
+              </Col>
+            </Row>
           </div>
-          <ListGroup variant="flush">
-            <h4>Ingredients:</h4>
-            {this.props.ingredients[0]
-              ? this.props.ingredients.map(ingredient => {
-                  return (
-                    <ListGroup.Item
-                      key={Math.random()}
-                      className="row-ingredients"
-                    >
-                      {ingredient}
-                    </ListGroup.Item>
-                  )
-                })
-              : null}
-          </ListGroup>
-        </div>
-      </div>
+        </Row>
+      </Container>
     )
   }
 }

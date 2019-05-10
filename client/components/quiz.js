@@ -9,9 +9,15 @@ export default class Quiz extends React.Component {
     super()
     this.state = {
       count: 0,
+      meal: '',
+      meats: [],
+      seafood: [],
+      dairy: [],
+      'vegetable(s)': [],
+      'fruit(s)': [],
+      'grain(s)': [],
       ingredients: [],
-      data: [],
-      meal: ''
+      data: []
     }
     this.increaseCount = this.increaseCount.bind(this)
     this.decreaseCount = this.decreaseCount.bind(this)
@@ -24,14 +30,23 @@ export default class Quiz extends React.Component {
   }
 
   addToIngredients(event) {
+    const max = this.state.data[this.state.count].max
+    // console.log('MAX: ', max)
+    const foodType = this.state.data[this.state.count].question.split(' ')[1]
+    console.log('foodType: ', foodType)
     if (this.state.count === 0) {
       this.setState({
         meal: event.target.alt
       })
     } else {
-      if (!this.state.ingredients.includes(event.target.alt)) {
+      console.log(this.state[foodType].length)
+      if (
+        !this.state.ingredients.includes(event.target.alt) &&
+        this.state[foodType].length < max
+      ) {
         this.setState({
-          ingredients: [...this.state.ingredients, event.target.alt]
+          ingredients: [...this.state.ingredients, event.target.alt],
+          [foodType]: [...this.state[foodType], event.target.alt]
         })
       }
     }
@@ -95,6 +110,82 @@ export default class Quiz extends React.Component {
                 >
                   <button type="button">Get Matches</button>
                 </Link>
+              ) : (
+                <button type="button" onClick={() => this.increaseCount()}>
+                  Next
+                </button>
+              )}
+            </div>
+          </Col>
+          <Col sm={5}>
+            <CuttingBoard
+              ingredients={this.state.ingredients}
+              meal={this.state.meal}
+            />
+          </Col>
+        </Row>
+      </Container>
+    ) : (
+      'Loading'
+    )
+  }
+  sendStringToQuery() {
+    // console.log('In the sendStrFunc', this.state.ingredients)
+    const stringQuery = this.state.ingredients.join('+').replace(/\s/g, '')
+    // console.log(stringQuery)
+    return stringQuery
+  }
+
+  render() {
+    const questions = this.state.data[this.state.count]
+    // console.log('Here are the props in the Quiz Component', this.props.data)
+    const food = this.sendStringToQuery()
+    if (questions) {
+      const foodType = this.state.data[this.state.count].question.split(' ')[1]
+      console.log('this.state[foodType] ', this.state[foodType])
+    }
+    console.log('this.state.ingredients ', this.state.ingredients)
+    return this.state.data[0] ? (
+      <Container>
+        <Row>
+          <Col>
+            <h2>{questions.question}</h2>
+            {questions.image.map((picture, index) => {
+              return (
+                <div key={Math.random()}>
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={() => this.addToIngredients(event)}
+                  >
+                    <div className="container">
+                      <div className="centered">{questions.name[index]}</div>
+                      <img
+                        className="options"
+                        src={picture}
+                        alt={questions.name[index]}
+                      />
+                    </div>
+                  </button>
+                </div>
+              )
+            })}
+
+            <div>
+              {this.state.count > 0 ? (
+                <button type="button" onClick={() => this.decreaseCount()}>
+                  Previous
+                </button>
+              ) : null}
+              {this.state.count === this.state.data.length - 1 ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    this.sendStringToQuery()
+                  }}
+                >
+                  Get Matches
+                </button>
               ) : (
                 <button type="button" onClick={() => this.increaseCount()}>
                   Next

@@ -36,7 +36,7 @@ const RootQuery = new GraphQLObjectType({
 
         return axios
           .get(
-            `https://api.edamam.com/search?q=${args.food}&from=0&to=1&app_id=${
+            `https://api.edamam.com/search?q=${args.food}&from=0&to=10&app_id=${
               ApiKey3.ID
             }&app_key=${ApiKey3.KEY}`
           )
