@@ -23,7 +23,6 @@ class Results extends React.Component {
   }
 
   sendStringToQuery() {
-    console.log('In the sendStrFunc', this.props.location.state)
     const stringQuery = this.props.location.state.theIngredients
       .join('+')
       .replace(/\s/g, '')
@@ -31,10 +30,7 @@ class Results extends React.Component {
     return stringQuery
   }
   render() {
-    console.log('the results render props: ', this.props)
-    // console.log('the state is: ', this.state)
     const {theIngredients} = this.props.location.state
-    console.log('the props passed down are: ', theIngredients)
     const food = this.sendStringToQuery()
 
     return (
@@ -42,7 +38,36 @@ class Results extends React.Component {
         {({loading, error, data}) => {
           if (loading) return 'Loading...'
           if (error) return `Error! ${error.message}`
-          console.log('the data is: ', data)
+          const tracker = []
+          const ourIngredientsArr = theIngredients
+          const totalRecipesArr = data.searchRecipes
+
+          for (let i = 0; i < totalRecipesArr.length; i++) {
+            let recipeIngredientsStr = totalRecipesArr[i].ingredientLines
+              .join('')
+              .toLowerCase()
+            let lowerCasedIngredientsArr = ourIngredientsArr.map(x =>
+              x.toLowerCase()
+            )
+            let filteredIngredients = lowerCasedIngredientsArr.filter(
+              ingredient => recipeIngredientsStr.includes(ingredient)
+            )
+            let percentage =
+              filteredIngredients.length /
+              totalRecipesArr[i].ingredientLines.length
+            console.log(
+              'filteredIngredients.length: ',
+              filteredIngredients.length
+            )
+            console.log(
+              'totalRecipesArr[i].length',
+              totalRecipesArr[i].ingredientLines.length
+            )
+            console.log('percentage', Number(percentage))
+            tracker.push(Number(percentage))
+            console.log('tracker: ', tracker)
+          }
+
           return <h1>hello world</h1>
         }}
       </Query>
