@@ -232,6 +232,7 @@ body {
   height: 250px;
   width: 175px;
   box-shadow: 2px 3px 5px #888888;
+  border-radius: 7px;
 }
 
 .results-group {
