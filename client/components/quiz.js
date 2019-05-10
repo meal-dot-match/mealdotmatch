@@ -90,26 +90,28 @@ export default class Quiz extends React.Component {
           <Col>
             <h2>{questions.question}</h2>
             <h5>(choose up to {questions.max})</h5>
-            {questions.image.map((picture, index) => {
-              return (
-                <div key={Math.random()}>
-                  <button
-                    type="button"
-                    className="button"
-                    onClick={() => this.addToIngredients(event)}
-                  >
-                    <div className="container">
-                      <div className="centered">{questions.name[index]}</div>
-                      <img
-                        className="options"
-                        src={picture}
-                        alt={questions.name[index]}
-                      />
-                    </div>
-                  </button>
-                </div>
-              )
-            })}
+            <Row>
+              {questions.image.map((picture, index) => {
+                return (
+                  <div key={Math.random()}>
+                    <button
+                      type="button"
+                      className="button"
+                      onClick={() => this.addToIngredients(event)}
+                    >
+                      <div className="container">
+                        <div className="centered">{questions.name[index]}</div>
+                        <img
+                          className="options"
+                          src={picture}
+                          alt={questions.name[index]}
+                        />
+                      </div>
+                    </button>
+                  </div>
+                )
+              })}
+            </Row>
 
             <div>
               {this.state.count > 0 ? (
