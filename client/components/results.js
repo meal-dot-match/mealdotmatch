@@ -116,6 +116,7 @@ class Results extends React.Component {
                   <h2>{x.label}</h2>
                   <h3>{(Number(x.percentage) * 100).toFixed(2)} % match</h3>
                   <br />
+                  <Link to={`/recipes/${x.label}`}>Testing</Link>
                 </div>
               ))}
               <h1>Your missing Ingredients</h1>
