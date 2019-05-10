@@ -9,7 +9,8 @@ import {
   Home,
   Quiz,
   About,
-  HowItWorks
+  HowItWorks,
+  Text
 } from './components/index'
 import {me} from './store'
 import HomePage from './components/homepage'
