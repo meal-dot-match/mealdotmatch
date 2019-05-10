@@ -19,6 +19,7 @@ export default class Quiz extends React.Component {
       ingredients: [],
       data: []
     }
+    this.functionToPass = this.functionToPass.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
     this.decreaseCount = this.decreaseCount.bind(this)
     this.addToIngredients = this.addToIngredients.bind(this)
@@ -61,7 +62,7 @@ export default class Quiz extends React.Component {
     }
   }
 
-  removeFromIngredients(event) {
+  functionToPass(event) {
     const ingredientsLeft = this.state.ingredients.filter(item => {
       return item !== event.target.id
     })
@@ -137,7 +138,7 @@ export default class Quiz extends React.Component {
           </Col>
           <Col sm={5}>
             <CuttingBoard
-              state={this.state}
+              sendFunction={this.functionToPass}
               ingredients={this.state.ingredients}
               meal={this.state.meal}
             />

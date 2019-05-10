@@ -2,13 +2,18 @@ import React from 'react'
 import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 
 export default class CuttingBoard extends React.Component {
-  clickingX(event) {
+  constructor(props) {
+    super(props)
+    this.functionPassed = this.functionPassed.bind(this)
+  }
+  functionPassed(event) {
     console.log(
       'In the cuttingboard but here are the props from Quiz:',
       this.props
     )
     console.log('The ingredient that the x belongs to is: ', event.target.id)
     console.log('Does this have prototypes?:', this.prototype)
+    this.props.sendFunction(event)
   }
 
   render() {
@@ -43,7 +48,7 @@ export default class CuttingBoard extends React.Component {
                                 className="close"
                                 aria-label="Close"
                                 onClick={() => {
-                                  this.clickingX(event)
+                                  this.functionPassed(event)
                                 }}
                               >
                                 <span aria-hidden="true" id={ingredient}>
