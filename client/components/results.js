@@ -43,7 +43,6 @@ class Results extends React.Component {
           const tracker = []
           const ourIngredientsArr = theIngredients
           const totalRecipesArr = data.searchRecipes
-          const missingIngredientsArr = []
           const renderMissingArr = []
 
           for (let i = 0; i < totalRecipesArr.length; i++) {
@@ -53,11 +52,9 @@ class Results extends React.Component {
             let lowerCasedIngredientsArr = ourIngredientsArr.map(x =>
               x.toLowerCase()
             )
+
             let filteredIngredients = lowerCasedIngredientsArr.filter(
               ingredient => recipeIngredientsStr.includes(ingredient)
-            )
-            let missingIngredients = lowerCasedIngredientsArr.filter(
-              ingredient => !recipeIngredientsStr.includes(ingredient)
             )
 
             let percentage =
@@ -68,17 +65,12 @@ class Results extends React.Component {
             filteredObj.name = totalRecipesArr[i].label
             filteredObj.percent = Number(percentage)
 
-            let missingObj = {}
-            missingObj.name = totalRecipesArr[i].label
-            missingObj.ingredients = missingIngredients
-
-            missingIngredientsArr.push(missingObj)
-
             tracker.push(filteredObj)
             tracker.sort(function(a, b) {
               return b.percent - a.percent
             })
           }
+
           const top5 = tracker.slice(0, 5)
           const renderArr = []
 
@@ -87,28 +79,45 @@ class Results extends React.Component {
             for (let j = 0; j < totalRecipesArr.length; j++) {
               if (totalRecipesArr[j].label === name) {
                 let obj = {}
+                let lowerCasedIngredientsArr = ourIngredientsArr.map(x =>
+                  x.toLowerCase()
+                )
+                const replaceCommas = str => {
+                  return str.replace(/,/gi, '')
+                }
+                lowerCasedIngredientsArr = lowerCasedIngredientsArr.map(x =>
+                  replaceCommas(x)
+                )
+                console.log('lowerCased: ', lowerCasedIngredientsArr)
                 obj.calories = totalRecipesArr[j].calories
                 obj.image = totalRecipesArr[j].image
                 obj.url = totalRecipesArr[j].url
                 obj.totalTime = totalRecipesArr[j].totalTime
                 obj.label = totalRecipesArr[j].label
                 obj.percentage = tracker[i].percent
+                console.log(
+                  'totalRecipesArr[j].ingredientLines',
+                  totalRecipesArr[j].ingredientLines
+                )
+                obj.missingIngredients = totalRecipesArr[
+                  j
+                ].ingredientLines.filter(function(x) {
+                  let split = x.split(' ')
+                  return !split.some(
+                    y => lowerCasedIngredientsArr.indexOf(y) >= 0
+                  )
+                })
                 renderArr.push(obj)
               }
             }
           }
 
-          for (let i = 0; i < top5.length; i++) {
-            let name = top5[i].name
-            for (let j = 0; j < missingIngredientsArr.length; j++) {
-              if (missingIngredientsArr[j].name === name) {
-                renderMissingArr.push(missingIngredientsArr[j])
-              }
-            }
-          }
           return (
             <div>
               <h1>Your Top 5 Matches:</h1>
+              {console.log('render array', renderArr)}
+              {console.log('total recipes arr', totalRecipesArr)}
+              {console.log('our ingredients array', ourIngredientsArr)}
               {renderArr.map(x => (
                 <div key={Math.random()}>
                   <h2>{x.label}</h2>
