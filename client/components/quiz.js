@@ -97,14 +97,15 @@ export default class Quiz extends React.Component {
                       className="button"
                       onClick={() => this.addToIngredients(event)}
                     >
-                      <div className="container">
-                        <div className="centered">{questions.name[index]}</div>
-
-                        <img
-                          className="options"
-                          src={picture}
-                          alt={questions.name[index]}
-                        />
+                      <div className="option-with-label">
+                        <div className="label">{questions.name[index]}</div>
+                        <div>
+                          <img
+                            className="options"
+                            src={picture}
+                            alt={questions.name[index]}
+                          />
+                        </div>
                       </div>
                     </button>
                   </div>

@@ -70,16 +70,33 @@ h5 {
   transform: translate(-50%, -50%);
 }
 
+
+.label {
+}
+
 .options {
+  margin: 7px;
   width: 100px;
   height: 100px;
-  opacity: 0.5;
+  opacity: 0.3;
   box-shadow: 2px 3px 5px #888888;
+  border-radius: 7px;
 }
 
 .options:hover {
-  opacity: 0.85;
+  opacity: 0.75;
 }
+
+.option-with-label {
+  /* width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 100px 35px;
+  justify-content: center; */
+}
+
 
 .cuttingboardoptions {
   /* transform: rotate(90deg); */
