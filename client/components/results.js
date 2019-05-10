@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+/* eslint-disable complexity */
 import React from 'react'
 import {Row, Col, Container} from 'react-bootstrap'
 import {graphql, Query} from 'react-apollo'
