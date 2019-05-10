@@ -81,8 +81,6 @@ export default class Quiz extends React.Component {
 
   render() {
     const questions = this.state.data[this.state.count]
-    // console.log('Here are the props in the Quiz Component', this.props.data)
-    // console.log('Here is the state in the Quiz Component', this.state)
 
     return this.state.data[0] ? (
       <Container>
