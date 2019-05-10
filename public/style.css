@@ -73,8 +73,12 @@ h5 {
 .options {
   width: 100px;
   height: 100px;
-  opacity: 0.3;
+  opacity: 0.5;
   box-shadow: 2px 3px 5px #888888;
+}
+
+.options:hover {
+  opacity: 0.85;
 }
 
 .cuttingboardoptions {
@@ -86,10 +90,6 @@ h5 {
 
 .button {
   border: none;
-}
-
-.options:hover {
-  opacity: 0.75;
 }
 
 .selected {
