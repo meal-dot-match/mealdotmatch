@@ -13,6 +13,7 @@ const socketio = require('socket.io')
 const cors = require('cors')
 const schema = require('./schema')
 const Question = require('../db/models/questions')
+const {Twilio} = require('../../secrets')
 
 module.exports = app
 
@@ -85,6 +86,21 @@ app.listen(4000, () =>
 app.get('/questions', async (req, res, next) => {
   const questions = await Question.findAll({order: [['id', 'ASC']]})
   res.send(questions)
+})
+
+app.get('/sendtext', (req, res, next) => {
+  const accountSid = Twilio.accountSID
+  const authToken = Twilio.authToken
+  const text = require('twilio')(accountSid, authToken)
+
+  text.messages
+    .create({
+      body: 'Did this work?',
+      from: Twilio.from,
+      to: Twilio.to
+    })
+    .then(message => console.log(message.sid))
+    .catch(err => console.log(err))
 })
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.

@@ -10,7 +10,8 @@ import {
   Quiz,
   About,
   HowItWorks,
-  SingleRecipe
+  SingleRecipe,
+  Text
 } from './components/index'
 import {me} from './store'
 import HomePage from './components/homepage'
@@ -37,7 +38,6 @@ class Routes extends Component {
         <Route exact path="/about" component={About} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-
         <Route exact path="/results" component={Results} />
         <Route exact path="/howitworks" component={HowItWorks} />
         <Route exact path="/searchbarresults" component={SearchBarResults} />
