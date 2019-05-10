@@ -40,6 +40,7 @@ class Routes extends Component {
         <Route path="/results" component={Results} />
         <Route path="/howitworks" component={HowItWorks} />
         <Route path="/searchbarresults" component={SearchBarResults} />
+        <Route path="/text" component={Text} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
