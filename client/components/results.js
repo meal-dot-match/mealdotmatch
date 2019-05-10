@@ -2,6 +2,7 @@ import React from 'react'
 import {Row, Col, Container} from 'react-bootstrap'
 import {graphql, Query} from 'react-apollo'
 import {gql} from 'apollo-boost'
+import {Link} from 'react-router-dom'
 
 const getMealsQuery = gql`
   query($food: String) {
@@ -129,6 +130,16 @@ class Results extends React.Component {
                   <br />
                 </div>
               ))}
+              <Link
+                to={{
+                  pathname: '/text',
+                  state: {
+                    missingIngredients: renderMissingArr
+                  }
+                }}
+              >
+                <button>TWILIO BUTTON GOES HERE</button>
+              </Link>
             </div>
           )
         }}
