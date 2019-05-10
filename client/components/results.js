@@ -45,7 +45,6 @@ class Results extends React.Component {
           const tracker = []
           const ourIngredientsArr = theIngredients
           const totalRecipesArr = data.searchRecipes
-          const renderMissingArr = []
 
           for (let i = 0; i < totalRecipesArr.length; i++) {
             let recipeIngredientsStr = totalRecipesArr[i].ingredientLines
@@ -129,30 +128,25 @@ class Results extends React.Component {
                     to={{
                       pathname: `/recipes/${x.label}`,
                       state: {
-                        label: x.label,
-                        url: x.url,
-                        image: x.image,
-                        ingredientLines: x.ingredientLines,
-                        missingIngredients: renderMissingArr
+                        missingIngredients: renderArr
                       }
                     }}
                   >
                     View Recipe
                   </Link>
-                </div>
-              ))}
-              <h1>Your missing Ingredients</h1>
-              {renderMissingArr.map(x => (
-                <div key={Math.random()}>
-                  <h2>{x.name}</h2>
-                  <h2>the missing ingredients: </h2>
-                  <div key={Math.random()}>
-                    {x.ingredients.map(ingredient => (
-                      <h3 key={Math.random()}>{ingredient}</h3>
-                    ))}
-                  </div>
-                  <br />
-                  <br />
+
+                  <button>
+                    <Link
+                      to={{
+                        pathname: '/grocerylist',
+                        state: {
+                          missingIngredients: renderArr
+                        }
+                      }}
+                    >
+                      View Grocery List
+                    </Link>
+                  </button>
                 </div>
               ))}
             </div>
