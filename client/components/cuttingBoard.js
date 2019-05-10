@@ -2,18 +2,13 @@ import React from 'react'
 import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 
 export default class CuttingBoard extends React.Component {
-  constructor() {
-    super()
-    this.state = []
-  }
-  removingIngredient(event) {
-    console.log('INGREDIENTS ON BOARD', this.props.ingredients)
-    console.log(event.target.id)
-    const leftOverIngredients = this.props.ingredients.filter(item => {
-      return item !== event.target.id
-    })
-    this.setState({ingredients: [...leftOverIngredients]})
-    console.log(this.state)
+  clickingX(event) {
+    console.log(
+      'In the cuttingboard but here are the props from Quiz:',
+      this.props
+    )
+    console.log('The ingredient that the x belongs to is: ', event.target.id)
+    console.log('Does this have prototypes?:', this.prototype)
   }
 
   render() {
@@ -48,7 +43,7 @@ export default class CuttingBoard extends React.Component {
                                 className="close"
                                 aria-label="Close"
                                 onClick={() => {
-                                  this.removingIngredient(event)
+                                  this.clickingX(event)
                                 }}
                               >
                                 <span aria-hidden="true" id={ingredient}>
