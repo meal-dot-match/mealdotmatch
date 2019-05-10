@@ -89,6 +89,7 @@ export default class Quiz extends React.Component {
         <Row>
           <Col>
             <h2>{questions.question}</h2>
+            <h5>(choose up to {questions.max})</h5>
             {questions.image.map((picture, index) => {
               return (
                 <div key={Math.random()}>
