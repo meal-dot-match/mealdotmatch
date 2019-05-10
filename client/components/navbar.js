@@ -21,11 +21,11 @@ class Navigation extends React.Component {
     })
   }
   handleSubmit() {
-    console.log('did this go through???')
+    // console.log('did this go through???')
   }
 
   render() {
-    console.log('what is the state in my navbar?????', this.state.value)
+    // console.log('what is the state in my navbar?????', this.state.value)
     let test = 'hello'
     return (
       <>

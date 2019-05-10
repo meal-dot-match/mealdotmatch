@@ -2,10 +2,12 @@ import React from 'react'
 import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 
 export default class CuttingBoard extends React.Component {
-  removingIngredient(event) {
-    console.log('PROPS IN REMOVING INGREDIENTS', this.props)
-    console.log('INGREDIENTS ON BOARD', this.props.ingredients)
-    console.log('Is this x unique?', event.target)
+  constructor(props) {
+    super(props)
+    this.functionPassed = this.functionPassed.bind(this)
+  }
+  functionPassed(event) {
+    this.props.sendFunction(event)
   }
 
   render() {
@@ -40,7 +42,7 @@ export default class CuttingBoard extends React.Component {
                                 className="close"
                                 aria-label="Close"
                                 onClick={() => {
-                                  this.removingIngredient(event)
+                                  this.functionPassed(event)
                                 }}
                               >
                                 <span aria-hidden="true" id={ingredient}>

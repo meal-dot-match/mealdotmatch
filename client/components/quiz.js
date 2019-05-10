@@ -1,7 +1,7 @@
 import React from 'react'
 import {CuttingBoard} from './index'
 import axios from 'axios'
-import {Row, Col, Container} from 'react-bootstrap'
+import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 export default class Quiz extends React.Component {
@@ -19,6 +19,7 @@ export default class Quiz extends React.Component {
       ingredients: [],
       data: []
     }
+    this.functionToPass = this.functionToPass.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
     this.decreaseCount = this.decreaseCount.bind(this)
     this.addToIngredients = this.addToIngredients.bind(this)
@@ -33,7 +34,7 @@ export default class Quiz extends React.Component {
     const max = this.state.data[this.state.count].max
     // console.log('MAX: ', max)
     const foodType = this.state.data[this.state.count].question.split(' ')[1]
-    console.log('foodType: ', foodType)
+    // console.log('foodType: ', foodType)
     if (this.state.count === 0) {
       this.setState({
         meal: event.target.alt
@@ -61,6 +62,13 @@ export default class Quiz extends React.Component {
     }
   }
 
+  functionToPass(event) {
+    const ingredientsLeft = this.state.ingredients.filter(item => {
+      return item !== event.target.id
+    })
+    this.setState({ingredients: ingredientsLeft})
+  }
+
   increaseCount() {
     let newCount = this.state.count + 1
     this.setState({count: newCount})
@@ -73,82 +81,9 @@ export default class Quiz extends React.Component {
 
   render() {
     const questions = this.state.data[this.state.count]
-    console.log('Here are the props in the Quiz Component', this.props.data)
-    console.log('Here is the state in the Quiz Component', this.state)
-
-    return this.state.data[0] ? (
-      <Container>
-        <Row>
-          <Col>
-            <h2>{questions.question}</h2>
-            {questions.image.map((picture, index) => {
-              return (
-                <div key={Math.random()}>
-                  <button
-                    type="button"
-                    className="button"
-                    onClick={() => this.addToIngredients(event)}
-                  >
-                    <div className="container">
-                      <div className="centered">{questions.name[index]}</div>
-                      <img
-                        className="options"
-                        src={picture}
-                        alt={questions.name[index]}
-                      />
-                    </div>
-                  </button>
-                </div>
-              )
-            })}
-
-            <div>
-              {this.state.count > 0 ? (
-                <button type="button" onClick={() => this.decreaseCount()}>
-                  Previous
-                </button>
-              ) : null}
-              {this.state.count === this.state.data.length - 1 ? (
-                <Link
-                  to={{
-                    pathname: '/results',
-                    state: {
-                      theIngredients: this.state.ingredients,
-                      theMeats: this.state.meats,
-                      theSeafood: this.state.seafood
-                    }
-                  }}
-                >
-                  <button type="button">Get Matches</button>
-                </Link>
-              ) : (
-                <button type="button" onClick={() => this.increaseCount()}>
-                  Next
-                </button>
-              )}
-            </div>
-          </Col>
-          <Col sm={5}>
-            <CuttingBoard
-              ingredients={this.state.ingredients}
-              meal={this.state.meal}
-            />
-          </Col>
-        </Row>
-      </Container>
-    ) : (
-      'Loading'
-    )
-  }
-
-  render() {
-    const questions = this.state.data[this.state.count]
     // console.log('Here are the props in the Quiz Component', this.props.data)
-    if (questions) {
-      const foodType = this.state.data[this.state.count].question.split(' ')[1]
-      console.log('this.state[foodType] ', this.state[foodType])
-    }
-    console.log('this.state.ingredients ', this.state.ingredients)
+    // console.log('Here is the state in the Quiz Component', this.state)
+
     return this.state.data[0] ? (
       <Container>
         <Row>
@@ -203,6 +138,7 @@ export default class Quiz extends React.Component {
           </Col>
           <Col sm={5}>
             <CuttingBoard
+              sendFunction={this.functionToPass}
               ingredients={this.state.ingredients}
               meal={this.state.meal}
             />
