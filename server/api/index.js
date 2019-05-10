@@ -83,7 +83,7 @@ app.listen(4000, () =>
 )
 
 app.get('/questions', async (req, res, next) => {
-  const questions = await Question.findAll()
+  const questions = await Question.findAll({order: [['id', 'ASC']]})
   res.send(questions)
 })
 // This is a global Mocha hook, used for resource cleanup.
