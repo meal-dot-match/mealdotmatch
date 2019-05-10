@@ -26,7 +26,6 @@ class Results extends React.Component {
     const stringQuery = this.props.location.state.theIngredients
       .join('+')
       .replace(/\s/g, '')
-    console.log(stringQuery)
     return stringQuery
   }
   render() {
@@ -55,20 +54,51 @@ class Results extends React.Component {
             let percentage =
               filteredIngredients.length /
               totalRecipesArr[i].ingredientLines.length
-            console.log(
-              'filteredIngredients.length: ',
-              filteredIngredients.length
-            )
-            console.log(
-              'totalRecipesArr[i].length',
-              totalRecipesArr[i].ingredientLines.length
-            )
-            console.log('percentage', Number(percentage))
-            tracker.push(Number(percentage))
-            console.log('tracker: ', tracker)
+
+            let newObj = {}
+
+            newObj.name = totalRecipesArr[i].label
+            newObj.percent = Number(percentage)
+
+            tracker.push(newObj)
+
+            tracker.sort(function(a, b) {
+              return b.percent - a.percent
+            })
+          }
+          const top5 = tracker.slice(0, 5)
+          const renderArr = []
+
+          for (let i = 0; i < top5.length; i++) {
+            let name = tracker[i].name
+            for (let j = 0; j < totalRecipesArr.length; j++) {
+              if (totalRecipesArr[j].label === name) {
+                let obj = {}
+                obj.calories = totalRecipesArr[j].calories
+                obj.image = totalRecipesArr[j].image
+                obj.url = totalRecipesArr[j].url
+                obj.totalTime = totalRecipesArr[j].totalTime
+                obj.label = totalRecipesArr[j].label
+                obj.percentage = tracker[i].percent
+                renderArr.push(obj)
+              }
+            }
           }
 
-          return <h1>hello world</h1>
+          return (
+            <div>
+              <h1>Your Top 5 Matches:</h1>
+              {renderArr.map(x => (
+                <div>
+                  <h1>{x.label}</h1>
+                  <h1>{x.calories}</h1>
+                  <h1>{x.totalTime}</h1>
+                  <h1>{x.percentage}</h1>
+                  <br />
+                </div>
+              ))}
+            </div>
+          )
         }}
       </Query>
     )
