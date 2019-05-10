@@ -24,9 +24,15 @@ class Quiz extends React.Component {
     super()
     this.state = {
       count: 0,
+      meal: '',
+      meats: [],
+      seafood: [],
+      dairy: [],
+      'vegetable(s)': [],
+      'fruit(s)': [],
+      'grain(s)': [],
       ingredients: [],
-      data: [],
-      meal: ''
+      data: []
     }
     this.increaseCount = this.increaseCount.bind(this)
     this.decreaseCount = this.decreaseCount.bind(this)
@@ -39,14 +45,25 @@ class Quiz extends React.Component {
   }
 
   addToIngredients(event) {
+    const max = this.state.data[this.state.count].max
+    // console.log('MAX: ', max)
+    const foodType = this.state.data[this.state.count].question.split(' ')[1]
+    console.log('foodType: ', foodType)
     if (this.state.count === 0) {
       this.setState({
         meal: event.target.alt
       })
-    } else if (!this.state.ingredients.includes(event.target.alt)) {
-      this.setState({
-        ingredients: [...this.state.ingredients, event.target.alt]
-      })
+    } else {
+      console.log(this.state[foodType].length)
+      if (
+        !this.state.ingredients.includes(event.target.alt) &&
+        this.state[foodType].length < max
+      ) {
+        this.setState({
+          ingredients: [...this.state.ingredients, event.target.alt],
+          [foodType]: [...this.state[foodType], event.target.alt]
+        })
+      }
     }
   }
 
@@ -61,24 +78,35 @@ class Quiz extends React.Component {
   }
 
   sendStringToQuery() {
-    console.log('In the sendStrFunc', this.state.ingredients)
+    // console.log('In the sendStrFunc', this.state.ingredients)
     const stringQuery = this.state.ingredients.join('+').replace(/\s/g, '')
-    console.log(stringQuery)
+    // console.log(stringQuery)
     return stringQuery
   }
 
   render() {
     const questions = this.state.data[this.state.count]
-    console.log('Here is the state!', this.state)
-    console.log('Here are the props!', this.props)
+    // console.log('Here are the props in the Quiz Component', this.props.data)
     const food = this.sendStringToQuery()
-
+    if (questions) {
+      const foodType = this.state.data[this.state.count].question.split(' ')[1]
+      console.log('this.state[foodType] ', this.state[foodType])
+    }
+    console.log('this.state.ingredients ', this.state.ingredients)
     return (
       // <Query query={getMealsQuery} variables={{food}}>
+<<<<<<< HEAD
       //   {({loading, error, data}) => {
       //     if (loading) return 'Loading...'
       //     if (error) return `Error! ${error.message}`
 
+=======
+      // {({loading, error, data}) => {
+      //   if (loading) return 'Loading...'
+      //   if (error) return `Error! ${error.message}`
+
+      // return
+>>>>>>> master
       this.state.data[0] ? (
         <Container>
           <Row>
