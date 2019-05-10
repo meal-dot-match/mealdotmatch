@@ -1,5 +1,5 @@
 import React from 'react'
-import {CuttingBoard} from './index'
+import {CuttingBoard, MaxMessage} from './index'
 import axios from 'axios'
 import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
@@ -87,7 +87,12 @@ export default class Quiz extends React.Component {
         <Row>
           <Col>
             <h2 className="question">{questions.question}</h2>
-            <h5>(choose up to {questions.max})</h5>
+            <MaxMessage
+              max={this.state.data[this.state.count].max}
+              foodType={
+                this.state.data[this.state.count].question.split(' ')[1]
+              }
+            />
             <Row>
               {questions.image.map((picture, index) => {
                 return (
