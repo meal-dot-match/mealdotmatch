@@ -89,16 +89,18 @@ class Results extends React.Component {
           }
 
           return (
-            <div>
-              <h1>Your Top 5 Matches:</h1>
-              {renderArr.map(x => (
-                <div>
-                  <h1>{x.label}</h1>
-                  <h1>{(Number(x.percentage) * 100).toFixed(2)} % match</h1>
-                  <br />
-                </div>
-              ))}
-            </div>
+            <Container style={{padding: 35}}>
+              <Col xs={5} md={5} lg={5}>
+                <h3>Your Top 5 Matches:</h3>
+                {renderArr.map(x => (
+                  <div>
+                    <h1>{x.label}</h1>
+                    <h1>{(Number(x.percentage) * 100).toFixed(2)} % match</h1>
+                    <br />
+                  </div>
+                ))}
+              </Col>
+            </Container>
           )
         }}
       </Query>
