@@ -2,6 +2,7 @@ import React from 'react'
 import {Row, Col, Container} from 'react-bootstrap'
 import {graphql, Query} from 'react-apollo'
 import {gql} from 'apollo-boost'
+import {Link} from 'react-router-dom'
 
 const getMealsQuery = gql`
   query($food: String) {
@@ -28,7 +29,6 @@ class Results extends React.Component {
       .concat(this.props.location.state.theSeafood)
       .join('+')
       .replace(/\s/g, '')
-    console.log(stringQuery)
     return stringQuery
   }
   render() {
@@ -43,6 +43,8 @@ class Results extends React.Component {
           const tracker = []
           const ourIngredientsArr = theIngredients
           const totalRecipesArr = data.searchRecipes
+          const missingIngredientsArr = []
+          const renderMissingArr = []
 
           for (let i = 0; i < totalRecipesArr.length; i++) {
             let recipeIngredientsStr = totalRecipesArr[i].ingredientLines
@@ -54,17 +56,25 @@ class Results extends React.Component {
             let filteredIngredients = lowerCasedIngredientsArr.filter(
               ingredient => recipeIngredientsStr.includes(ingredient)
             )
+            let missingIngredients = lowerCasedIngredientsArr.filter(
+              ingredient => !recipeIngredientsStr.includes(ingredient)
+            )
+
             let percentage =
               filteredIngredients.length /
               totalRecipesArr[i].ingredientLines.length
 
-            let newObj = {}
+            let filteredObj = {}
+            filteredObj.name = totalRecipesArr[i].label
+            filteredObj.percent = Number(percentage)
 
-            newObj.name = totalRecipesArr[i].label
-            newObj.percent = Number(percentage)
+            let missingObj = {}
+            missingObj.name = totalRecipesArr[i].label
+            missingObj.ingredients = missingIngredients
 
-            tracker.push(newObj)
+            missingIngredientsArr.push(missingObj)
 
+            tracker.push(filteredObj)
             tracker.sort(function(a, b) {
               return b.percent - a.percent
             })
@@ -88,16 +98,48 @@ class Results extends React.Component {
             }
           }
 
+          for (let i = 0; i < top5.length; i++) {
+            let name = top5[i].name
+            for (let j = 0; j < missingIngredientsArr.length; j++) {
+              if (missingIngredientsArr[j].name === name) {
+                renderMissingArr.push(missingIngredientsArr[j])
+              }
+            }
+          }
           return (
             <div>
               <h1>Your Top 5 Matches:</h1>
               {renderArr.map(x => (
-                <div>
-                  <h1>{x.label}</h1>
-                  <h1>{(Number(x.percentage) * 100).toFixed(2)} % match</h1>
+                <div key={Math.random()}>
+                  <h2>{x.label}</h2>
+                  <h3>{(Number(x.percentage) * 100).toFixed(2)} % match</h3>
                   <br />
                 </div>
               ))}
+              <h1>Your missing Ingredients</h1>
+              {renderMissingArr.map(x => (
+                <div key={Math.random()}>
+                  <h2>{x.name}</h2>
+                  <h2>the missing ingredients: </h2>
+                  <div key={Math.random()}>
+                    {x.ingredients.map(ingredient => (
+                      <h3 key={Math.random()}>{ingredient}</h3>
+                    ))}
+                  </div>
+                  <br />
+                  <br />
+                </div>
+              ))}
+              <Link
+                to={{
+                  pathname: '/text',
+                  state: {
+                    missingIngredients: renderMissingArr
+                  }
+                }}
+              >
+                <button>TWILIO BUTTON GOES HERE</button>
+              </Link>
             </div>
           )
         }}
