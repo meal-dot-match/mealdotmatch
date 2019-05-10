@@ -128,7 +128,11 @@ class Results extends React.Component {
                     to={{
                       pathname: `/recipes/${x.label}`,
                       state: {
-                        missingIngredients: renderArr
+                        missingIngredients: renderArr,
+                        label: x.label,
+                        url: x.url,
+                        ingredientlines: x.ingredientLines,
+                        image: x.image
                       }
                     }}
                   >
