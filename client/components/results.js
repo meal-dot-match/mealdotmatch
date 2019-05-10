@@ -116,6 +116,19 @@ class Results extends React.Component {
                   <h2>{x.label}</h2>
                   <h3>{(Number(x.percentage) * 100).toFixed(2)} % match</h3>
                   <br />
+                  <Link
+                    to={{
+                      pathname: `/recipes/${x.label}`,
+                      state: {
+                        label: x.label,
+                        url: x.url,
+                        image: x.image,
+                        ingredientLines: x.ingredientLines
+                      }
+                    }}
+                  >
+                    View Recipe
+                  </Link>
                 </div>
               ))}
               <h1>Your missing Ingredients</h1>
