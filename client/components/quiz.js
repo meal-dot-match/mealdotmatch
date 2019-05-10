@@ -192,6 +192,7 @@ export default class Quiz extends React.Component {
             <CuttingBoard
               ingredients={this.state.ingredients}
               meal={this.state.meal}
+              state={this.state}
             />
           </Col>
         </Row>

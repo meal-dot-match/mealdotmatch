@@ -2,10 +2,18 @@ import React from 'react'
 import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 
 export default class CuttingBoard extends React.Component {
+  constructor() {
+    super()
+    this.state = []
+  }
   removingIngredient(event) {
-    console.log('PROPS IN REMOVING INGREDIENTS', this.props)
     console.log('INGREDIENTS ON BOARD', this.props.ingredients)
-    console.log('Is this x unique?', event.target)
+    console.log(event.target.id)
+    const leftOverIngredients = this.props.ingredients.filter(item => {
+      return item !== event.target.id
+    })
+    this.setState({ingredients: [...leftOverIngredients]})
+    console.log(this.state)
   }
 
   render() {
