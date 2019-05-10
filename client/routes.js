@@ -13,6 +13,7 @@ import {
 } from './components/index'
 import {me} from './store'
 import HomePage from './components/homepage'
+import Results from './components/results'
 import SearchBarResults from './components/searchbarResults'
 
 /**
@@ -36,6 +37,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/homepage" component={HomePage} />
+        <Route path="/results" component={Results} />
         <Route path="/howitworks" component={HowItWorks} />
         <Route path="/searchbarresults" component={SearchBarResults} />
         {isLoggedIn && (
