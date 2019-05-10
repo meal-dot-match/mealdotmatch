@@ -123,7 +123,8 @@ class Results extends React.Component {
                         label: x.label,
                         url: x.url,
                         image: x.image,
-                        ingredientLines: x.ingredientLines
+                        ingredientLines: x.ingredientLines,
+                        missingIngredients: renderMissingArr
                       }
                     }}
                   >
@@ -145,16 +146,6 @@ class Results extends React.Component {
                   <br />
                 </div>
               ))}
-              <Link
-                to={{
-                  pathname: '/text',
-                  state: {
-                    missingIngredients: renderMissingArr
-                  }
-                }}
-              >
-                <button>TWILIO BUTTON GOES HERE</button>
-              </Link>
             </div>
           )
         }}
