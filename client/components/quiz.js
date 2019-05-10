@@ -81,6 +81,7 @@ export default class Quiz extends React.Component {
         <Row>
           <Col>
             <h2>{questions.question}</h2>
+            <h5>(choose up to {questions.max})</h5>
             {questions.image.map((picture, index) => {
               return (
                 <div key={Math.random()}>
@@ -90,7 +91,7 @@ export default class Quiz extends React.Component {
                     onClick={() => this.addToIngredients(event)}
                   >
                     <div className="container">
-                      <div className="centered">{questions.name[index]}</div>
+                      <div className="quiz-label">{questions.name[index]}</div>
                       <img
                         className="options"
                         src={picture}
