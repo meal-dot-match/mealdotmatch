@@ -9,7 +9,9 @@ import {
   Home,
   Quiz,
   About,
-  HowItWorks
+  HowItWorks,
+  SingleRecipe,
+  Text
 } from './components/index'
 import {me} from './store'
 import HomePage from './components/homepage'
@@ -34,13 +36,13 @@ class Routes extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/quiz" component={Quiz} />
         <Route exact path="/about" component={About} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/homepage" component={HomePage} />
-        <Route path="/results" component={Results} />
-        <Route path="/howitworks" component={HowItWorks} />
-        <Route path="/searchbarresults" component={SearchBarResults} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/results" component={Results} />
+        <Route exact path="/howitworks" component={HowItWorks} />
+        <Route exact path="/searchbarresults" component={SearchBarResults} />
         <Route path="/text" component={Text} />
+        <Route path="/recipes" component={SingleRecipe} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
