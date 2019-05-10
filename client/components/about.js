@@ -11,12 +11,10 @@ const About = () => {
             src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80"
             alt="Like cooking"
           />
-
           <Carousel.Caption className="about">
-            <h3>We love food.</h3>
+            <h3> We love food. </h3>
             <p>
-              We wanted to build a website that allows other foodies to discover
-              new recipes.
+              We built a website to allow other foodies to discover new recipes.
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -26,12 +24,12 @@ const About = () => {
             src="https://images.unsplash.com/photo-1545601445-4d6a0a0565f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
             alt="Stocked Pantry"
           />
-
           <Carousel.Caption className="about">
-            <h3>We have items in our pantry.</h3>
+            <h3>We have unused items in our pantry.</h3>
             <p>
-              Sometimes we don't want to buy new food items when we already have
-              items to work with in our pantry.
+              It's difficult figuring out what you can cook with the items you
+              already have. Meal.Match hopes to inspire you with recipes you can
+              cook, without having to take a trip to the grocery store.
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -42,20 +40,22 @@ const About = () => {
             alt="Women engineers"
           />
           <Carousel.Caption className="about">
-            <h3>We can code.</h3>
-            <p>We decided to put our talents to use and create Meal.Match!</p>
+            <h3> We're talented coders. </h3>
+            <p>
+              Sometimes we just can't make it to the grocery store and need to
+              make meals with the foods we already have. We couldn't find a
+              resource that gave us recipes to cater towards our pantry, so we
+              built one!
+            </p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
       <Container style={{padding: '50px'}}>
         <Row className="center-text">
-          <h1>Meet Our Founders</h1>
+          <h1> Meet Our Founders </h1>
         </Row>
         <Row className="center-text">
-          <p>
-            Meet the female software engineers who brought Meal.Match from an
-            idea to an application.
-          </p>
+          <p>Meet the female, software engineers who built Meal.Match.</p>
         </Row>
         <Row>
           <Col xs={4} md={3}>
@@ -94,6 +94,17 @@ const About = () => {
               alt="KV"
             />
           </Col>
+        </Row>
+      </Container>
+      <Container>
+        <Row className="center-text">
+          <h1> Our Vision </h1>
+        </Row>
+        <Row className="center-text">
+          <p>
+            Meet the female software engineers who brought Meal.Match from an
+            idea to an application.
+          </p>
         </Row>
       </Container>
     </div>
