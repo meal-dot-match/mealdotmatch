@@ -19,7 +19,7 @@ export default class Quiz extends React.Component {
       ingredients: [],
       data: []
     }
-    this.functionToPass = this.functionToPass.bind(this)
+    this.removeIngredient = this.removeIngredient.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
     this.decreaseCount = this.decreaseCount.bind(this)
     this.addToIngredients = this.addToIngredients.bind(this)
@@ -32,15 +32,12 @@ export default class Quiz extends React.Component {
 
   addToIngredients(event) {
     const max = this.state.data[this.state.count].max
-    // console.log('MAX: ', max)
     const foodType = this.state.data[this.state.count].question.split(' ')[1]
-    // console.log('foodType: ', foodType)
     if (this.state.count === 0) {
       this.setState({
         meal: event.target.alt
       })
     } else {
-      console.log(this.state[foodType].length)
       if (
         !this.state.ingredients.includes(event.target.alt) &&
         this.state[foodType].length < max
@@ -62,11 +59,18 @@ export default class Quiz extends React.Component {
     }
   }
 
-  functionToPass(event) {
+  removeIngredient(event) {
     const ingredientsLeft = this.state.ingredients.filter(item => {
       return item !== event.target.id
     })
-    this.setState({ingredients: ingredientsLeft})
+    const foodType = this.state.data[this.state.count].question.split(' ')[1]
+    const foodTypeIngredientsLeft = this.state[foodType].filter(item => {
+      return item !== event.target.id
+    })
+    this.setState({
+      ingredients: ingredientsLeft
+      // [foodType]: foodTypeIngredientsLeft
+    })
   }
 
   increaseCount() {
@@ -148,7 +152,7 @@ export default class Quiz extends React.Component {
           </Col>
           <Col sm={5}>
             <CuttingBoard
-              sendFunction={this.functionToPass}
+              sendFunction={this.removeIngredient}
               ingredients={this.state.ingredients}
               meal={this.state.meal}
             />
