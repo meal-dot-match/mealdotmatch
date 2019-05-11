@@ -156,29 +156,41 @@ export default class Quiz extends React.Component {
             <Row className="prev-next-buttons">
               <div>
                 {this.state.count > 0 ? (
-                  <button type="button" onClick={() => this.decreaseCount()}>
-                    Previous
-                  </button>
-                ) : null}
-                {this.state.count === this.state.data.length - 1 ? (
-                  <Link
-                    to={{
-                      pathname: '/results',
-                      state: {
-                        theIngredients: this.state.ingredients,
-                        theMeats: this.state.meats,
-                        theSeafood: this.state.seafood
-                      }
-                    }}
+                  <Button
+                    className="btn-responsive"
+                    size="sm"
+                    onClick={() => this.decreaseCount()}
                   >
-                    <button type="button">Get Matches</button>
-                  </Link>
-                ) : (
-                  <button type="button" onClick={() => this.increaseCount()}>
+                    Previous
+                  </Button>
+                ) : null}
+                {'        '}
+                {this.state.count === this.state.data.length - 1 ? null : (
+                  <Button
+                    className="btn-responsive"
+                    size="sm"
+                    onClick={() => this.increaseCount()}
+                  >
                     {this.state.skipNext}
-                  </button>
+                  </Button>
                 )}
               </div>
+            </Row>
+            <Row>
+              <Link
+                to={{
+                  pathname: '/results',
+                  state: {
+                    theIngredients: this.state.ingredients,
+                    theMeats: this.state.meats,
+                    theSeafood: this.state.seafood
+                  }
+                }}
+              >
+                <Button className="btn-responsive" size="lg">
+                  Match Me
+                </Button>
+              </Link>
             </Row>
           </Col>
           <Col sm={5}>
