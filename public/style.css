@@ -317,3 +317,7 @@ body {
   font-size: 27px;
   margin-top: 20px;
 }
+
+.progress-bar {
+  background-color: #0cded7;
+}
