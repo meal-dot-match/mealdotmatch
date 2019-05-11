@@ -185,7 +185,7 @@ h5 {
   }
 }
 
-.btn-responsive-md {
+.skipNextPrevButtons {
   font-size: 20px;
   line-height: 1.3333333;
   border-radius: 10px;
@@ -194,6 +194,10 @@ h5 {
   padding: 10px;
   box-shadow: 2px 3px 5px #888888;
   margin: 3px;
+}
+
+.skipNextPrevButtons:hover {
+  background-color: #1fcca3;
 }
 
 .jumbotron {

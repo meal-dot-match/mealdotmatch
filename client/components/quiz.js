@@ -157,7 +157,7 @@ export default class Quiz extends React.Component {
               <div>
                 {this.state.count > 0 ? (
                   <Button
-                    className="btn-responsive-md"
+                    className="skipNextPrevButtons"
                     onClick={() => this.decreaseCount()}
                   >
                     Previous
@@ -166,7 +166,7 @@ export default class Quiz extends React.Component {
                 {'        '}
                 {this.state.count === this.state.data.length - 1 ? null : (
                   <Button
-                    className="btn-responsive-md"
+                    className="skipNextPrevButtons"
                     onClick={() => this.increaseCount()}
                   >
                     {this.state.skipNext}
