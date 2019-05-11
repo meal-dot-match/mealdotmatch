@@ -17,7 +17,8 @@ export default class Quiz extends React.Component {
       'fruit(s)': [],
       'grain(s)': [],
       ingredients: [],
-      data: []
+      data: [],
+      alert: false
     }
     this.removeIngredient = this.removeIngredient.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
@@ -31,31 +32,35 @@ export default class Quiz extends React.Component {
   }
 
   addToIngredients(event) {
-    const max = this.state.data[this.state.count].max
-    const foodType = this.state.data[this.state.count].question.split(' ')[1]
+    let max = this.state.data[this.state.count].max
+    let foodType = this.state.data[this.state.count].question.split(' ')[1]
+    let foodTypeLength = this.state[foodType].length
+    let meatSeafoodLength = this.state.meats.length + this.state.seafood.length
     if (this.state.count === 0) {
       this.setState({
         meal: event.target.alt
       })
-    } else {
-      if (
-        !this.state.ingredients.includes(event.target.alt) &&
-        this.state[foodType].length < max
-      ) {
-        if (foodType === 'meats' || foodType === 'seafood') {
-          if (this.state.meats.length + this.state.seafood.length < 2) {
-            this.setState({
-              ingredients: [...this.state.ingredients, event.target.alt],
-              [foodType]: [...this.state[foodType], event.target.alt]
-            })
-          }
-        } else {
+    } else if (
+      !this.state.ingredients.includes(event.target.alt) &&
+      foodTypeLength < max
+    ) {
+      if (foodType === 'meats' || foodType === 'seafood') {
+        if (meatSeafoodLength < 2) {
           this.setState({
             ingredients: [...this.state.ingredients, event.target.alt],
             [foodType]: [...this.state[foodType], event.target.alt]
           })
         }
+      } else {
+        this.setState({
+          ingredients: [...this.state.ingredients, event.target.alt],
+          [foodType]: [...this.state[foodType], event.target.alt]
+        })
       }
+    } else if (foodTypeLength === max || meatSeafoodLength === 2) {
+      this.setState({
+        alert: true
+      })
     }
   }
 
@@ -69,18 +74,37 @@ export default class Quiz extends React.Component {
     })
     this.setState({
       ingredients: ingredientsLeft,
-      [foodType]: foodTypeIngredientsLeft
+      [foodType]: foodTypeIngredientsLeft,
+      alert: false
     })
   }
 
   increaseCount() {
     let newCount = this.state.count + 1
-    this.setState({count: newCount})
+    let foodType = this.state.data[this.state.count].question.split(' ')[1]
+
+    if (foodType === 'meats') {
+      this.setState({count: newCount})
+    } else {
+      this.setState({
+        count: newCount,
+        alert: false
+      })
+    }
   }
 
   decreaseCount() {
     let newCount = this.state.count - 1
-    this.setState({count: newCount})
+    let foodType = this.state.data[this.state.count].question.split(' ')[1]
+
+    if (foodType === 'seafood') {
+      this.setState({count: newCount})
+    } else {
+      this.setState({
+        count: newCount,
+        alert: false
+      })
+    }
   }
 
   render() {
@@ -96,6 +120,7 @@ export default class Quiz extends React.Component {
               foodType={
                 this.state.data[this.state.count].question.split(' ')[1]
               }
+              alert={this.state.alert}
             />
             <Row>
               {questions.image.map((picture, index) => {
