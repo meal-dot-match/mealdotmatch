@@ -68,8 +68,8 @@ export default class Quiz extends React.Component {
       return item !== event.target.id
     })
     this.setState({
-      ingredients: ingredientsLeft
-      // [foodType]: foodTypeIngredientsLeft
+      ingredients: ingredientsLeft,
+      [foodType]: foodTypeIngredientsLeft
     })
   }
 
