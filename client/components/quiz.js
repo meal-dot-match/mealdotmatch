@@ -18,7 +18,8 @@ export default class Quiz extends React.Component {
       'grain(s)': [],
       ingredients: [],
       data: [],
-      alert: false
+      alert: false,
+      skipNext: 'Skip'
     }
     this.removeIngredient = this.removeIngredient.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
@@ -38,7 +39,8 @@ export default class Quiz extends React.Component {
     let meatSeafoodLength = this.state.meats.length + this.state.seafood.length
     if (this.state.count === 0) {
       this.setState({
-        meal: event.target.alt
+        meal: event.target.alt,
+        skipNext: 'Next'
       })
     } else if (
       !this.state.ingredients.includes(event.target.alt) &&
@@ -48,13 +50,15 @@ export default class Quiz extends React.Component {
         if (meatSeafoodLength < 2) {
           this.setState({
             ingredients: [...this.state.ingredients, event.target.alt],
-            [foodType]: [...this.state[foodType], event.target.alt]
+            [foodType]: [...this.state[foodType], event.target.alt],
+            skipNext: 'Next'
           })
         }
       } else {
         this.setState({
           ingredients: [...this.state.ingredients, event.target.alt],
-          [foodType]: [...this.state[foodType], event.target.alt]
+          [foodType]: [...this.state[foodType], event.target.alt],
+          skipNext: 'Next'
         })
       }
     } else if (foodTypeLength === max || meatSeafoodLength === 2) {
@@ -84,11 +88,12 @@ export default class Quiz extends React.Component {
     let foodType = this.state.data[this.state.count].question.split(' ')[1]
 
     if (foodType === 'meats') {
-      this.setState({count: newCount})
+      this.setState({count: newCount, skipNext: 'Skip'})
     } else {
       this.setState({
         count: newCount,
-        alert: false
+        alert: false,
+        skipNext: 'Skip'
       })
     }
   }
@@ -170,7 +175,7 @@ export default class Quiz extends React.Component {
                   </Link>
                 ) : (
                   <button type="button" onClick={() => this.increaseCount()}>
-                    Next
+                    {this.state.skipNext}
                   </button>
                 )}
               </div>
