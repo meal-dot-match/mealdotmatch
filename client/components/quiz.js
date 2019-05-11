@@ -1,5 +1,5 @@
 import React from 'react'
-import {CuttingBoard, MaxMessage} from './index'
+import {CuttingBoard, MaxMessage, ProgressBar} from './index'
 import axios from 'axios'
 import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
@@ -114,6 +114,7 @@ export default class Quiz extends React.Component {
       <Container>
         <Row>
           <Col>
+            <ProgressBar count={this.state.count} />
             <h2 className="question">{questions.question}</h2>
             <MaxMessage
               max={this.state.data[this.state.count].max}
