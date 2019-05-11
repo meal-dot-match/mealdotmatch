@@ -12,19 +12,15 @@ class MaxMessage extends React.Component {
         this.props.foodType === 'seafood'
       ) {
         return (
-          <div>
-            <h5>
-              You have already selected the max total of 2 meats and seafoods.
-            </h5>
+          <div className="alert alert-warning" role="alert">
+            You have already selected the max total of 2 meats and seafoods.
           </div>
         )
       } else {
         return (
-          <div>
-            <h5>
-              You have already selected the max total of {this.props.max}{' '}
-              {this.props.foodType}
-            </h5>
+          <div className="alert alert-warning" role="alert">
+            You have already selected the max total of {this.props.max}{' '}
+            {this.props.foodType}
           </div>
         )
       }
