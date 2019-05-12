@@ -37,7 +37,6 @@ export default class Quiz extends React.Component {
     let foodType = this.state.data[this.state.count].question.split(' ')[1]
     let foodTypeLength = this.state[foodType].length
     let meatSeafoodLength = this.state.meats.length + this.state.seafood.length
-    // if we are on meals, set meal
     if (this.state.count === 0) {
       this.setState({
         meal: event.target.alt,
