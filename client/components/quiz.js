@@ -1,5 +1,5 @@
 import React from 'react'
-import {CuttingBoard, MaxMessage} from './index'
+import {CuttingBoard, MaxMessage, ProgressBar} from './index'
 import axios from 'axios'
 import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
@@ -17,9 +17,11 @@ export default class Quiz extends React.Component {
       'fruit(s)': [],
       'grain(s)': [],
       ingredients: [],
-      data: []
+      data: [],
+      alert: false,
+      skipNext: 'Skip'
     }
-    this.functionToPass = this.functionToPass.bind(this)
+    this.removeIngredient = this.removeIngredient.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
     this.decreaseCount = this.decreaseCount.bind(this)
     this.addToIngredients = this.addToIngredients.bind(this)
@@ -31,52 +33,83 @@ export default class Quiz extends React.Component {
   }
 
   addToIngredients(event) {
-    const max = this.state.data[this.state.count].max
-    // console.log('MAX: ', max)
-    const foodType = this.state.data[this.state.count].question.split(' ')[1]
-    // console.log('foodType: ', foodType)
+    let max = this.state.data[this.state.count].max
+    let foodType = this.state.data[this.state.count].question.split(' ')[1]
+    let foodTypeLength = this.state[foodType].length
+    let meatSeafoodLength = this.state.meats.length + this.state.seafood.length
     if (this.state.count === 0) {
       this.setState({
-        meal: event.target.alt
+        meal: event.target.alt,
+        skipNext: 'Next'
       })
-    } else {
-      console.log(this.state[foodType].length)
-      if (
-        !this.state.ingredients.includes(event.target.alt) &&
-        this.state[foodType].length < max
-      ) {
-        if (foodType === 'meats' || foodType === 'seafood') {
-          if (this.state.meats.length + this.state.seafood.length < 2) {
-            this.setState({
-              ingredients: [...this.state.ingredients, event.target.alt],
-              [foodType]: [...this.state[foodType], event.target.alt]
-            })
-          }
-        } else {
+    } else if (
+      !this.state.ingredients.includes(event.target.alt) &&
+      foodTypeLength < max
+    ) {
+      if (foodType === 'meats' || foodType === 'seafood') {
+        if (meatSeafoodLength < 2) {
           this.setState({
             ingredients: [...this.state.ingredients, event.target.alt],
-            [foodType]: [...this.state[foodType], event.target.alt]
+            [foodType]: [...this.state[foodType], event.target.alt],
+            skipNext: 'Next'
           })
         }
+      } else {
+        this.setState({
+          ingredients: [...this.state.ingredients, event.target.alt],
+          [foodType]: [...this.state[foodType], event.target.alt],
+          skipNext: 'Next'
+        })
       }
+    } else if (foodTypeLength === max || meatSeafoodLength === 2) {
+      this.setState({
+        alert: true
+      })
     }
   }
 
-  functionToPass(event) {
+  removeIngredient(event) {
     const ingredientsLeft = this.state.ingredients.filter(item => {
       return item !== event.target.id
     })
-    this.setState({ingredients: ingredientsLeft})
+    const foodType = this.state.data[this.state.count].question.split(' ')[1]
+    const foodTypeIngredientsLeft = this.state[foodType].filter(item => {
+      return item !== event.target.id
+    })
+    this.setState({
+      ingredients: ingredientsLeft,
+      [foodType]: foodTypeIngredientsLeft,
+      alert: false
+    })
   }
 
   increaseCount() {
     let newCount = this.state.count + 1
-    this.setState({count: newCount})
+    let foodType = this.state.data[this.state.count].question.split(' ')[1]
+
+    if (foodType === 'meats') {
+      this.setState({count: newCount, skipNext: 'Skip'})
+    } else {
+      this.setState({
+        count: newCount,
+        alert: false,
+        skipNext: 'Skip'
+      })
+    }
   }
 
   decreaseCount() {
     let newCount = this.state.count - 1
-    this.setState({count: newCount})
+    let foodType = this.state.data[this.state.count].question.split(' ')[1]
+
+    if (foodType === 'seafood') {
+      this.setState({count: newCount})
+    } else {
+      this.setState({
+        count: newCount,
+        alert: false
+      })
+    }
   }
 
   render() {
@@ -86,12 +119,14 @@ export default class Quiz extends React.Component {
       <Container>
         <Row>
           <Col>
+            <ProgressBar count={this.state.count} />
             <h2 className="question">{questions.question}</h2>
             <MaxMessage
               max={this.state.data[this.state.count].max}
               foodType={
                 this.state.data[this.state.count].question.split(' ')[1]
               }
+              alert={this.state.alert}
             />
             <Row>
               {questions.image.map((picture, index) => {
@@ -121,34 +156,44 @@ export default class Quiz extends React.Component {
             <Row className="prev-next-buttons">
               <div>
                 {this.state.count > 0 ? (
-                  <button type="button" onClick={() => this.decreaseCount()}>
-                    Previous
-                  </button>
-                ) : null}
-                {this.state.count === this.state.data.length - 1 ? (
-                  <Link
-                    to={{
-                      pathname: '/results',
-                      state: {
-                        theIngredients: this.state.ingredients,
-                        theMeats: this.state.meats,
-                        theSeafood: this.state.seafood
-                      }
-                    }}
+                  <Button
+                    className="skipNextPrevButtons"
+                    onClick={() => this.decreaseCount()}
                   >
-                    <button type="button">Get Matches</button>
-                  </Link>
-                ) : (
-                  <button type="button" onClick={() => this.increaseCount()}>
-                    Next
-                  </button>
+                    Previous
+                  </Button>
+                ) : null}
+                {'        '}
+                {this.state.count === this.state.data.length - 1 ? null : (
+                  <Button
+                    className="skipNextPrevButtons"
+                    onClick={() => this.increaseCount()}
+                  >
+                    {this.state.skipNext}
+                  </Button>
                 )}
               </div>
+            </Row>
+            <Row>
+              <Link
+                to={{
+                  pathname: '/results',
+                  state: {
+                    theIngredients: this.state.ingredients,
+                    theMeats: this.state.meats,
+                    theSeafood: this.state.seafood
+                  }
+                }}
+              >
+                <Button className="btn-responsive" size="lg" id="matchMe">
+                  Match Me
+                </Button>
+              </Link>
             </Row>
           </Col>
           <Col sm={5}>
             <CuttingBoard
-              sendFunction={this.functionToPass}
+              sendFunction={this.removeIngredient}
               ingredients={this.state.ingredients}
               meal={this.state.meal}
             />
