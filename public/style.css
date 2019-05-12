@@ -185,6 +185,21 @@ h5 {
   }
 }
 
+.skipNextPrevButtons {
+  font-size: 20px;
+  line-height: 1.3333333;
+  border-radius: 10px;
+  background: #0cded7;
+  border: none;
+  padding: 10px;
+  box-shadow: 2px 3px 5px #888888;
+  margin: 3px;
+}
+
+.skipNextPrevButtons:hover {
+  background-color: #1fcca3;
+}
+
 .jumbotron {
   background-image: url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1231&q=80');
   background-size: cover;
@@ -296,4 +311,13 @@ body {
 
 .single-recipe-row {
   padding: 15px;
+}
+
+#matchMe {
+  font-size: 27px;
+  margin-top: 20px;
+}
+
+.progress-bar {
+  background-color: #0cded7;
 }
