@@ -18,10 +18,9 @@ async function seed() {
       image: [
         'https://images.unsplash.com/photo-1465014925804-7b9ede58d0d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=711&q=80',
         'https://images.unsplash.com/photo-1535140728325-a4d3707eee61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-        'https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-        'https://images.unsplash.com/photo-1485474187873-a541e1da7c51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+        'https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
       ],
-      name: ['Breakfast', 'Lunch', 'Dinner', 'Dessert'],
+      name: ['Breakfast', 'Lunch', 'Dinner'],
       max: 1
     }),
     Question.create({
@@ -44,7 +43,7 @@ async function seed() {
         'https://images.unsplash.com/photo-1528607929212-2636ec44253e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
         'https://images.pexels.com/photos/265393/pexels-photo-265393.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
       ],
-      name: ['Steak', 'Ground Beef', 'Pork', 'Bacon', 'Turkey'],
+      name: ['Steak', 'Ground Beef', 'Chicken', 'Bacon', 'Turkey'],
       max: 2
     }),
     Question.create({
