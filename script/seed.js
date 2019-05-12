@@ -53,9 +53,10 @@ async function seed() {
         'https://images.unsplash.com/photo-1530260626688-048279320445?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
         'https://images.unsplash.com/photo-1528502499757-107ea9369104?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
         'https://images.unsplash.com/photo-1553659971-f01207815844?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-        'https://images.unsplash.com/photo-1503414382497-bfd17f3c2e41?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+        'https://images.unsplash.com/photo-1503414382497-bfd17f3c2e41?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+        'https://images.unsplash.com/photo-1537088995-030dbc4d919a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
       ],
-      name: ['Salmon', 'Tuna', 'Shrimp', 'Crab', 'Lobster'],
+      name: ['Salmon', 'Tuna', 'Shrimp', 'Crab', 'Lobster', 'Clams'],
       max: 2
     }),
     Question.create({
