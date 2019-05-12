@@ -115,10 +115,7 @@ export default class Quiz extends React.Component {
 
   render() {
     const questions = this.state.data[this.state.count]
-    if (questions !== undefined) {
-      const foodType = questions.question.split(' ')[1]
-      console.log('this.state[foodType]', this.state[foodType])
-    }
+
     return this.state.data[0] ? (
       <Container>
         <Row>
