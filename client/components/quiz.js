@@ -72,7 +72,19 @@ export default class Quiz extends React.Component {
     const ingredientsLeft = this.state.ingredients.filter(item => {
       return item !== event.target.id
     })
-    const foodType = this.state.data[this.state.count].question.split(' ')[1]
+    // foodType needs to be defined based not on the current count, but on the ingredient category that the event.target.alt belongs to
+    console.log('event', event)
+    // // original foodType function:
+    // const foodType = this.state.data[this.state.count].question.split(' ')[1]
+    const foodTypes = Object.keys(this.state).filter(foodType => {
+      return foodType !== 'ingredients'
+    })
+    console.log('foodTypes', foodTypes)
+    const foodType = foodTypes.filter(foodType => {
+      if (this.state[foodType].includes(event.target.id)) return foodType
+    })[0]
+    console.log('foodType', foodType)
+    // foodTypeIngredientsLeft needs to be defined the same way
     const foodTypeIngredientsLeft = this.state[foodType].filter(item => {
       return item !== event.target.id
     })
@@ -114,6 +126,11 @@ export default class Quiz extends React.Component {
 
   render() {
     const questions = this.state.data[this.state.count]
+    if (questions !== undefined) {
+      const foodType = questions.question.split(' ')[1]
+      console.log('current foodType on State: ', this.state[foodType])
+      console.log('dairy foodType on State: ', this.state.dairy)
+    }
 
     return this.state.data[0] ? (
       <Container>
@@ -196,6 +213,10 @@ export default class Quiz extends React.Component {
               sendFunction={this.removeIngredient}
               ingredients={this.state.ingredients}
               meal={this.state.meal}
+              // pass not the current foodType, but the foodType that corresponds with the ingredient being rendered
+              // foodType={
+              //   this.state.data[Object.keys(this.state).filter(foodType => {return (Object.keys(foodType).includes(the current ingredient???))})]
+              // }
             />
           </Col>
         </Row>
