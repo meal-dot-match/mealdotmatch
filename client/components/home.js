@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Row, Col, Button} from 'react-bootstrap'
 
 export default class Home extends React.Component {
@@ -21,12 +21,11 @@ export default class Home extends React.Component {
           <div className="img-overlay">
             <Row className="row-homepage">
               <Col sm={6} />
-
               <Col sm={5}>
                 <Row className="row-homepage">
-                  <h1 className="text-center">Welcome to Meal.Match</h1>
+                  <h1 className="text-center"> Welcome to Meal.Match </h1>
                   <p>
-                    Have items in your pantry but not sure what make?
+                    Have items in your pantry but not sure what make ?
                     <br />
                     Fill out our short quiz to see recipes that match what you
                     have, not what you need.
@@ -35,7 +34,7 @@ export default class Home extends React.Component {
                 <Row>
                   <Link to="/quiz">
                     <Button className="btn-responsive" size="lg">
-                      Match Me
+                      Start Now
                     </Button>
                   </Link>
                 </Row>
@@ -48,9 +47,3 @@ export default class Home extends React.Component {
     )
   }
 }
-
-// const mapStateToProps
-
-// const mapDispatchToProps
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Home)
