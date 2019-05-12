@@ -20,6 +20,7 @@ export default class Quiz extends React.Component {
       data: [],
       alert: false,
       skipNext: 'Skip'
+      // if any additional non-array fields are added to state, they must be included as exclusions in the removeIngredient function
     }
     this.removeIngredient = this.removeIngredient.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
@@ -77,11 +78,32 @@ export default class Quiz extends React.Component {
     // // original foodType function:
     // const foodType = this.state.data[this.state.count].question.split(' ')[1]
     const foodTypes = Object.keys(this.state).filter(foodType => {
-      return foodType !== 'ingredients'
+      return (
+        foodType !== 'ingredients' &&
+        foodType !== 'count' &&
+        foodType !== 'meal' &&
+        foodType !== 'alert' &&
+        foodType !== 'skipNext' &&
+        foodType !== 'data'
+      )
     })
+    const foodTypesArray = foodTypes.forEach(word => word.split(''))
+    console.log('foodTypesArray', foodTypesArray)
+    const foodTypesArrayWithoutQuotations = foodTypesArray.filter(
+      char => char !== `"`
+    )
+    const foodTypesFinal = foodTypesArrayWithoutQuotations.join('')
     console.log('foodTypes', foodTypes)
-    const foodType = foodTypes.filter(foodType => {
-      if (this.state[foodType].includes(event.target.id)) return foodType
+    console.log('foodTypesFinal', foodTypesFinal)
+    console.log('event.target.id', event.target.id)
+    // const deletedFoodLetterArray = event.target.id.split('')
+    // const shift = deletedFoodLetterArray.shift()
+    // const unshift = deletedFoodLetterArray.unshift()
+    // const deletedFood = deletedFoodLetterArray.join('')
+    const deletedFood = `"` + event.target.id + `"`
+    console.log('deletedFood', deletedFood)
+    const foodType = foodTypesFinal.filter(food => {
+      this.state[food].includes(deletedFood)
     })[0]
     console.log('foodType', foodType)
     // foodTypeIngredientsLeft needs to be defined the same way
