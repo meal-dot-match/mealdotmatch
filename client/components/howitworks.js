@@ -53,7 +53,6 @@ class HowItWorks extends React.Component {
                 meal.
               </Col>
             </Col>
-
             <Col className="how-it-works-steps">
               <img src="https://image.flaticon.com/icons/svg/1763/1763996.svg" />
               <h5>

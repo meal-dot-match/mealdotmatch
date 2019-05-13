@@ -14,13 +14,14 @@ async function seed() {
 
   const questions = await Promise.all([
     Question.create({
-      question: 'Approximate time you would like to spend cooking?',
+      question: 'Max time you would like to spend cooking?',
       image: [
-        'https://i.ibb.co/DfV1FPq/0-60.jpg',
-        'https://i.ibb.co/X58vQgy/60-120.jpg',
-        'https://i.ibb.co/h2qSqWF/120-plus.jpg'
+        'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png',
+        'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png',
+        'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png',
+        'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png'
       ],
-      name: ['< 1 hour', '1-2 hours', '> 2 hours'],
+      name: ['< 30 mins', '< 60 mins', '< 90 mins', '120 mins +'],
       max: 1
     }),
     Question.create({
