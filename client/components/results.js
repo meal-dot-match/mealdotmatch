@@ -86,9 +86,14 @@ class Results extends React.Component {
                 const replaceCommas = str => {
                   return str.replace(/,/gi, '')
                 }
-                lowerCasedIngredientsArr = lowerCasedIngredientsArr.map(x =>
+                let lowerCasedTotalRecipesArr = totalRecipesArr[
+                  j
+                ].ingredientLines.map(x => x.toLowerCase())
+
+                lowerCasedTotalRecipesArr = lowerCasedTotalRecipesArr.map(x =>
                   replaceCommas(x)
                 )
+
                 console.log('lowerCased: ', lowerCasedIngredientsArr)
                 obj.calories = totalRecipesArr[j].calories
                 obj.image = totalRecipesArr[j].image
@@ -100,14 +105,14 @@ class Results extends React.Component {
                   'totalRecipesArr[j].ingredientLines',
                   totalRecipesArr[j].ingredientLines
                 )
-                obj.missingIngredients = totalRecipesArr[
-                  j
-                ].ingredientLines.filter(function(x) {
-                  let split = x.split(' ')
-                  return !split.some(
-                    y => lowerCasedIngredientsArr.indexOf(y) >= 0
-                  )
-                })
+                obj.missingIngredients = lowerCasedTotalRecipesArr.filter(
+                  function(x) {
+                    let split = x.split(' ')
+                    return !split.some(
+                      y => lowerCasedIngredientsArr.indexOf(y) >= 0
+                    )
+                  }
+                )
                 renderArr.push(obj)
               }
             }
