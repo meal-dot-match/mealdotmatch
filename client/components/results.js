@@ -113,7 +113,7 @@ class Results extends React.Component {
           return (
             <div>
               <h1>Your Top 5 Matches:</h1>
-              {renderArr.map(x => (
+              {renderArr.map((x, idx) => (
                 <div key={Math.random()}>
                   <img src={x.image} />
                   <h2>{x.label}</h2>
@@ -124,6 +124,7 @@ class Results extends React.Component {
                       to={{
                         pathname: `/recipes/${x.label}`,
                         state: {
+                          index: idx,
                           matchingRecipes: renderArr,
                           label: x.label,
                           url: x.url,

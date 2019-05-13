@@ -1,27 +1,24 @@
 import React, {Component} from 'react'
-import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
 
 class GroceryList extends Component {
   render() {
-    return (
-      <Container>
-        <Row>
-          <ListGroup>
-            <div>
-              <h2>Here are the ingredients you need:</h2>
-            </div>
+    console.log('Made it into the Grocery List Component!', this.props)
 
-            {this.props.location.state.missingIngredients.map(item => {
-              return (
-                <ListGroup.Item key={Math.random()}>
-                  {item.label}
-                </ListGroup.Item>
-              )
-            })}
-          </ListGroup>
-        </Row>
-      </Container>
-    )
+    const chosenRecipe = this.props.location.recipe
+
+    if (!chosenRecipe) {
+      return 'ingredients are no longer here...'
+    } else {
+      return (
+        <div>
+          <h3>Missing Ingredients for the {chosenRecipe.label}</h3>
+          <img src={chosenRecipe.image} />
+          {chosenRecipe.missingIngredients.map(item => {
+            return <div key={Math.random()}>{item}</div>
+          })}
+        </div>
+      )
+    }
   }
 }
 
