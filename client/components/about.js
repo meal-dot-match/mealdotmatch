@@ -69,7 +69,7 @@ const About = () => {
           </Col>
           <Col xs={4} md={3}>
             <Image
-              src="https://media.licdn.com/dms/image/C4E03AQHew4LhGULilA/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=vzOCxZW5yZL3u2Dc5RndP1jish1mQknE2XMWjqjFSxM"
+              src="https://media.licdn.com/dms/image/C4E03AQEH5FZZ7G69zA/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=O990QMghkIrJF0G2OeGXfkjcTDwsGsPSrZWLAp1KH7A"
               roundedCircle
               height="171"
               width="180"
@@ -87,7 +87,7 @@ const About = () => {
           </Col>
           <Col xs={4} md={3}>
             <Image
-              src="/KV.png"
+              src="https://media.licdn.com/dms/image/C4D03AQFEDOfd93Owww/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=9Jm_jwq5ArhToxc_0ZDep-47IAX03pN-AvBflnXO9xQ"
               roundedCircle
               height="171"
               width="180"
