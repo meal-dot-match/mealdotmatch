@@ -25,7 +25,7 @@ export default class Home extends React.Component {
                 <Row className="row-homepage">
                   <h1 className="text-center"> Welcome to Meal.Match </h1>
                   <p>
-                    Have items in your pantry but not sure what make?
+                    Have items in your pantry but not sure what to make?
                     <br />
                     Fill out our short quiz to see recipes that match what you
                     have, not what you need.
