@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {Container, Row, Col, Image, Jumbotron, Button} from 'react-bootstrap'
 
 class HowItWorks extends React.Component {
@@ -16,10 +17,12 @@ class HowItWorks extends React.Component {
                   already have in your kitchen. You simply take a look at what's
                   in your pantry or fridge, and fill out our short quiz to let
                   us know what you have. We'll then match you to recipes. To get
-                  started, click on the quiz below. Otherwise, to learn more,
-                  scroll down.
+                  started, click on the start now button below. Otherwise, to
+                  learn more, scroll down.
                 </p>
-                <Button className="btn-responsive">Start Now</Button>
+                <Link to={{pathname: `/quiz`}}>
+                  <Button className="btn-responsive">Start now</Button>
+                </Link>
                 <Row style={{height: 100, padding: 50}}>
                   <p id="scroll-arrow" className="how-it-works-banner-scroll">
                     <a href="#instructions" />

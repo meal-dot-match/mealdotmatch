@@ -145,11 +145,11 @@ export default class Quiz extends React.Component {
               {questions.image.map((picture, index) => {
                 return (
                   <div key={Math.random()}>
-                    <button
+                    {/* <button
                       type="button"
                       className="button"
                       onClick={() => this.addToIngredients(event)}
-                    >
+                    > */}
                       <div className="option-with-label">
                         <div className="label">{questions.name[index]}</div>
                         <div>
@@ -157,10 +157,11 @@ export default class Quiz extends React.Component {
                             className="options"
                             src={picture}
                             alt={questions.name[index]}
+                            onClick={() => this.addToIngredients(event)}
                           />
                         </div>
                       </div>
-                    </button>
+                    {/* </button> */}
                   </div>
                 )
               })}

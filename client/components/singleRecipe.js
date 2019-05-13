@@ -17,7 +17,7 @@ class SingleRecipe extends React.Component {
     })
   }
   render() {
-    console.log('WHAT ARE MY PROPS?????', this.props.location.state)
+    console.log('Props on SingleRecipe:', this.props.location)
     const recipe = this.props.location.state
     return (
       <Container className="single-recipe-container">
@@ -29,13 +29,25 @@ class SingleRecipe extends React.Component {
             <Row className="single-recipe-row">
               <h3>{recipe.label}</h3>
             </Row>
-            <Row className="single-recipe-row">Recipe Url: {recipe.url}</Row>
             <Row className="single-recipe-row">
-              Want to purchase missing ingredients?
+              Recipe Url: <a href={recipe.url}>{recipe.url} </a>
+            </Row>
+
+            <Row className="single-recipe-row">
+              Want to purchase missing ingredients?{' '}
+              <Link
+                to={{
+                  pathname: `/groceryList`,
+                  recipe: recipe.matchingRecipes[recipe.index]
+                }}
+              >
+                <Button type="button">View Missing Ingredients</Button>
+              </Link>
             </Row>
             <Row>
               <Button onClick={this.onSubmit}>Send via Text</Button>
             </Row>
+
             {this.state.isShowing ? <Text /> : null}
           </Col>
         </Row>

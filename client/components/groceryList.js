@@ -1,27 +1,52 @@
 import React, {Component} from 'react'
-import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
+import Text from './text'
+import {Button, ListGroup} from 'react-bootstrap'
 
 class GroceryList extends Component {
+  constructor() {
+    super()
+    this.state = {
+      isShowing: false
+    }
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+  onSubmit() {
+    this.setState({
+      isShowing: !this.state.isShowing
+    })
+  }
   render() {
-    return (
-      <Container>
-        <Row>
-          <ListGroup>
-            <div>
-              <h2>Here are the ingredients you need:</h2>
-            </div>
+    console.log('Made it into the Grocery List Component!', this.props)
 
-            {this.props.location.state.missingIngredients.map(item => {
+    const chosenRecipe = this.props.location.recipe
+
+    if (!chosenRecipe) {
+      return 'ingredients are no longer here...'
+    } else {
+      return (
+        <div>
+          <h3>Missing Ingredients for the {chosenRecipe.label}</h3>
+          <img src={chosenRecipe.image} />
+          <ListGroup>
+            {chosenRecipe.missingIngredients.map(item => {
               return (
-                <ListGroup.Item key={Math.random()}>
-                  {item.label}
+                <ListGroup.Item key={Math.random()} as="li">
+                  {item}
                 </ListGroup.Item>
               )
             })}
           </ListGroup>
-        </Row>
-      </Container>
-    )
+          <Button type="button" onClick={this.onSubmit}>
+            Send Missing Ingredients as Text
+          </Button>
+          <Link to="/groceryBag">
+            <Button type="button">Use Postmates</Button>
+          </Link>
+          {this.state.isShowing ? <Text /> : null}
+        </div>
+      )
+    }
   }
 }
 
