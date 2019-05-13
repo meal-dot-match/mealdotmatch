@@ -34,18 +34,15 @@ class SingleRecipe extends React.Component {
             </Row>
 
             <Row className="single-recipe-row">
-              Want to purchase missing ingredients?
-              <button type="button">
-                {' '}
-                <Link
-                  to={{
-                    pathname: `/groceryList`,
-                    recipe: recipe.matchingRecipes[recipe.index]
-                  }}
-                >
-                  View Missing Ingredients
-                </Link>
-              </button>
+              Want to purchase missing ingredients?{' '}
+              <Link
+                to={{
+                  pathname: `/groceryList`,
+                  recipe: recipe.matchingRecipes[recipe.index]
+                }}
+              >
+                <Button type="button">View Missing Ingredients</Button>
+              </Link>
             </Row>
             <Row>
               <Button onClick={this.onSubmit}>Send via Text</Button>

@@ -119,23 +119,23 @@ class Results extends React.Component {
                   <h2>{x.label}</h2>
                   <h3>{(Number(x.percentage) * 100).toFixed(2)} % match</h3>
                   <br />
-                  <button type="button">
-                    <Link
-                      to={{
-                        pathname: `/recipes/${x.label}`,
-                        state: {
-                          index: idx,
-                          matchingRecipes: renderArr,
-                          label: x.label,
-                          url: x.url,
-                          ingredientlines: x.ingredientLines,
-                          image: x.image
-                        }
-                      }}
-                    >
-                      View Recipe
-                    </Link>
-                  </button>
+
+                  <Link
+                    to={{
+                      pathname: `/recipes/${x.label}`,
+                      state: {
+                        index: idx,
+                        matchingRecipes: renderArr,
+                        label: x.label,
+                        url: x.url,
+                        ingredientlines: x.ingredientLines,
+                        image: x.image
+                      }
+                    }}
+                  >
+                    <Button type="button">View Recipe</Button>
+                  </Link>
+
                   <br />
                   {/* <button>
                     <Link

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Text from './text'
+import {Button, ListGroup} from 'react-bootstrap'
 
 class GroceryList extends Component {
   constructor() {
@@ -26,13 +27,18 @@ class GroceryList extends Component {
         <div>
           <h3>Missing Ingredients for the {chosenRecipe.label}</h3>
           <img src={chosenRecipe.image} />
-          {chosenRecipe.missingIngredients.map(item => {
-            return <div key={Math.random()}>{item}</div>
-          })}
-
-          <button type="button" onClick={this.onSubmit}>
+          <ListGroup>
+            {chosenRecipe.missingIngredients.map(item => {
+              return (
+                <ListGroup.Item key={Math.random()} as="li">
+                  {item}
+                </ListGroup.Item>
+              )
+            })}
+          </ListGroup>
+          <Button type="button" onClick={this.onSubmit}>
             Send via Text
-          </button>
+          </Button>
 
           {this.state.isShowing ? <Text /> : null}
         </div>
