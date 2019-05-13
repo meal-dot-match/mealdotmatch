@@ -135,6 +135,7 @@ class Results extends React.Component {
                       View Recipe
                     </Link>
                   </button>
+                  <br />
                   {/* <button>
                     <Link
                       to={{
