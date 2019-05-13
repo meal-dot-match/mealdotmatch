@@ -46,7 +46,13 @@ class SingleRecipe extends React.Component {
               </Col>
             </Row>
             {this.state.isShowing ? (
-              <Text missingIngredients={recipe.matchingRecipes[recipe.index]} />
+              <Text
+                missingIngredients={
+                  recipe.matchingRecipes[recipe.index].missingIngredients
+                }
+                url={recipe.url}
+                name={recipe.label}
+              />
             ) : null}
           </Col>
         </Row>
