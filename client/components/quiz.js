@@ -9,7 +9,7 @@ export default class Quiz extends React.Component {
     super()
     this.state = {
       count: 0,
-      meal: '',
+      time: '',
       meats: [],
       seafood: [],
       dairy: [],
@@ -40,7 +40,7 @@ export default class Quiz extends React.Component {
     let meatSeafoodLength = this.state.meats.length + this.state.seafood.length
     if (this.state.count === 0) {
       this.setState({
-        meal: event.target.alt,
+        time: event.target.alt,
         skipNext: 'Next'
       })
     } else if (
@@ -150,17 +150,17 @@ export default class Quiz extends React.Component {
                       className="button"
                       onClick={() => this.addToIngredients(event)}
                     > */}
-                      <div className="option-with-label">
-                        <div className="label">{questions.name[index]}</div>
-                        <div>
-                          <img
-                            className="options"
-                            src={picture}
-                            alt={questions.name[index]}
-                            onClick={() => this.addToIngredients(event)}
-                          />
-                        </div>
+                    <div className="option-with-label">
+                      <div className="label">{questions.name[index]}</div>
+                      <div>
+                        <img
+                          className="options"
+                          src={picture}
+                          alt={questions.name[index]}
+                          onClick={() => this.addToIngredients(event)}
+                        />
                       </div>
+                    </div>
                     {/* </button> */}
                   </div>
                 )
@@ -195,7 +195,8 @@ export default class Quiz extends React.Component {
                   state: {
                     theIngredients: this.state.ingredients,
                     theMeats: this.state.meats,
-                    theSeafood: this.state.seafood
+                    theSeafood: this.state.seafood,
+                    time: this.state.time
                   }
                 }}
               >
@@ -209,7 +210,7 @@ export default class Quiz extends React.Component {
             <CuttingBoard
               sendFunction={this.removeIngredient}
               ingredients={this.state.ingredients}
-              meal={this.state.meal}
+              time={this.state.time}
             />
           </Col>
         </Row>

@@ -21,16 +21,24 @@ const getMealsQuery = gql`
 `
 
 class Results extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   sendStringToQuery() {
-    // const stringQuery = this.props.location.state.theIngredients
-    const stringQuery = this.props.location.state.theMeats
-      .concat(this.props.location.state.theSeafood)
-      .join('+')
-      .replace(/\s/g, '')
+    let timeString = '&time=1%2B'
+
+    if (this.props.location.state.time === '< 30 mins') {
+      timeString = '&time=1-30'
+    } else if (this.props.location.state.time === '< 60 mins') {
+      timeString = '&time=1-60'
+    } else if (this.props.location.state.time === '< 90 mins') {
+      timeString = '&time=1-90'
+    } else {
+      timeString = '&time=1-240'
+    }
+
+    const stringQuery =
+      this.props.location.state.theMeats
+        .concat(this.props.location.state.theSeafood)
+        .join('+')
+        .replace(/\s/g, '') + timeString
     return stringQuery
   }
   render() {

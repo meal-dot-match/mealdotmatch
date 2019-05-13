@@ -18,7 +18,7 @@ export default class CuttingBoard extends React.Component {
         </Row>
 
         <Row>
-          <h4>Meal: {this.props.meal}</h4>
+          <h4>Time Range: {this.props.time}</h4>
         </Row>
         <Row>
           <div className="container-class">
