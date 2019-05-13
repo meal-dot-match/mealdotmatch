@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Text from './text'
 import {Button, ListGroup} from 'react-bootstrap'
 
@@ -37,9 +38,11 @@ class GroceryList extends Component {
             })}
           </ListGroup>
           <Button type="button" onClick={this.onSubmit}>
-            Send via Text
+            Send Missing Ingredients as Text
           </Button>
-
+          <Link to="/groceryBag">
+            <Button type="button">Use Postmates</Button>
+          </Link>
           {this.state.isShowing ? <Text /> : null}
         </div>
       )

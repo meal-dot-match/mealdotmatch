@@ -11,7 +11,8 @@ import {
   About,
   HowItWorks,
   SingleRecipe,
-  GroceryList
+  GroceryList,
+  GroceryBag
 } from './components/index'
 import {me} from './store'
 import HomePage from './components/homepage'
@@ -43,6 +44,7 @@ class Routes extends Component {
         <Route exact path="/searchbarresults" component={SearchBarResults} />
         <Route exact path="/grocerylist" component={GroceryList} />
         <Route path="/recipes" component={SingleRecipe} />
+        <Route path="/groceryBag" component={GroceryBag} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
