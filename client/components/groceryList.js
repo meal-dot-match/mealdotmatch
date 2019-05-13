@@ -19,15 +19,13 @@ class GroceryList extends Component {
   render() {
     console.log('Made it into the Grocery List Component!', this.props)
 
-    const chosenRecipe = this.props.location.recipe
+    const chosenRecipe = this.props.recipe
 
     if (!chosenRecipe) {
       return 'ingredients are no longer here...'
     } else {
       return (
         <div>
-          <h3>Missing Ingredients for the {chosenRecipe.label}</h3>
-          <img src={chosenRecipe.image} />
           <ListGroup>
             {chosenRecipe.missingIngredients.map(item => {
               return (
@@ -37,13 +35,6 @@ class GroceryList extends Component {
               )
             })}
           </ListGroup>
-          <Button type="button" onClick={this.onSubmit}>
-            Send Missing Ingredients as Text
-          </Button>
-          <Link to="/groceryBag">
-            <Button type="button">Use Postmates</Button>
-          </Link>
-          {this.state.isShowing ? <Text /> : null}
         </div>
       )
     }
