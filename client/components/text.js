@@ -1,38 +1,52 @@
 import React from 'react'
-import {Form, FormGroup, Button, Modal} from 'react-bootstrap'
+import {Form, FormGroup, Button} from 'react-bootstrap'
 import axios from 'axios'
 
 class Text extends React.Component {
-  async onSubmit(textToSend) {
-    console.log('what is the text to send???', textToSend)
-    await axios.post('/api/sendtext', textToSend)
+  constructor() {
+    super()
+    this.state = {
+      value: ''
+    }
+    this.changeInput = this.changeInput.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
-
-  render() {
-    console.log('what is the props for the text message?????????', this.props)
-
-    console.log(
-      'what is this strigified??????????????',
-      JSON.stringify(this.props.missingIngredients)
-    )
-
+  async onSubmit(phone) {
+    const phoneNumber = '+1' + phone.replace(/-| (\(|\))/gi, '')
     const textToSend = {
       ingredients: this.props.missingIngredients,
       url: this.props.url,
-      name: this.props.name
+      name: this.props.name,
+      to: phoneNumber
     }
+    await axios.post('/api/sendtext', textToSend)
+  }
 
+  changeInput(event) {
+    this.setState({
+      value: event.target.value
+    })
+  }
+
+  render() {
     return (
       <>
         <Form>
           <FormGroup>
             <Form.Label> Mobile Phone Number </Form.Label>
-            <Form.Control type="phone" placeholder="555-555-5555" />
+            <Form.Control
+              type="phone"
+              placeholder="555-555-5555"
+              value={this.state.value}
+              onChange={this.changeInput}
+            />
             <Form.Text className="text-muted">
               Don't worry, we won't share your phone number
             </Form.Text>
           </FormGroup>
-          <Button onClick={() => this.onSubmit(textToSend)}> Submit </Button>
+          <Button onClick={() => this.onSubmit(this.state.value)}>
+            Submit
+          </Button>
         </Form>
       </>
     )

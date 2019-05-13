@@ -94,12 +94,9 @@ app.get('/questions', async(req, res, next) => {
 })
 
 app.post('/sendtext', (req, res, next) => {
-        console.log('what is the body???', req.body)
         const accountSid = Twilio.accountSID
         const authToken = Twilio.authToken
         const text = require('twilio')(accountSid, authToken)
-        console.log('what is the body???', req.body)
-
         const messageToSend = `Thanks for using Meal.Match!%0aHere are your missing ingredients for ${
     req.body.name
   }%0a${req.body.ingredients.join(',')}.%0aFull recipe: ${req.body.url}`
@@ -108,7 +105,7 @@ app.post('/sendtext', (req, res, next) => {
             .create({
                 body: JSON.stringify(messageToSend),
                 from: Twilio.from,
-                to: Twilio.to
+                to: JSON.stringify(req.body.to)
             })
             .then(message => console.log(message.sid))
             .catch(err => console.log(err))
