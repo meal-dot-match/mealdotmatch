@@ -75,8 +75,8 @@ class Results extends React.Component {
           const top5 = tracker.slice(0, 5)
           const renderArr = []
 
-          for (let i = 0; i < top5.length; i++) {
-            let name = tracker[i].name
+          for (let i = 0; i < 5; i++) {
+            let name = top5[i].name
             for (let j = 0; j < totalRecipesArr.length; j++) {
               if (totalRecipesArr[j].label === name) {
                 let obj = {}
@@ -93,32 +93,13 @@ class Results extends React.Component {
                 lowerCasedTotalRecipesArr = lowerCasedTotalRecipesArr.map(x =>
                   replaceCommas(x)
                 )
-<<<<<<< HEAD
 
-                console.log('lowerCased: ', lowerCasedIngredientsArr)
-=======
-                // console.log('lowerCased: ', lowerCasedIngredientsArr)
->>>>>>> master
                 obj.calories = totalRecipesArr[j].calories
                 obj.image = totalRecipesArr[j].image
                 obj.url = totalRecipesArr[j].url
                 obj.totalTime = totalRecipesArr[j].totalTime
                 obj.label = totalRecipesArr[j].label
                 obj.percentage = tracker[i].percent
-<<<<<<< HEAD
-                console.log(
-                  'totalRecipesArr[j].ingredientLines',
-                  totalRecipesArr[j].ingredientLines
-                )
-                obj.missingIngredients = lowerCasedTotalRecipesArr.filter(
-                  function(x) {
-                    let split = x.split(' ')
-                    return !split.some(
-                      y => lowerCasedIngredientsArr.indexOf(y) >= 0
-                    )
-                  }
-                )
-=======
 
                 obj.missingIngredients = totalRecipesArr[
                   j
@@ -128,7 +109,6 @@ class Results extends React.Component {
                     y => lowerCasedIngredientsArr.indexOf(y) >= 0
                   )
                 })
->>>>>>> master
                 renderArr.push(obj)
               }
             }
