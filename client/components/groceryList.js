@@ -1,6 +1,19 @@
 import React, {Component} from 'react'
+import Text from './text'
 
 class GroceryList extends Component {
+  constructor() {
+    super()
+    this.state = {
+      isShowing: false
+    }
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+  onSubmit() {
+    this.setState({
+      isShowing: !this.state.isShowing
+    })
+  }
   render() {
     console.log('Made it into the Grocery List Component!', this.props)
 
@@ -16,6 +29,12 @@ class GroceryList extends Component {
           {chosenRecipe.missingIngredients.map(item => {
             return <div key={Math.random()}>{item}</div>
           })}
+
+          <button type="button" onClick={this.onSubmit}>
+            Send via Text
+          </button>
+
+          {this.state.isShowing ? <Text /> : null}
         </div>
       )
     }
