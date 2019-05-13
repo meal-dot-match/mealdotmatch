@@ -13,12 +13,12 @@ class HowItWorks extends React.Component {
                 <h1>How Does Meal.Match Work?</h1>
 
                 <p>
-                  We match you to recipes that best fit the food items you
-                  already have in your kitchen. You simply take a look at what's
-                  in your pantry or fridge, and fill out our short quiz to let
-                  us know what you have. We'll then match you to recipes. To get
-                  started, click on the start now button below. Otherwise, to
-                  learn more, scroll down.
+                  We match you to recipes that best fit the ingredients you
+                  already have in your pantry and fridge. You simply take a look
+                  in your kitchen and fill out our short quiz to let us know
+                  what you would like to cook with. We'll take care of the rest!
+                  To get started, click the "start now" button below. If you
+                  would like to learn more, scroll down and read on.
                 </p>
                 <Link to={{pathname: `/quiz`}}>
                   <Button className="btn-responsive">Start now</Button>
@@ -45,12 +45,11 @@ class HowItWorks extends React.Component {
               <h5>
                 <strong>Step 1 </strong>
               </h5>
-              <h6>Check your pantry and fridge for food items.</h6>
+              <h6>Check your pantry and fridge</h6>
               <div className="w-100" />
               <Col className="how-it-works-instructions-column">
                 Take a look at the items you already have in your fridge and
-                pantry. Then, determine which items you'd like to use in your
-                meal.
+                pantry; what ingredients would you like to include in your meal?
               </Col>
             </Col>
             <Col className="how-it-works-steps">
@@ -58,16 +57,13 @@ class HowItWorks extends React.Component {
               <h5>
                 <strong>Step 2</strong>
               </h5>
-              <h6>
-                Choose the food items you have and want to cook with on our
-                quiz.
-              </h6>
+              <h6>Take the quiz</h6>
               <div className="w-100" />
               <Col className="how-it-works-instructions-column">
-                You'll have the ability to pick the meal you'd like to cook, any
-                dairy, meats, vegetables, grains, and seafood. If you don't have
-                any of those options on hand or don't want to use a particular
-                category, you have the option to skip.
+                Let us know how much time you have to prepare your meal, as well
+                as the dairy, meats, seafood, vegetables, fruits, and grains you
+                would like to use. You can skip any of the categories you do not
+                have or do not want to use.
               </Col>
             </Col>
             <Col className="how-it-works-steps">
@@ -78,10 +74,10 @@ class HowItWorks extends React.Component {
               <h6>View your matches!</h6>
               <div className="w-100" />
               <Col className="how-it-works-instructions-column">
-                Based on your selections, we'll show you recipes and how many of
-                the ingredients you have to complete the meal. This will be
-                reflected in a percentage score. The higher the percentage, the
-                less amount of extra ingredients you'll need.
+                Based on your selections, we'll suggest recipes for you. Each
+                will have a percentage score reflecting the percent of
+                ingredients you have on hand. The higher the percentage, the
+                fewer ingredients you are missing for that recipe.
               </Col>
             </Col>
             <Col className="how-it-works-steps">
@@ -89,13 +85,13 @@ class HowItWorks extends React.Component {
               <h5>
                 <strong>Step 4</strong>
               </h5>
-              <h6>Missing ingredients? Send to your phone!</h6>
+              <h6>Missing ingredients? Send the list to your phone!</h6>
               <div className="w-100" />
               <Col className="how-it-works-instructions-column">
-                If you are missing ingredients, Meal.Match makes it easy for you
-                to send those ingredients to your phone. Simply click on the
-                "Send to Phone" option on the recipe and you'll get a text with
-                your missing ingredients.
+                If you are missing ingredients, Meal.Match creates a shopping
+                list for you and makes it easy for you to send that list to your
+                phone. Simply click the "Send to Phone" option on the recipe
+                page, and you'll receive a text with your missing ingredients.
               </Col>
             </Col>
           </Row>
