@@ -29,7 +29,7 @@ const About = () => {
             <p>
               It's difficult figuring out what you can cook with the items you
               already have. Meal.Match hopes to inspire you with recipes you can
-              cook, without having to take a trip to the grocery store.
+              cook without a trip to the grocery store.
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -42,10 +42,10 @@ const About = () => {
           <Carousel.Caption className="about">
             <h3> We're talented coders. </h3>
             <p>
-              Sometimes we just can't make it to the grocery store and need to
-              make meals with the foods we already have. We couldn't find a
-              resource that gave us recipes to cater towards our pantry, so we
-              built one!
+              Sometimes we just can't make it to the store and want to make
+              meals with the ingredients we already have. We couldn't find a
+              resource that offered us recipes catered towards our pantries, so
+              we built one!
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -55,7 +55,7 @@ const About = () => {
           <h1> Meet Our Founders </h1>
         </Row>
         <Row className="center-text">
-          <p>Meet the female, software engineers who built Meal.Match.</p>
+          <p>Meet the software engineers who built Meal.Match.</p>
         </Row>
         <Row>
           <Col xs={4} md={3}>
