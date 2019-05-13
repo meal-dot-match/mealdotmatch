@@ -17,7 +17,7 @@ class SingleRecipe extends React.Component {
     })
   }
   render() {
-    console.log('WHAT ARE MY PROPS?????', this.props.location.state)
+    console.log('Props on SingleRecipe:', this.props.location.state)
     const recipe = this.props.location.state
     return (
       <Container className="single-recipe-container">
