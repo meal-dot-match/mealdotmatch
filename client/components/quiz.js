@@ -20,6 +20,7 @@ export default class Quiz extends React.Component {
       data: [],
       alert: false,
       skipNext: 'Skip'
+      // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
     this.removeIngredient = this.removeIngredient.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
@@ -61,7 +62,7 @@ export default class Quiz extends React.Component {
           skipNext: 'Next'
         })
       }
-    } else if (foodTypeLength === max || meatSeafoodLength === 2) {
+    } else if (foodTypeLength >= max || meatSeafoodLength >= 2) {
       this.setState({
         alert: true
       })
@@ -72,7 +73,16 @@ export default class Quiz extends React.Component {
     const ingredientsLeft = this.state.ingredients.filter(item => {
       return item !== event.target.id
     })
-    const foodType = this.state.data[this.state.count].question.split(' ')[1]
+    const foodTypes = Object.keys(this.state).filter(foodType => {
+      return (
+        Array.isArray(this.state[foodType]) &&
+        foodType !== 'data' &&
+        foodType !== 'ingredients'
+      )
+    })
+    const foodType = foodTypes.filter(food => {
+      return this.state[food].includes(event.target.id)
+    })[0]
     const foodTypeIngredientsLeft = this.state[foodType].filter(item => {
       return item !== event.target.id
     })
@@ -114,6 +124,9 @@ export default class Quiz extends React.Component {
 
   render() {
     const questions = this.state.data[this.state.count]
+    if (questions !== undefined) {
+      const foodType = questions.question.split(' ')[1]
+    }
 
     return this.state.data[0] ? (
       <Container>
