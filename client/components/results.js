@@ -74,6 +74,7 @@ class Results extends React.Component {
 
           const top5 = tracker.slice(0, 5)
           const renderArr = []
+          let addedName = []
 
           for (let i = 0; i < 5; i++) {
             let name = top5[i].name
@@ -109,7 +110,10 @@ class Results extends React.Component {
                     y => lowerCasedIngredientsArr.indexOf(y) >= 0
                   )
                 })
-                renderArr.push(obj)
+                if (!addedName.includes(obj.label)) {
+                  renderArr.push(obj)
+                  addedName.push(obj.label)
+                }
               }
             }
           }
