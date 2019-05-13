@@ -75,8 +75,8 @@ class Results extends React.Component {
           const top5 = tracker.slice(0, 5)
           const renderArr = []
 
-          for (let i = 0; i < top5.length; i++) {
-            let name = tracker[i].name
+          for (let i = 0; i < 5; i++) {
+            let name = top5[i].name
             for (let j = 0; j < totalRecipesArr.length; j++) {
               if (totalRecipesArr[j].label === name) {
                 let obj = {}
@@ -86,10 +86,14 @@ class Results extends React.Component {
                 const replaceCommas = str => {
                   return str.replace(/,/gi, '')
                 }
-                lowerCasedIngredientsArr = lowerCasedIngredientsArr.map(x =>
+                let lowerCasedTotalRecipesArr = totalRecipesArr[
+                  j
+                ].ingredientLines.map(x => x.toLowerCase())
+
+                lowerCasedTotalRecipesArr = lowerCasedTotalRecipesArr.map(x =>
                   replaceCommas(x)
                 )
-                // console.log('lowerCased: ', lowerCasedIngredientsArr)
+
                 obj.calories = totalRecipesArr[j].calories
                 obj.image = totalRecipesArr[j].image
                 obj.url = totalRecipesArr[j].url
