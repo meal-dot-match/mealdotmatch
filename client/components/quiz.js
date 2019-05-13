@@ -20,7 +20,7 @@ export default class Quiz extends React.Component {
       data: [],
       alert: false,
       skipNext: 'Skip'
-      // if any additional non-array fields are added to state, they must be included as exclusions in the removeIngredient function
+      // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
     this.removeIngredient = this.removeIngredient.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
@@ -62,7 +62,7 @@ export default class Quiz extends React.Component {
           skipNext: 'Next'
         })
       }
-    } else if (foodTypeLength === max || meatSeafoodLength === 2) {
+    } else if (foodTypeLength >= max || meatSeafoodLength >= 2) {
       this.setState({
         alert: true
       })
@@ -73,40 +73,16 @@ export default class Quiz extends React.Component {
     const ingredientsLeft = this.state.ingredients.filter(item => {
       return item !== event.target.id
     })
-    // foodType needs to be defined based not on the current count, but on the ingredient category that the event.target.alt belongs to
-    console.log('event', event)
-    // // original foodType function:
-    // const foodType = this.state.data[this.state.count].question.split(' ')[1]
     const foodTypes = Object.keys(this.state).filter(foodType => {
       return (
-        foodType !== 'ingredients' &&
-        foodType !== 'count' &&
-        foodType !== 'meal' &&
-        foodType !== 'alert' &&
-        foodType !== 'skipNext' &&
-        foodType !== 'data'
+        Array.isArray(this.state[foodType]) &&
+        foodType !== 'data' &&
+        foodType !== 'ingredients'
       )
     })
-    const foodTypesArray = foodTypes.forEach(word => word.split(''))
-    console.log('foodTypesArray', foodTypesArray)
-    const foodTypesArrayWithoutQuotations = foodTypesArray.filter(
-      char => char !== `"`
-    )
-    const foodTypesFinal = foodTypesArrayWithoutQuotations.join('')
-    console.log('foodTypes', foodTypes)
-    console.log('foodTypesFinal', foodTypesFinal)
-    console.log('event.target.id', event.target.id)
-    // const deletedFoodLetterArray = event.target.id.split('')
-    // const shift = deletedFoodLetterArray.shift()
-    // const unshift = deletedFoodLetterArray.unshift()
-    // const deletedFood = deletedFoodLetterArray.join('')
-    const deletedFood = `"` + event.target.id + `"`
-    console.log('deletedFood', deletedFood)
-    const foodType = foodTypesFinal.filter(food => {
-      this.state[food].includes(deletedFood)
+    const foodType = foodTypes.filter(food => {
+      return this.state[food].includes(event.target.id)
     })[0]
-    console.log('foodType', foodType)
-    // foodTypeIngredientsLeft needs to be defined the same way
     const foodTypeIngredientsLeft = this.state[foodType].filter(item => {
       return item !== event.target.id
     })
@@ -150,8 +126,6 @@ export default class Quiz extends React.Component {
     const questions = this.state.data[this.state.count]
     if (questions !== undefined) {
       const foodType = questions.question.split(' ')[1]
-      console.log('current foodType on State: ', this.state[foodType])
-      console.log('dairy foodType on State: ', this.state.dairy)
     }
 
     return this.state.data[0] ? (
@@ -235,10 +209,6 @@ export default class Quiz extends React.Component {
               sendFunction={this.removeIngredient}
               ingredients={this.state.ingredients}
               meal={this.state.meal}
-              // pass not the current foodType, but the foodType that corresponds with the ingredient being rendered
-              // foodType={
-              //   this.state.data[Object.keys(this.state).filter(foodType => {return (Object.keys(foodType).includes(the current ingredient???))})]
-              // }
             />
           </Col>
         </Row>

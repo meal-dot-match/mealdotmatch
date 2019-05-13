@@ -45,12 +45,7 @@ export default class CuttingBoard extends React.Component {
                                   this.functionPassed(event)
                                 }}
                               >
-                                {/* as we did with ID ingredient, can we store foodtype on the event.target, such that when it is clicked, it is removed from the proper category? */}
-                                <span
-                                  aria-hidden="true"
-                                  id={ingredient}
-                                  // className={this.props.foodType}
-                                >
+                                <span aria-hidden="true" id={ingredient}>
                                   ×
                                 </span>
                               </Button>
