@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import Text from './text'
-import {Row, Col, Container, Button, Image} from 'react-bootstrap'
+import {Row, Col, Container, Button, Image, ListGroup} from 'react-bootstrap'
 import GroceryList from './groceryList'
 import RecipeList from './recipeList'
 
@@ -23,46 +23,53 @@ class SingleRecipe extends React.Component {
     const recipe = this.props.location.state
     console.log(recipe)
     return (
-      <Container className="single-recipe-container">
-        <Row>
-          <Col xs={4} md={4} lg={4}>
-            <img src={recipe.image} />
-          </Col>
-          <Col xs={8} md={8} lg={8}>
-            <Row className="single-recipe-row">
-              <h3> {recipe.label} </h3>
-            </Row>
-            <Row className="single-recipe-row">
-              Recipe Url: <a href={recipe.url}> {recipe.url} </a>
-            </Row>
-            <Row className="single-recipe-row">
-              <h5>Ingredients Still Needed to Cook Recipe:</h5>
-              <GroceryList recipe={recipe.matchingRecipes[recipe.index]} />
-            </Row>
-            <Row>
-              <Col>
-                <Button onClick={this.onSubmit}> Send via Text </Button>
-              </Col>
-              <Col>
-                <Button> Send via Email</Button>
-              </Col>
-            </Row>
-            <Row className="single-recipe-row">
-              <h5>Total Ingredients List:</h5>
-              <RecipeList recipe={recipe.matchingRecipes[recipe.index]} />
-            </Row>
-            {this.state.isShowing ? (
-              <Text
-                missingIngredients={
-                  recipe.matchingRecipes[recipe.index].missingIngredients
-                }
-                url={recipe.url}
-                name={recipe.label}
-              />
-            ) : null}
-          </Col>
-        </Row>
-      </Container>
+      <div className="single-recipe-background">
+        <Container>
+          <Row className="single-recipe-header">
+            <h1> {recipe.label} </h1>
+          </Row>
+          <Row>
+            <Col className="single-recipe-image-container">
+              <Row>
+                <h4>{recipe.percent} % Match</h4>
+              </Row>
+              <Row style={{justifyContent: 'center'}}>
+                <img src={recipe.image} />
+              </Row>
+              <Row style={{padding: 25}}>
+                <Button className="btn-responsive">View Full Recipe</Button>
+              </Row>
+            </Col>
+
+            <Col className="single-recipe-image-container">
+              <Row style={{justifyContent: 'center'}}>
+                <h5>Full Ingredient List</h5>
+                <RecipeList recipe={recipe.matchingRecipes[recipe.index]} />
+              </Row>
+
+              <Row>
+                <Col>
+                  <Button onClick={this.onSubmit} className="btn-responsive">
+                    Send via Text
+                  </Button>
+                  {this.state.isShowing ? (
+                    <Text
+                      missingIngredients={
+                        recipe.matchingRecipes[recipe.index].missingIngredients
+                      }
+                      url={recipe.url}
+                      name={recipe.label}
+                    />
+                  ) : null}
+                </Col>
+                <Col>
+                  <Button className="btn-responsive"> Send via Email</Button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     )
   }
 }

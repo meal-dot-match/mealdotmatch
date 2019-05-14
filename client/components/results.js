@@ -158,26 +158,14 @@ class Results extends React.Component {
                             label: x.label,
                             url: x.url,
                             ingredients: x.ingredients,
-                            image: x.image
+                            image: x.image,
+                            percent: (Number(x.percentage) * 100).toFixed(2)
                           }
                         }}
                       >
                         <Button type="button">View Recipe</Button>
                       </Link>
-
                       <br />
-                      {/* <button>
-                    <Link
-                      to={{
-                        pathname: '/grocerylist',
-                        state: {
-                          missingIngredients: renderArr
-                        }
-                      }}
-                    >
-                      View Grocery List
-                    </Link>
-                  </button> */}
                     </div>
                   ))}
                 </div>
