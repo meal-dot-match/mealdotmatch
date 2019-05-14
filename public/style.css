@@ -456,6 +456,8 @@ body {
 
 .matches-background {
   background: rgb(248, 248, 248);
+  padding: 25px;
+  text-align: center;
 }
 
 .matches-banner {
@@ -469,41 +471,9 @@ body {
   margin-left: 400px;
 }
 
-.results-image {
-  height: 250px;
-  width: 175px;
-  box-shadow: 2px 3px 5px #888888;
-  border-radius: 7px;
-}
-
 .matches-group {
   display: grid;
-  grid-template-columns: repeat(3, 3fr);
-  grid-template-rows: repeat(3, 3fr);
-  grid-column-gap: 2em;
+  grid-template-columns: repeat(3, 2fr);
+  grid-template-rows: repeat(3, 2fr);
   grid-auto-flow: row;
-}
-
-/* .results-img-overlay {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 100px 35px;
-  justify-content: center;
-} */
-
-.matches-background a {
-  justify-content: center;
-  display: none;
-}
-
-.matches-background:hover .results-image {
-  opacity: 0.2;
-}
-
-.matches-background:hover a {
-  display: block;
-  z-index: 10;
 }

@@ -1,7 +1,7 @@
 /* eslint-disable max-statements */
 /* eslint-disable complexity */
 import React from 'react'
-import {Row, Col, Container, Button, Jumbotron} from 'react-bootstrap'
+import {Row, Col, Container, Button, Jumbotron, Image} from 'react-bootstrap'
 import {graphql, Query} from 'react-apollo'
 import {gql} from 'apollo-boost'
 import {Link} from 'react-router-dom'
@@ -167,31 +167,39 @@ class Results extends React.Component {
                           {renderArr.map((x, idx) => (
                             <Col key={Math.random()}>
                               <Row className="matches-background">
-                                <img src={x.image} />
-                                <h2>{x.label}</h2>
-                                <h3>
-                                  {(Number(x.percentage) * 100).toFixed(2)} %
-                                  match
-                                </h3>
-                                <br />
-
-                                <Link
-                                  to={{
-                                    pathname: `/recipes/${x.label}`,
-                                    state: {
-                                      index: idx,
-                                      matchingRecipes: renderArr,
-                                      label: x.label,
-                                      url: x.url,
-                                      ingredients: x.ingredients,
-                                      image: x.image
-                                    }
-                                  }}
-                                >
-                                  <Button type="button">View Recipe</Button>
-                                </Link>
-
-                                <br />
+                                <Image
+                                  src={x.image}
+                                  className="matches-image"
+                                />
+                                <Container>
+                                  <h2>{x.label}</h2>
+                                  <h3>
+                                    {(Number(x.percentage) * 100).toFixed(2)} %
+                                    match
+                                  </h3>
+                                  <Link
+                                    className="matches-img-overlay"
+                                    to={{
+                                      pathname: `/recipes/${x.label}`,
+                                      state: {
+                                        index: idx,
+                                        matchingRecipes: renderArr,
+                                        label: x.label,
+                                        url: x.url,
+                                        ingredients: x.ingredients,
+                                        image: x.image
+                                      }
+                                    }}
+                                  >
+                                    <Button
+                                      variant="outline-info"
+                                      className="results-button-outline"
+                                      size="sm"
+                                    >
+                                      Recipe Details
+                                    </Button>
+                                  </Link>
+                                </Container>
                               </Row>
                             </Col>
                           ))}
