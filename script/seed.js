@@ -29,39 +29,62 @@ async function seed() {
       id: 2,
       question: 'What dairy would you like to use?',
       image: [
+        'https://images.pexels.com/photos/94443/pexels-photo-94443.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
         'https://images.unsplash.com/photo-1519411792752-25c2468cccb3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-        'https://images.pexels.com/photos/373882/pexels-photo-373882.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
         'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-        'https://images.pexels.com/photos/94443/pexels-photo-94443.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+        'https://images.pexels.com/photos/373882/pexels-photo-373882.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
       ],
-      name: ['Cheese', 'Yogurt', 'Milk', 'Butter'],
+      name: ['Butter', 'Cheese', 'Milk', 'Yogurt'],
       max: 3
     }),
     Question.create({
       id: 3,
-      question: 'What meats would you like to use?',
+      question: 'What meats and/or proteins would you like to use?',
       image: [
-        'https://images.pexels.com/photos/1881336/pexels-photo-1881336.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        'https://images.unsplash.com/photo-1528607929212-2636ec44253e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
         'https://images.pexels.com/photos/128408/pexels-photo-128408.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
         'https://images.pexels.com/photos/616353/pexels-photo-616353.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-        'https://images.unsplash.com/photo-1528607929212-2636ec44253e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+        'https://images.pexels.com/photos/8439/food-eggs.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+        'https://images.pexels.com/photos/361184/asparagus-steak-veal-steak-veal-361184.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+        'https://images.pexels.com/photos/1881336/pexels-photo-1881336.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        'https://images.pexels.com/photos/1359305/pexels-photo-1359305.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
         'https://images.pexels.com/photos/265393/pexels-photo-265393.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
       ],
-      name: ['Steak', 'Ground Beef', 'Chicken', 'Bacon', 'Turkey'],
+      name: [
+        'Bacon',
+        'Beef',
+        'Chicken',
+        'Eggs',
+        'Pork',
+        'Steak',
+        'Tofu',
+        'Turkey'
+      ],
       max: 2
     }),
     Question.create({
       id: 4,
       question: 'What seafood would you like to use?',
       image: [
-        'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
-        'https://images.unsplash.com/photo-1530260626688-048279320445?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-        'https://images.unsplash.com/photo-1528502499757-107ea9369104?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+        'https://images.unsplash.com/photo-1537088995-030dbc4d919a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
         'https://images.unsplash.com/photo-1553659971-f01207815844?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
         'https://images.unsplash.com/photo-1503414382497-bfd17f3c2e41?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-        'https://images.unsplash.com/photo-1537088995-030dbc4d919a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+        'https://images.unsplash.com/photo-1515503249716-e0175c9d8fab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+        'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+        'https://images.pexels.com/photos/128388/pexels-photo-128388.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+        'https://images.unsplash.com/photo-1528502499757-107ea9369104?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+        'https://images.unsplash.com/photo-1530260626688-048279320445?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
       ],
-      name: ['Salmon', 'Tuna', 'Shrimp', 'Crab', 'Lobster', 'Clams'],
+      name: [
+        'Clams',
+        'Crab',
+        'Lobster',
+        'Oysters',
+        'Salmon',
+        'Scallops',
+        'Shrimp',
+        'Tuna'
+      ],
       max: 2
     }),
     Question.create({
@@ -140,15 +163,25 @@ async function seed() {
     }),
     Question.create({
       id: 7,
-      question: 'What grain(s) would you like to use?',
+      question: 'What grain(s) and pasta would you like to use?',
       image: [
         'https://images.unsplash.com/photo-1486887396153-fa416526c108?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+        'https://images.pexels.com/photos/884600/pexels-photo-884600.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
         'https://images.pexels.com/photos/543730/pexels-photo-543730.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
         'https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
         'https://media.istockphoto.com/photos/quinoa-seeds-picture-id815162944?k=6&m=815162944&s=612x612&w=0&h=JkIsjvLOjubG7WOaTSBXSu3defI5zXdzgFyYpcGbcHg=',
-        'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+        'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+        'https://cdn.pixabay.com/photo/2015/05/31/12/55/food-791614__480.jpg'
       ],
-      name: ['Bread', 'Oats', 'Pasta and Noodles', 'Quinoa', 'Rice'],
+      name: [
+        'Bread',
+        'Noodles',
+        'Oats',
+        'Pasta',
+        'Quinoa',
+        'Rice',
+        'Tortillas'
+      ],
       max: 2
     })
   ])
