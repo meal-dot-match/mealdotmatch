@@ -19,7 +19,7 @@ export default class Quiz extends React.Component {
       ingredients: [],
       data: [],
       alert: false,
-      selected: ''
+      selected: []
       // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
     this.removeIngredient = this.removeIngredient.bind(this)
@@ -29,7 +29,6 @@ export default class Quiz extends React.Component {
     this.filterOutIngredients = this.filterOutIngredients.bind(this)
     this.setTime = this.setTime.bind(this)
     this.setSelected = this.setSelected.bind(this)
-    this.handleClick = this.handleClick.bind(this)
   }
 
   async componentDidMount() {
@@ -37,17 +36,19 @@ export default class Quiz extends React.Component {
     this.setState({data: data})
   }
 
-  handleClick(event, foodType) {
-    this.setSelected(event.target.alt)
-    foodType !== 'time'
-      ? this.filterOutIngredients(event, foodType)
-      : this.setTime(event)
-  }
-
   setSelected(alt) {
-    this.setState({
-      selected: alt
-    })
+    if (this.state.selected.includes(alt)) {
+      const filtered = this.state.selected.filter(item => {
+        return item !== alt
+      })
+      this.setState({
+        selected: filtered
+      })
+    } else {
+      this.setState({
+        selected: [...this.state.selected, alt]
+      })
+    }
   }
 
   filterOutIngredients(event, foodType) {
@@ -59,6 +60,7 @@ export default class Quiz extends React.Component {
       !this.state.ingredients.includes(event.target.alt) &&
       this.state[foodType].length < max
     ) {
+      this.setSelected(event.target.alt)
       if (foodType !== 'meats' && foodType !== 'seafood') {
         this.addToIngredients(event.target.alt, true, foodType)
       }
@@ -85,6 +87,7 @@ export default class Quiz extends React.Component {
   }
 
   setTime(event) {
+    this.setSelected(event.target.alt)
     this.setState({
       time: event.target.alt
     })
@@ -183,13 +186,17 @@ export default class Quiz extends React.Component {
                       <div className="label"> {questions.name[index]} </div>
                       <img
                         className={`${
-                          this.state.selected === questions.name[index]
+                          this.state.selected.includes(questions.name[index])
                             ? 'selected'
                             : 'options'
                         }`}
                         src={picture}
                         alt={questions.name[index]}
-                        onClick={() => this.handleClick(event, foodType)}
+                        onClick={() =>
+                          foodType !== 'time'
+                            ? this.filterOutIngredients(event, foodType)
+                            : this.setTime(event)
+                        }
                       />
                     </div>
                   </div>
