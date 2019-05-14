@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Row, Col, Button} from 'react-bootstrap'
+import {Modal, Carousel, Row, Col, Button} from 'react-bootstrap'
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -32,12 +32,29 @@ export default class Home extends React.Component {
                   </p>
                 </Row>
                 <Row>
-                  <Link to="/quiz">
-                    <Button className="btn-responsive" size="lg">
-                      Start Now
+                  <Col>
+                    Been here before?
+                    <Link to="/quiz">
+                      <Button className="btn-responsive" size="lg">
+                        Take the Quiz
+                      </Button>
+                    </Link>
+                  </Col>
+                  <Col>
+                    New to Meal.Match?
+                    <Button
+                      className="btn-responsive"
+                      size="lg"
+                      data-toggle="modal"
+                      data-target="#guidedTour"
+                    >
+                      Take the Guided Tour
                     </Button>
-                  </Link>
+                  </Col>
                 </Row>
+                <Modal id="#guidedTour">
+                  Hello!
+                </Modal>
               </Col>
               <Col sm={1} />
             </Row>

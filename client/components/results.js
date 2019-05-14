@@ -1,7 +1,7 @@
 /* eslint-disable max-statements */
 /* eslint-disable complexity */
 import React from 'react'
-import {Row, Col, Container, Button} from 'react-bootstrap'
+import {Row, Col, Container, Button, Jumbotron, Image} from 'react-bootstrap'
 import {graphql, Query} from 'react-apollo'
 import {gql} from 'apollo-boost'
 import {Link} from 'react-router-dom'
@@ -112,7 +112,6 @@ class Results extends React.Component {
                   lowerCasedTotalRecipesArr = lowerCasedTotalRecipesArr.map(x =>
                     replaceCommas(x)
                   )
-
                   obj.calories = totalRecipesArr[j].calories
                   obj.image = totalRecipesArr[j].image
                   obj.url = totalRecipesArr[j].url
@@ -120,14 +119,14 @@ class Results extends React.Component {
                   obj.label = totalRecipesArr[j].label
                   obj.ingredients = totalRecipesArr[j].ingredientLines
                   obj.percentage = tracker[i].percent
-                  obj.missingIngredients = totalRecipesArr[
-                    j
-                  ].ingredientLines.filter(function(x) {
-                    let split = x.split(' ')
-                    return !split.some(
-                      y => lowerCasedIngredientsArr.indexOf(y) >= 0
-                    )
-                  })
+                  obj.missingIngredients = lowerCasedTotalRecipesArr.filter(
+                    function(x) {
+                      let split = x.split(' ')
+                      return !split.some(
+                        y => lowerCasedIngredientsArr.indexOf(y) >= 0
+                      )
+                    }
+                  )
                   if (!addedName.includes(obj.label)) {
                     renderArr.push(obj)
                     addedName.push(obj.label)
@@ -138,62 +137,89 @@ class Results extends React.Component {
           }
 
           return (
-            <div>
-              <h1>Your Top 5 Matches:</h1>
-              {totalRecipesArr.length !== 0 ? (
-                <div>
-                  {renderArr.map((x, idx) => (
-                    <div key={Math.random()}>
-                      <img src={x.image} />
-                      <h2>{x.label}</h2>
-                      <h3>{(Number(x.percentage) * 100).toFixed(2)} % match</h3>
-                      <br />
-
-                      <Link
-                        to={{
-                          pathname: `/recipes/${x.label}`,
-                          state: {
-                            index: idx,
-                            matchingRecipes: renderArr,
-                            label: x.label,
-                            url: x.url,
-                            ingredients: x.ingredients,
-                            image: x.image
-                          }
-                        }}
-                      >
-                        <Button type="button">View Recipe</Button>
-                      </Link>
-
-                      <br />
-                      {/* <button>
-                    <Link
-                      to={{
-                        pathname: '/grocerylist',
-                        state: {
-                          missingIngredients: renderArr
-                        }
-                      }}
-                    >
-                      View Grocery List
+            <div className="matches-background">
+              <Jumbotron className="matches-banner">
+                <Container xs={6} md={6} lg={6}>
+                  <Row>
+                    <Col className="matches-text">
+                      <h1>Here Are Your Top 5 Recipe Matches!</h1>
+                      <h4>
+                        <strong>
+                          <i>How </i>
+                        </strong>
+                        is the percentage match calculated?
+                      </h4>
+                      <p>
+                        We use: the ingredients you input / the number of total
+                        ingredients for the recipe
+                      </p>
+                    </Col>
+                  </Row>
+                </Container>
+              </Jumbotron>
+              <Container>
+                {totalRecipesArr.length !== 0 ? (
+                  <div>
+                    <Container style={{padding: 35}}>
+                      <Col xs={4} md={4} lg={4}>
+                        <Row className="matches-group">
+                          {renderArr.map((x, idx) => (
+                            <Col key={Math.random()}>
+                              <Row className="matches-background">
+                                <Image
+                                  src={x.image}
+                                  className="matches-image"
+                                />
+                                <Container>
+                                  <h2 className="matches-title">{x.label}</h2>
+                                  <h3 className="matches-title">
+                                    {(Number(x.percentage) * 100).toFixed(2)} %
+                                    match
+                                  </h3>
+                                  <Link
+                                    className="matches-img-overlay"
+                                    to={{
+                                      pathname: `/recipes/${x.label}`,
+                                      state: {
+                                        index: idx,
+                                        matchingRecipes: renderArr,
+                                        label: x.label,
+                                        url: x.url,
+                                        ingredients: x.ingredients,
+                                        image: x.image
+                                      }
+                                    }}
+                                  >
+                                    <Button
+                                      variant="outline-info"
+                                      className="results-button-outline"
+                                      size="sm"
+                                    >
+                                      Recipe Details
+                                    </Button>
+                                  </Link>
+                                </Container>
+                              </Row>
+                            </Col>
+                          ))}
+                        </Row>
+                      </Col>
+                    </Container>
+                  </div>
+                ) : (
+                  <div>
+                    <h3>
+                      No recipes found :( Please go back and fill out your
+                      choices again!
+                    </h3>
+                    <Link to="/quiz">
+                      <Button className="btn-responsive" size="lg">
+                        Re-take Quiz
+                      </Button>
                     </Link>
-                  </button> */}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div>
-                  <h3>
-                    No recipes found :( Please go back and fill out your choices
-                    again!
-                  </h3>
-                  <Link to="/quiz">
-                    <Button className="btn-responsive" size="lg">
-                      Re-take Quiz
-                    </Button>
-                  </Link>
-                </div>
-              )}
+                  </div>
+                )}
+              </Container>
             </div>
           )
         }}
