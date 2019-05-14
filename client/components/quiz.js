@@ -38,7 +38,6 @@ export default class Quiz extends React.Component {
   }
 
   handleClick(event, foodType) {
-    console.log('is this even changing??', event.target.className)
     this.setSelected(event.target.alt)
     foodType !== 'time'
       ? this.filterOutIngredients(event, foodType)
@@ -122,12 +121,11 @@ export default class Quiz extends React.Component {
     let foodType = this.state.data[this.state.count].question.split(' ')[1]
 
     if (foodType === 'meats') {
-      this.setState({count: newCount, skipNext: 'Skip'})
+      this.setState({count: newCount})
     } else {
       this.setState({
         count: newCount,
-        alert: false,
-        skipNext: 'Skip'
+        alert: false
       })
     }
   }
@@ -152,8 +150,6 @@ export default class Quiz extends React.Component {
     if (questions !== undefined) {
       foodType = questions.question.split(' ')[1]
     }
-
-    console.log('this is my state', this.state.time)
 
     return this.state.data[0] ? (
       <Container className="quiz-container" sm={12} md={12} lg={12}>
