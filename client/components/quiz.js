@@ -18,8 +18,8 @@ export default class Quiz extends React.Component {
       'grain(s)': [],
       ingredients: [],
       data: [],
-      alert: false,
-      selected: []
+      alert: false
+
       // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
     this.removeIngredient = this.removeIngredient.bind(this)
@@ -28,27 +28,11 @@ export default class Quiz extends React.Component {
     this.addToIngredients = this.addToIngredients.bind(this)
     this.filterOutIngredients = this.filterOutIngredients.bind(this)
     this.setTime = this.setTime.bind(this)
-    this.setSelected = this.setSelected.bind(this)
   }
 
   async componentDidMount() {
     const {data} = await axios.get('/api/questions')
     this.setState({data: data})
-  }
-
-  setSelected(alt) {
-    if (this.state.selected.includes(alt)) {
-      const filtered = this.state.selected.filter(item => {
-        return item !== alt
-      })
-      this.setState({
-        selected: filtered
-      })
-    } else {
-      this.setState({
-        selected: [...this.state.selected, alt]
-      })
-    }
   }
 
   filterOutIngredients(event, foodType) {
@@ -60,7 +44,6 @@ export default class Quiz extends React.Component {
       !this.state.ingredients.includes(event.target.alt) &&
       this.state[foodType].length < max
     ) {
-      this.setSelected(event.target.alt)
       if (foodType !== 'meats' && foodType !== 'seafood') {
         this.addToIngredients(event.target.alt, true, foodType)
       }
@@ -87,7 +70,6 @@ export default class Quiz extends React.Component {
   }
 
   setTime(event) {
-    this.setSelected(event.target.alt)
     this.setState({
       time: event.target.alt
     })
@@ -119,9 +101,8 @@ export default class Quiz extends React.Component {
     })
   }
 
-  increaseCount() {
+  increaseCount(foodType) {
     let newCount = this.state.count + 1
-    let foodType = this.state.data[this.state.count].question.split(' ')[1]
 
     if (foodType === 'meats') {
       this.setState({count: newCount})
@@ -133,9 +114,8 @@ export default class Quiz extends React.Component {
     }
   }
 
-  decreaseCount() {
+  decreaseCount(foodType) {
     let newCount = this.state.count - 1
-    let foodType = this.state.data[this.state.count].question.split(' ')[1]
 
     if (foodType === 'seafood') {
       this.setState({count: newCount})
@@ -186,7 +166,7 @@ export default class Quiz extends React.Component {
                       <div className="label"> {questions.name[index]} </div>
                       <img
                         className={`${
-                          this.state.selected.includes(questions.name[index])
+                          this.state.ingredients.includes(questions.name[index])
                             ? 'selected'
                             : 'options'
                         }`}
@@ -230,7 +210,7 @@ export default class Quiz extends React.Component {
               {this.state.count === this.state.data.length - 1 ? null : (
                 <Button
                   className="skipNextPrevButtons quiz-next-button"
-                  onClick={() => this.increaseCount()}
+                  onClick={() => this.increaseCount(foodType)}
                 >
                   {this.state[foodType].length > 0 ? 'Next' : 'Skip'}
                 </Button>
