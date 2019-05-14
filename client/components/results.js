@@ -112,7 +112,6 @@ class Results extends React.Component {
                   lowerCasedTotalRecipesArr = lowerCasedTotalRecipesArr.map(x =>
                     replaceCommas(x)
                   )
-
                   obj.calories = totalRecipesArr[j].calories
                   obj.image = totalRecipesArr[j].image
                   obj.url = totalRecipesArr[j].url
@@ -120,14 +119,14 @@ class Results extends React.Component {
                   obj.label = totalRecipesArr[j].label
                   obj.ingredients = totalRecipesArr[j].ingredientLines
                   obj.percentage = tracker[i].percent
-                  obj.missingIngredients = totalRecipesArr[
-                    j
-                  ].ingredientLines.filter(function(x) {
-                    let split = x.split(' ')
-                    return !split.some(
-                      y => lowerCasedIngredientsArr.indexOf(y) >= 0
-                    )
-                  })
+                  obj.missingIngredients = lowerCasedTotalRecipesArr.filter(
+                    function(x) {
+                      let split = x.split(' ')
+                      return !split.some(
+                        y => lowerCasedIngredientsArr.indexOf(y) >= 0
+                      )
+                    }
+                  )
                   if (!addedName.includes(obj.label)) {
                     renderArr.push(obj)
                     addedName.push(obj.label)
@@ -172,8 +171,8 @@ class Results extends React.Component {
                                   className="matches-image"
                                 />
                                 <Container>
-                                  <h2>{x.label}</h2>
-                                  <h3>
+                                  <h2 className="matches-title">{x.label}</h2>
+                                  <h3 className="matches-title">
                                     {(Number(x.percentage) * 100).toFixed(2)} %
                                     match
                                   </h3>
