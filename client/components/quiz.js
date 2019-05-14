@@ -19,7 +19,8 @@ export default class Quiz extends React.Component {
       ingredients: [],
       data: [],
       alert: false,
-      selected: ''
+      selected: '',
+      matchMeDisabled: true
       // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
     this.removeIngredient = this.removeIngredient.bind(this)
@@ -216,7 +217,12 @@ export default class Quiz extends React.Component {
                   }
                 }}
               >
-                <Button className="btn-responsive" size="lg" id="matchMe">
+                <Button
+                  className="btn-responsive"
+                  size="lg"
+                  id="matchMe"
+                  disabled={this.state.matchMeDisabled}
+                >
                   Match Me
                 </Button>
               </Link>
