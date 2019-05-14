@@ -97,9 +97,14 @@ app.post('/sendtext', (req, res, next) => {
         const accountSid = Twilio.accountSID
         const authToken = Twilio.authToken
         const text = require('twilio')(accountSid, authToken)
-        const messageToSend = `Thanks for using Meal.Match!%0aHere are your missing ingredients for ${
-    req.body.name
-  }%0a${req.body.ingredients.join(',')}.%0aFull recipe: ${req.body.url}`
+        const messageToSend =
+            'Thanks for using Meal.Match!\nHere are your missing ingredients for ' +
+            req.body.name +
+            '.\n' +
+            req.body.ingredients.join(',') +
+            '.\nFull recipe:' +
+            req.body.url +
+            '.'
 
         text.messages
             .create({

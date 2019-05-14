@@ -14,17 +14,19 @@ async function seed() {
 
   const questions = await Promise.all([
     Question.create({
+      id: 1,
       question: 'Max time you would like to spend cooking:',
       image: [
-        'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png',
-        'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png',
-        'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png',
-        'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png'
+        'https://i.ibb.co/Kq6HMB4/30.png',
+        'https://i.ibb.co/VJ0TRGp/60.png',
+        'https://i.ibb.co/kggKBsr/90.png',
+        'https://i.ibb.co/28gKhbZ/120.png'
       ],
       name: ['< 30 mins', '< 60 mins', '< 90 mins', '120 mins +'],
       max: 1
     }),
     Question.create({
+      id: 2,
       question: 'What dairy would you like to use?',
       image: [
         'https://images.unsplash.com/photo-1519411792752-25c2468cccb3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
@@ -36,6 +38,7 @@ async function seed() {
       max: 3
     }),
     Question.create({
+      id: 3,
       question: 'What meats would you like to use?',
       image: [
         'https://images.pexels.com/photos/1881336/pexels-photo-1881336.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
@@ -48,6 +51,7 @@ async function seed() {
       max: 2
     }),
     Question.create({
+      id: 4,
       question: 'What seafood would you like to use?',
       image: [
         'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
@@ -61,6 +65,7 @@ async function seed() {
       max: 2
     }),
     Question.create({
+      id: 5,
       question: 'What vegetable(s) would you like to use?',
       image: [
         'https://images.pexels.com/photos/539431/pexels-photo-539431.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
@@ -109,6 +114,7 @@ async function seed() {
       max: 4
     }),
     Question.create({
+      id: 6,
       question: 'What fruit(s) would you like to use?',
       image: [
         'https://images.pexels.com/photos/1510392/pexels-photo-1510392.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
@@ -133,6 +139,7 @@ async function seed() {
       max: 3
     }),
     Question.create({
+      id: 7,
       question: 'What grain(s) would you like to use?',
       image: [
         'https://images.unsplash.com/photo-1486887396153-fa416526c108?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',

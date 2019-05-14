@@ -29,26 +29,11 @@ export default class Quiz extends React.Component {
     this.addToIngredients = this.addToIngredients.bind(this)
     this.filterOutIngredients = this.filterOutIngredients.bind(this)
     this.setTime = this.setTime.bind(this)
-    this.setSelected = this.setSelected.bind(this)
-    this.handleClick = this.handleClick.bind(this)
   }
 
   async componentDidMount() {
     const {data} = await axios.get('/api/questions')
     this.setState({data: data})
-  }
-
-  handleClick(event, foodType) {
-    this.setSelected(event.target.alt)
-    foodType !== 'time'
-      ? this.filterOutIngredients(event, foodType)
-      : this.setTime(event)
-  }
-
-  setSelected(alt) {
-    this.setState({
-      selected: alt
-    })
   }
 
   filterOutIngredients(event, foodType) {
@@ -126,9 +111,8 @@ export default class Quiz extends React.Component {
         })
   }
 
-  increaseCount() {
+  increaseCount(foodType) {
     let newCount = this.state.count + 1
-    let foodType = this.state.data[this.state.count].question.split(' ')[1]
 
     if (foodType === 'meats') {
       this.setState({count: newCount})
@@ -140,9 +124,8 @@ export default class Quiz extends React.Component {
     }
   }
 
-  decreaseCount() {
+  decreaseCount(foodType) {
     let newCount = this.state.count - 1
-    let foodType = this.state.data[this.state.count].question.split(' ')[1]
 
     if (foodType === 'seafood') {
       this.setState({count: newCount})
@@ -193,13 +176,17 @@ export default class Quiz extends React.Component {
                       <div className="label"> {questions.name[index]} </div>
                       <img
                         className={`${
-                          this.state.selected === questions.name[index]
+                          this.state.ingredients.includes(questions.name[index])
                             ? 'selected'
                             : 'options'
                         }`}
                         src={picture}
                         alt={questions.name[index]}
-                        onClick={() => this.handleClick(event, foodType)}
+                        onClick={() =>
+                          foodType !== 'time'
+                            ? this.filterOutIngredients(event, foodType)
+                            : this.setTime(event)
+                        }
                       />
                     </div>
                   </div>
@@ -238,7 +225,7 @@ export default class Quiz extends React.Component {
               {this.state.count === this.state.data.length - 1 ? null : (
                 <Button
                   className="skipNextPrevButtons quiz-next-button"
-                  onClick={() => this.increaseCount()}
+                  onClick={() => this.increaseCount(foodType)}
                 >
                   {this.state[foodType].length > 0 ? 'Next' : 'Skip'}
                 </Button>
