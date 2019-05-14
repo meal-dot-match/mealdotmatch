@@ -78,7 +78,8 @@ export default class Quiz extends React.Component {
       ? this.setState({
           ingredients: [...this.state.ingredients, food],
           [foodType]: [...this.state[foodType], food],
-          alert: false
+          alert: false,
+          matchMeDisabled: false
         })
       : this.setState({
           alert: true
@@ -110,11 +111,19 @@ export default class Quiz extends React.Component {
     const foodTypeIngredientsLeft = this.state[foodType].filter(item => {
       return item !== event.target.id
     })
-    this.setState({
-      ingredients: ingredientsLeft,
-      [foodType]: foodTypeIngredientsLeft,
-      alert: false
-    })
+
+    this.state.ingredients.length === 1
+      ? this.setState({
+          ingredients: ingredientsLeft,
+          [foodType]: foodTypeIngredientsLeft,
+          alert: false,
+          matchMeDisabled: true
+        })
+      : this.setState({
+          ingredients: ingredientsLeft,
+          [foodType]: foodTypeIngredientsLeft,
+          alert: false
+        })
   }
 
   increaseCount() {
