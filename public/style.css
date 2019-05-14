@@ -456,8 +456,9 @@ body {
 
 .matches-background {
   background: rgb(248, 248, 248);
-  padding: 25px;
+  padding: 10px;
   text-align: center;
+  margin: 0 auto;
 }
 
 .matches-banner {
@@ -471,9 +472,18 @@ body {
   margin-left: 400px;
 }
 
+.matches-button {
+  padding: 10px;
+  margin: 0 auto;
+}
+
 .matches-group {
   display: grid;
-  grid-template-columns: repeat(3, 2fr);
-  grid-template-rows: repeat(3, 2fr);
+  grid-template-columns: repeat(3, 0.5fr);
+  grid-template-rows: repeat(3, 0.5fr);
   grid-auto-flow: row;
+}
+
+.matches-image {
+  border-radius: 10px;
 }
