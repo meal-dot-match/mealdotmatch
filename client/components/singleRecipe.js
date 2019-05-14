@@ -18,6 +18,29 @@ class SingleRecipe extends React.Component {
       isShowing: !this.state.isShowing
     })
   }
+
+  sendEmail(name, email, message) {
+    fetch('/send', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        message: message
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log('here is the response: ', res)
+      })
+      .catch(err => {
+        console.error('here is the error: ', err)
+      })
+  }
+
   render() {
     console.log('Props on SingleRecipe:', this.props.location)
     const recipe = this.props.location.state
@@ -44,7 +67,14 @@ class SingleRecipe extends React.Component {
                 <Button onClick={this.onSubmit}> Send via Text </Button>
               </Col>
               <Col>
-                <Button> Send via Email</Button>
+                <Button
+                  onClick={() => {
+                    this.sendEmail()
+                  }}
+                >
+                  {' '}
+                  Send via Email
+                </Button>
               </Col>
             </Row>
             <Row className="single-recipe-row">
