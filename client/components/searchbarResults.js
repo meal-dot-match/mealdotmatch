@@ -65,33 +65,3 @@ class SearchBarResults extends React.Component {
 }
 
 export default graphql(searchBarQuery)(SearchBarResults)
-
-{
-  /* <Row>
-                <Col xs={4} md={4} lg={4}>
-                  <ListGroup variant="flush">
-                    {this.props.ingredients[0]
-                      ? this.props.ingredients.map(ingredient => {
-                          return (
-                            <ListGroup.Item
-                              key={Math.random()}
-                              className="cutting-board-ingredients"
-                            >
-                              <Col>{ingredient}</Col>
-                              <Col>
-                                <Button
-                                  type="button"
-                                  className="close"
-                                  aria-label="Close"
-                                >
-                                  <span aria-hidden="true">×</span>
-                                </Button>
-                              </Col>
-                            </ListGroup.Item>
-                          )
-                        })
-                      : null}
-                  </ListGroup>
-                </Col>
-              </Row> */
-}

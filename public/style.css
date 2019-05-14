@@ -80,14 +80,18 @@ h6 {
     width: 100px;
     height: 100px;
     position: relative;
+    background: black;
+    border-radius: 7px;
 }
 
 .label {
     width: 100px;
     height: 100px;
     position: absolute;
-    top: 0;
+    top: 30%;
     left: 0;
+    color: #0cded7;
+    text-align: center;
 }
 
 .options {
@@ -103,8 +107,14 @@ h6 {
     z-index: 10;
 }
 
+.options:focus {
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
 .options:hover {
-    opacity: 0.75;
+    opacity: 1;
 }
 
 .cuttingboardoptions {
@@ -119,8 +129,18 @@ h6 {
 }
 
 .selected {
+    outline: none;
     border-color: #0cded7;
-    border: 2px;
+    box-shadow: 0 0 30px #0cded7;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+    border-radius: 7px;
+    /* styles below added by katie */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
 
 .topcenter {
@@ -302,12 +322,6 @@ body {
     border-color: #0cded7;
 }
 
-.prev-next-buttons {
-    margin-top: 25px;
-    justify-content: center;
-    align-content: space-between;
-}
-
 .question {
     text-align: center;
 }
@@ -411,8 +425,9 @@ body {
 }
 
 .quiz-columns {
-    margin: 25px;
+    margin: 40px;
     padding: 25px;
+    height: 500px;
 }
 
 .quiz-row-options {
@@ -421,4 +436,10 @@ body {
 
 .quiz-next-button {
     justify-content: flex-end;
+}
+
+.quiz-prev-next-buttons {
+    margin-top: 25px;
+    justify-content: center;
+    align-content: space-between;
 }
