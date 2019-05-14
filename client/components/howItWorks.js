@@ -18,7 +18,7 @@ class HowItWorks extends React.Component {
                   in your kitchen and fill out our short quiz to let us know
                   what you would like to cook with. We'll take care of the rest!
                   To get started, click the "start now" button below. If you
-                  would like to learn more, scroll down and read on.
+                  would like to learn more, read on.
                 </p>
                 <Link to={{pathname: `/quiz`}}>
                   <Button className="btn-responsive">Start now</Button>
@@ -61,9 +61,9 @@ class HowItWorks extends React.Component {
               <div className="w-100" />
               <Col className="how-it-works-instructions-column">
                 Let us know how much time you have to prepare your meal, as well
-                as the dairy, meats, seafood, vegetables, fruits, and grains you
-                would like to use. You can skip any of the categories you do not
-                have or do not want to use.
+                as the dairy, protein, seafood, vegetables, fruits, and grains
+                you would like to use. You can skip any of the categories you do
+                not have or do not want to use.
               </Col>
             </Col>
             <Col className="how-it-works-steps">
