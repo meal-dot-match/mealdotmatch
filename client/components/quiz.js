@@ -19,13 +19,17 @@ export default class Quiz extends React.Component {
       ingredients: [],
       data: [],
       alert: false,
-      skipNext: 'Skip'
+      selected: ''
       // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
     this.removeIngredient = this.removeIngredient.bind(this)
     this.increaseCount = this.increaseCount.bind(this)
     this.decreaseCount = this.decreaseCount.bind(this)
     this.addToIngredients = this.addToIngredients.bind(this)
+    this.filterOutIngredients = this.filterOutIngredients.bind(this)
+    this.setTime = this.setTime.bind(this)
+    this.setSelected = this.setSelected.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   async componentDidMount() {
@@ -33,56 +37,75 @@ export default class Quiz extends React.Component {
     this.setState({data: data})
   }
 
-  addToIngredients(event) {
-    let max = this.state.data[this.state.count].max
-    let foodType = this.state.data[this.state.count].question.split(' ')[1]
-    let foodTypeLength = this.state[foodType].length
-    let meatSeafoodLength = this.state.meats.length + this.state.seafood.length
-    if (this.state.count === 0) {
-      this.setState({
-        time: event.target.alt,
-        skipNext: 'Next'
-      })
-    } else if (
+  handleClick(event, foodType) {
+    this.setSelected(event.target.alt)
+    foodType !== 'time'
+      ? this.filterOutIngredients(event, foodType)
+      : this.setTime(event)
+  }
+
+  setSelected(alt) {
+    this.setState({
+      selected: alt
+    })
+  }
+
+  filterOutIngredients(event, foodType) {
+    const max = this.state.data[this.state.count].max
+    const meatAndSeafoodLength =
+      this.state.meats.length + this.state.seafood.length
+
+    if (
       !this.state.ingredients.includes(event.target.alt) &&
-      foodTypeLength < max
+      this.state[foodType].length < max
     ) {
-      if (foodType === 'meats' || foodType === 'seafood') {
-        if (meatSeafoodLength < 2) {
-          this.setState({
-            ingredients: [...this.state.ingredients, event.target.alt],
-            [foodType]: [...this.state[foodType], event.target.alt],
-            skipNext: 'Next'
-          })
-        }
-      } else {
-        this.setState({
-          ingredients: [...this.state.ingredients, event.target.alt],
-          [foodType]: [...this.state[foodType], event.target.alt],
-          skipNext: 'Next'
-        })
+      if (foodType !== 'meats' && foodType !== 'seafood') {
+        this.addToIngredients(event.target.alt, true, foodType)
       }
-    } else if (foodTypeLength >= max || meatSeafoodLength >= 2) {
-      this.setState({
-        alert: true
-      })
+      if (foodType === 'meats' || foodType === 'seafood') {
+        meatAndSeafoodLength < 2
+          ? this.addToIngredients(event.target.alt, true, foodType)
+          : this.addToIngredients(null, false)
+      }
+    } else {
+      this.addToIngredients(null, false)
     }
+  }
+
+  addToIngredients(food, boolean, foodType) {
+    boolean
+      ? this.setState({
+          ingredients: [...this.state.ingredients, food],
+          [foodType]: [...this.state[foodType], food],
+          alert: false
+        })
+      : this.setState({
+          alert: true
+        })
+  }
+
+  setTime(event) {
+    this.setState({
+      time: event.target.alt
+    })
   }
 
   removeIngredient(event) {
     const ingredientsLeft = this.state.ingredients.filter(item => {
       return item !== event.target.id
     })
-    const foodTypes = Object.keys(this.state).filter(foodType => {
-      return (
-        Array.isArray(this.state[foodType]) &&
-        foodType !== 'data' &&
-        foodType !== 'ingredients'
-      )
-    })
-    const foodType = foodTypes.filter(food => {
-      return this.state[food].includes(event.target.id)
-    })[0]
+    const foodType = Object.keys(this.state)
+      .filter(food => {
+        return (
+          Array.isArray(this.state[food]) &&
+          food !== 'data' &&
+          food !== 'ingredients'
+        )
+      })
+      .filter(food => {
+        return this.state[food].includes(event.target.id)
+      })[0]
+
     const foodTypeIngredientsLeft = this.state[foodType].filter(item => {
       return item !== event.target.id
     })
@@ -98,12 +121,11 @@ export default class Quiz extends React.Component {
     let foodType = this.state.data[this.state.count].question.split(' ')[1]
 
     if (foodType === 'meats') {
-      this.setState({count: newCount, skipNext: 'Skip'})
+      this.setState({count: newCount})
     } else {
       this.setState({
         count: newCount,
-        alert: false,
-        skipNext: 'Skip'
+        alert: false
       })
     }
   }
@@ -123,72 +145,66 @@ export default class Quiz extends React.Component {
   }
 
   render() {
+    let foodType
     const questions = this.state.data[this.state.count]
     if (questions !== undefined) {
-      const foodType = questions.question.split(' ')[1]
+      foodType = questions.question.split(' ')[1]
     }
 
     return this.state.data[0] ? (
-      <Container>
+      <Container className="quiz-container" sm={12} md={12} lg={12}>
         <Row>
-          <Col>
-            <ProgressBar count={this.state.count} />
-            <h2 className="question">{questions.question}</h2>
-            <MaxMessage
-              max={this.state.data[this.state.count].max}
-              foodType={
-                this.state.data[this.state.count].question.split(' ')[1]
-              }
-              alert={this.state.alert}
+          <Col sm={4} md={4} lg={4} className="quiz-columns">
+            <CuttingBoard
+              sendFunction={this.removeIngredient}
+              ingredients={this.state.ingredients}
+              time={this.state.time}
             />
+          </Col>
+          <Col sm={6} md={6} lg={6} className="quiz-columns">
+            <ProgressBar count={this.state.count} />
             <Row>
+              <h2 className="question"> {questions.question} </h2>
+              <MaxMessage
+                max={this.state.data[this.state.count].max}
+                foodType={
+                  this.state.data[this.state.count].question.split(' ')[1]
+                }
+                alert={this.state.alert}
+                length={this.state[foodType].length}
+                food={foodType}
+              />
+            </Row>
+            <Row className="quiz-row-options">
               {questions.image.map((picture, index) => {
                 return (
                   <div key={Math.random()}>
-                    {/* <button
-                      type="button"
-                      className="button"
-                      onClick={() => this.addToIngredients(event)}
-                    > */}
-                    <div className="option-with-label">
-                      <div className="label">{questions.name[index]}</div>
-                      <div>
-                        <img
-                          className="options"
-                          src={picture}
-                          alt={questions.name[index]}
-                          onClick={() => this.addToIngredients(event)}
-                        />
-                      </div>
+                    <div className="option-with-label ">
+                      <div className="label"> {questions.name[index]} </div>
+                      <img
+                        className={`${
+                          this.state.selected === questions.name[index]
+                            ? 'selected'
+                            : 'options'
+                        }`}
+                        src={picture}
+                        alt={questions.name[index]}
+                        onClick={() => this.handleClick(event, foodType)}
+                      />
                     </div>
-                    {/* </button> */}
                   </div>
                 )
               })}
             </Row>
-
-            <Row className="prev-next-buttons">
-              <div>
-                {this.state.count > 0 ? (
-                  <Button
-                    className="skipNextPrevButtons"
-                    onClick={() => this.decreaseCount()}
-                  >
-                    Previous
-                  </Button>
-                ) : null}
-                {'        '}
-                {this.state.count === this.state.data.length - 1 ? null : (
-                  <Button
-                    className="skipNextPrevButtons"
-                    onClick={() => this.increaseCount()}
-                  >
-                    {this.state.skipNext}
-                  </Button>
-                )}
-              </div>
-            </Row>
-            <Row>
+            <Row className="quiz-prev-next-buttons">
+              {this.state.count > 0 ? (
+                <Button
+                  className="skipNextPrevButtons"
+                  onClick={() => this.decreaseCount()}
+                >
+                  Previous
+                </Button>
+              ) : null}
               <Link
                 to={{
                   pathname: '/results',
@@ -204,14 +220,15 @@ export default class Quiz extends React.Component {
                   Match Me
                 </Button>
               </Link>
+              {this.state.count === this.state.data.length - 1 ? null : (
+                <Button
+                  className="skipNextPrevButtons quiz-next-button"
+                  onClick={() => this.increaseCount()}
+                >
+                  {this.state[foodType].length > 0 ? 'Next' : 'Skip'}
+                </Button>
+              )}
             </Row>
-          </Col>
-          <Col sm={5}>
-            <CuttingBoard
-              sendFunction={this.removeIngredient}
-              ingredients={this.state.ingredients}
-              time={this.state.time}
-            />
           </Col>
         </Row>
       </Container>
