@@ -80,47 +80,50 @@ class Results extends React.Component {
             })
           }
 
-          const top5 = tracker.slice(0, 5)
           const renderArr = []
+
+          const top5 = tracker.slice(0, 5)
           let addedName = []
 
-          for (let i = 0; i < 5; i++) {
-            let name = top5[i].name
-            for (let j = 0; j < totalRecipesArr.length; j++) {
-              if (totalRecipesArr[j].label === name) {
-                let obj = {}
-                let lowerCasedIngredientsArr = ourIngredientsArr.map(x =>
-                  x.toLowerCase()
-                )
-                const replaceCommas = str => {
-                  return str.replace(/,/gi, '')
-                }
-                let lowerCasedTotalRecipesArr = totalRecipesArr[
-                  j
-                ].ingredientLines.map(x => x.toLowerCase())
-
-                lowerCasedTotalRecipesArr = lowerCasedTotalRecipesArr.map(x =>
-                  replaceCommas(x)
-                )
-
-                obj.calories = totalRecipesArr[j].calories
-                obj.image = totalRecipesArr[j].image
-                obj.url = totalRecipesArr[j].url
-                obj.totalTime = totalRecipesArr[j].totalTime
-                obj.label = totalRecipesArr[j].label
-                obj.percentage = tracker[i].percent
-
-                obj.missingIngredients = totalRecipesArr[
-                  j
-                ].ingredientLines.filter(function(x) {
-                  let split = x.split(' ')
-                  return !split.some(
-                    y => lowerCasedIngredientsArr.indexOf(y) >= 0
+          if (totalRecipesArr.length !== 0) {
+            for (let i = 0; i < 5; i++) {
+              let name = top5[i].name
+              for (let j = 0; j < totalRecipesArr.length; j++) {
+                if (totalRecipesArr[j].label === name) {
+                  let obj = {}
+                  let lowerCasedIngredientsArr = ourIngredientsArr.map(x =>
+                    x.toLowerCase()
                   )
-                })
-                if (!addedName.includes(obj.label)) {
-                  renderArr.push(obj)
-                  addedName.push(obj.label)
+                  const replaceCommas = str => {
+                    return str.replace(/,/gi, '')
+                  }
+                  let lowerCasedTotalRecipesArr = totalRecipesArr[
+                    j
+                  ].ingredientLines.map(x => x.toLowerCase())
+
+                  lowerCasedTotalRecipesArr = lowerCasedTotalRecipesArr.map(x =>
+                    replaceCommas(x)
+                  )
+
+                  obj.calories = totalRecipesArr[j].calories
+                  obj.image = totalRecipesArr[j].image
+                  obj.url = totalRecipesArr[j].url
+                  obj.totalTime = totalRecipesArr[j].totalTime
+                  obj.label = totalRecipesArr[j].label
+                  obj.percentage = tracker[i].percent
+
+                  obj.missingIngredients = totalRecipesArr[
+                    j
+                  ].ingredientLines.filter(function(x) {
+                    let split = x.split(' ')
+                    return !split.some(
+                      y => lowerCasedIngredientsArr.indexOf(y) >= 0
+                    )
+                  })
+                  if (!addedName.includes(obj.label)) {
+                    renderArr.push(obj)
+                    addedName.push(obj.label)
+                  }
                 }
               }
             }
@@ -129,31 +132,33 @@ class Results extends React.Component {
           return (
             <div>
               <h1>Your Top 5 Matches:</h1>
-              {renderArr.map((x, idx) => (
-                <div key={Math.random()}>
-                  <img src={x.image} />
-                  <h2>{x.label}</h2>
-                  <h3>{(Number(x.percentage) * 100).toFixed(2)} % match</h3>
-                  <br />
+              {totalRecipesArr.length !== 0 ? (
+                <div>
+                  {renderArr.map((x, idx) => (
+                    <div key={Math.random()}>
+                      <img src={x.image} />
+                      <h2>{x.label}</h2>
+                      <h3>{(Number(x.percentage) * 100).toFixed(2)} % match</h3>
+                      <br />
 
-                  <Link
-                    to={{
-                      pathname: `/recipes/${x.label}`,
-                      state: {
-                        index: idx,
-                        matchingRecipes: renderArr,
-                        label: x.label,
-                        url: x.url,
-                        ingredientlines: x.ingredientLines,
-                        image: x.image
-                      }
-                    }}
-                  >
-                    <Button type="button">View Recipe</Button>
-                  </Link>
+                      <Link
+                        to={{
+                          pathname: `/recipes/${x.label}`,
+                          state: {
+                            index: idx,
+                            matchingRecipes: renderArr,
+                            label: x.label,
+                            url: x.url,
+                            ingredientlines: x.ingredientLines,
+                            image: x.image
+                          }
+                        }}
+                      >
+                        <Button type="button">View Recipe</Button>
+                      </Link>
 
-                  <br />
-                  {/* <button>
+                      <br />
+                      {/* <button>
                     <Link
                       to={{
                         pathname: '/grocerylist',
@@ -165,8 +170,22 @@ class Results extends React.Component {
                       View Grocery List
                     </Link>
                   </button> */}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : (
+                <div>
+                  <h3>
+                    No recipes found :( Please go back and fill out your choices
+                    again!
+                  </h3>
+                  <Link to="/quiz">
+                    <Button className="btn-responsive" size="lg">
+                      Re-take Quiz
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </div>
           )
         }}
