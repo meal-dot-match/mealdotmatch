@@ -34,11 +34,19 @@ class Results extends React.Component {
       timeString = '&time=1-240'
     }
 
-    const stringQuery =
+    let stringQuery =
       this.props.location.state.theMeats
         .concat(this.props.location.state.theSeafood)
         .join('+')
         .replace(/\s/g, '') + timeString
+
+    if (
+      this.props.location.state.theMeats.length === 0 &&
+      this.props.location.state.theMeats.length === 0
+    ) {
+      stringQuery = 'vegetarian' + timeString
+    }
+
     return stringQuery
   }
   render() {
