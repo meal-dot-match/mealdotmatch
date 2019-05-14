@@ -14,7 +14,7 @@ async function seed() {
 
   const questions = await Promise.all([
     Question.create({
-      question: 'Max time you would like to spend cooking?',
+      question: 'Max time you would like to spend cooking:',
       image: [
         'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png',
         'https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png',
@@ -109,7 +109,7 @@ async function seed() {
       max: 4
     }),
     Question.create({
-      question: 'What fruit(s) would you want to use?',
+      question: 'What fruit(s) would you like to use?',
       image: [
         'https://images.pexels.com/photos/1510392/pexels-photo-1510392.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
         'https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
