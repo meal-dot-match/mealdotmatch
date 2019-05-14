@@ -127,9 +127,16 @@ export default class Quiz extends React.Component {
     }
 
     return this.state.data[0] ? (
-      <Container>
+      <Container className="quiz-container" sm={12} md={12} lg={12}>
         <Row>
-          <Col>
+          <Col sm={4} md={4} lg={4} className="quiz-columns">
+            <CuttingBoard
+              sendFunction={this.removeIngredient}
+              ingredients={this.state.ingredients}
+              time={this.state.time}
+            />
+          </Col>
+          <Col sm={6} md={6} lg={6} className="quiz-columns">
             <ProgressBar count={this.state.count} />
             <h2 className="question"> {questions.question} </h2>
             <MaxMessage
@@ -141,7 +148,7 @@ export default class Quiz extends React.Component {
               length={this.state[foodType].length}
               food={foodType}
             />
-            <Row>
+            <Row className="quiz-row-options">
               {questions.image.map((picture, index) => {
                 return (
                   <div key={Math.random()}>
@@ -163,27 +170,14 @@ export default class Quiz extends React.Component {
               })}
             </Row>
             <Row className="prev-next-buttons">
-              <div>
-                {this.state.count > 0 ? (
-                  <Button
-                    className="skipNextPrevButtons"
-                    onClick={() => this.decreaseCount()}
-                  >
-                    Previous
-                  </Button>
-                ) : null}
-                {'        '}
-                {this.state.count === this.state.data.length - 1 ? null : (
-                  <Button
-                    className="skipNextPrevButtons"
-                    onClick={() => this.increaseCount()}
-                  >
-                    {this.state[foodType].length > 0 ? 'Next' : 'Skip'}
-                  </Button>
-                )}
-              </div>
-            </Row>
-            <Row>
+              {this.state.count > 0 ? (
+                <Button
+                  className="skipNextPrevButtons"
+                  onClick={() => this.decreaseCount()}
+                >
+                  Previous
+                </Button>
+              ) : null}
               <Link
                 to={{
                   pathname: '/results',
@@ -199,14 +193,15 @@ export default class Quiz extends React.Component {
                   Match Me
                 </Button>
               </Link>
+              {this.state.count === this.state.data.length - 1 ? null : (
+                <Button
+                  className="skipNextPrevButtons quiz-next-button"
+                  onClick={() => this.increaseCount()}
+                >
+                  {this.state[foodType].length > 0 ? 'Next' : 'Skip'}
+                </Button>
+              )}
             </Row>
-          </Col>
-          <Col sm={5}>
-            <CuttingBoard
-              sendFunction={this.removeIngredient}
-              ingredients={this.state.ingredients}
-              time={this.state.time}
-            />
           </Col>
         </Row>
       </Container>

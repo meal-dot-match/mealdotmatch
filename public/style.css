@@ -404,3 +404,21 @@ body {
 .progress-bar {
     background-color: #0cded7;
 }
+
+.quiz-container {
+    margin-top: 35px;
+    padding: none;
+}
+
+.quiz-columns {
+    margin: 25px;
+    padding: 25px;
+}
+
+.quiz-row-options {
+    justify-content: center;
+}
+
+.quiz-next-button {
+    justify-content: flex-end;
+}
