@@ -118,8 +118,8 @@ class Results extends React.Component {
                   obj.url = totalRecipesArr[j].url
                   obj.totalTime = totalRecipesArr[j].totalTime
                   obj.label = totalRecipesArr[j].label
+                  obj.ingredients = totalRecipesArr[j].ingredientLines
                   obj.percentage = tracker[i].percent
-
                   obj.missingIngredients = totalRecipesArr[
                     j
                   ].ingredientLines.filter(function(x) {
@@ -157,7 +157,7 @@ class Results extends React.Component {
                             matchingRecipes: renderArr,
                             label: x.label,
                             url: x.url,
-                            ingredientlines: x.ingredientLines,
+                            ingredients: x.ingredients,
                             image: x.image
                           }
                         }}

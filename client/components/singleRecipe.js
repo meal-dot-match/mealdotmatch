@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Text from './text'
 import {Row, Col, Container, Button, Image} from 'react-bootstrap'
 import GroceryList from './groceryList'
+import RecipeList from './recipeList'
 
 class SingleRecipe extends React.Component {
   constructor() {
@@ -20,6 +21,7 @@ class SingleRecipe extends React.Component {
   render() {
     console.log('Props on SingleRecipe:', this.props.location)
     const recipe = this.props.location.state
+    console.log(recipe)
     return (
       <Container className="single-recipe-container">
         <Row>
@@ -34,7 +36,7 @@ class SingleRecipe extends React.Component {
               Recipe Url: <a href={recipe.url}> {recipe.url} </a>
             </Row>
             <Row className="single-recipe-row">
-              <h5>Ingredients Needed to Cook Recipe</h5>
+              <h5>Ingredients Still Needed to Cook Recipe:</h5>
               <GroceryList recipe={recipe.matchingRecipes[recipe.index]} />
             </Row>
             <Row>
@@ -42,8 +44,12 @@ class SingleRecipe extends React.Component {
                 <Button onClick={this.onSubmit}> Send via Text </Button>
               </Col>
               <Col>
-                <Button> Send to Postmates</Button>
+                <Button> Send via Email</Button>
               </Col>
+            </Row>
+            <Row className="single-recipe-row">
+              <h5>Total Ingredients List:</h5>
+              <RecipeList recipe={recipe.matchingRecipes[recipe.index]} />
             </Row>
             {this.state.isShowing ? (
               <Text
