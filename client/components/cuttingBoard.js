@@ -13,10 +13,9 @@ export default class CuttingBoard extends React.Component {
   render() {
     return (
       <>
-        <Row className="center-text">
+        {/* <Row className="center-text">
           <h3>Prep Time: {this.props.time}</h3>
-        </Row>
-
+        </Row> */}
         <Row className="container-class">
           {this.props.ingredients[0]
             ? this.props.ingredients.map(ingredient => {

@@ -1,8 +1,9 @@
 import React from 'react'
 import {CuttingBoard, MaxMessage, ProgressBar} from './index'
 import axios from 'axios'
-import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
+import {Alert, Container, Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import {AssistantFallbackActionsPage} from 'twilio/lib/rest/preview/understand/assistant/assistantFallbackActions'
 
 export default class Quiz extends React.Component {
   constructor() {
@@ -20,7 +21,9 @@ export default class Quiz extends React.Component {
       data: [],
       alert: false,
       selected: '',
-      matchMeDisabled: true
+      matchMeDisabled: true,
+      show: true
+
       // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
     this.removeIngredient = this.removeIngredient.bind(this)
@@ -29,6 +32,7 @@ export default class Quiz extends React.Component {
     this.addToIngredients = this.addToIngredients.bind(this)
     this.filterOutIngredients = this.filterOutIngredients.bind(this)
     this.setTime = this.setTime.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
 
   async componentDidMount() {
@@ -136,6 +140,11 @@ export default class Quiz extends React.Component {
       })
     }
   }
+  handleClose() {
+    this.setState({
+      show: false
+    })
+  }
 
   render() {
     let foodType
@@ -143,24 +152,37 @@ export default class Quiz extends React.Component {
     if (questions !== undefined) {
       foodType = questions.question.split(' ')[1]
     }
-
+    let show = true
     return this.state.data[0] ? (
       <div className="quiz-background">
-        <Row className="center-text">
-          <p style={{fontSize: 14}}>
-            Help our Nutritionists create a free report for you by answering 14
-            quick questions. (Add and remove ingredients on your Ingredients
-            Board below.)
-          </p>
-        </Row>
-        <Container className="quiz-container">
-          <Row>
-            <Col className="center-text">
-              {this.state.count + 1}/7 Questions
+        <Container className="quiz-container" xs={12} md={12} lg={12}>
+          {this.state.count === 0 ? (
+            <Alert
+              dismissible="true"
+              className="quiz-alert"
+              show={this.state.show}
+              onClose={this.handleClose}
+            >
+              <Alert.Heading>
+                Check Your Pantry and Make Your Selection!
+              </Alert.Heading>
+              <p>
+                Help Meal.Match best match you to recipes using ingredients
+                already in your pantry and fridge!<br /> First, take a look at
+                your pantry and fridge, then choose the options you want to cook
+                with in our survey below.
+              </p>
+            </Alert>
+          ) : null}
+          <Row style={{paddingTop: 25}}>
+            <Col xs={3} />
+            <Col className="quiz-questions-count">
+              <h3>{this.state.count + 1}/7</h3>
             </Col>
-            <Col className="center-text">
-              <h2>{questions.question}</h2>
-              <div className="w-100" />
+            <Col xs={8} className="quiz-questions-question">
+              <h2>
+                Q.{this.state.count + 1} {questions.question}
+              </h2>
               <MaxMessage
                 max={this.state.data[this.state.count].max}
                 foodType={
@@ -171,10 +193,11 @@ export default class Quiz extends React.Component {
                 food={foodType}
               />
             </Col>
+            <Col xs={1} />
           </Row>
           <ProgressBar count={this.state.count} />
           <Row>
-            <Col sm={5} md={5} lg={5} className="quiz-columns">
+            <Col sm={4} md={4} lg={4} className="quiz-columns">
               <CuttingBoard
                 sendFunction={this.removeIngredient}
                 ingredients={this.state.ingredients}
@@ -187,9 +210,10 @@ export default class Quiz extends React.Component {
                   return (
                     <div key={Math.random()}>
                       <div className="option-with-label ">
-                        <div className="label">
-                          <strong>{questions.name[index]}</strong>
-                        </div>
+                        <strong className="label">
+                          {questions.name[index]}
+                        </strong>
+
                         <img
                           className={`${
                             this.state.ingredients.includes(
@@ -248,7 +272,7 @@ export default class Quiz extends React.Component {
                       className="skipNextPrevButtons quiz-next-button"
                       onClick={() => this.increaseCount(foodType)}
                     >
-                      {this.state[foodType].length > 0 ? 'Next >>' : 'Skip'}
+                      {this.state[foodType].length > 0 ? 'Next >>' : 'Skip >>'}
                     </Button>
                   )}
                 </Col>
