@@ -453,3 +453,37 @@ body {
   justify-content: center;
   align-content: space-between;
 }
+
+.matches-background {
+  background: rgb(248, 248, 248);
+  padding: 10px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.matches-banner {
+  background-image: url(/matches-banner.jpg);
+  background-size: cover;
+}
+
+.matches-text {
+  color: white;
+  text-align: center;
+  margin-left: 400px;
+}
+
+.matches-button {
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.matches-group {
+  display: grid;
+  grid-template-columns: repeat(3, 0.5fr);
+  grid-template-rows: repeat(3, 0.5fr);
+  grid-auto-flow: row;
+}
+
+.matches-image {
+  border-radius: 10px;
+}
