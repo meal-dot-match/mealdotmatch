@@ -46,7 +46,7 @@ class GuidedTour extends React.Component {
           <Modal.Header closeButton>
             <Modal.Title>Join us for a Tour of Meal.Match</Modal.Title>
           </Modal.Header>
-          <Carousel interval="null">
+          <Carousel interval={null}>
             <Carousel.Item className="carousel-item">
               <Carousel.Caption className="about">
                 <h3>
