@@ -6,35 +6,71 @@ class Email extends Component {
   constructor() {
     super()
     this.state = {
-      value: ''
+      value: '',
+      sent: false
     }
     this.emailSubmit = this.emailSubmit.bind(this)
+    this.changeInput = this.changeInput.bind(this)
   }
-  emailSubmit(name, email, message) {
+  emailSubmit(email, message) {
+    const emailMessage = `Hey there,
+
+    You've requested the missing ingredients for ${this.props.name}!
+
+    ${this.props.missingIngredients}
+
+    Here's the link to the full recipe: ${this.props.url}
+
+    Warmest Regards,
+    Meal.Match Team`
     try {
       const emailToSend = {
-        name: name,
         email: email,
-        message: message
+        message: emailMessage
       }
-      console.log('Inside the sendEmail method', emailToSend)
+
       axios.post('/api/send', emailToSend)
     } catch (error) {
       console.error(error)
     }
   }
+  changeInput(event) {
+    this.setState({
+      value: event.target.value
+    })
+  }
+  afterSubmit() {
+    this.setState({sent: !this.state.sent})
+  }
 
   render() {
     return (
-
-      <div>Hello</div>
+      <>
+        <Form>
+          <FormGroup>
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="phone"
+              placeholder="abc@email.com"
+              value={this.state.value}
+              onChange={this.changeInput}
+            />
+            <Form.Text className="text-muted">
+              We will not share your email address.
+            </Form.Text>
+          </FormGroup>
+          <Button onClick={() => {this.emailSubmit(this.state.value)}}>
+            Submit
+          </Button>
+        </Form>
+      </>
     )
   }
 }
 
 export default Email
 
- /* <Form>
+/* <Form>
           <FormGroup>
             <Form.Label>Email Address</Form.Label>
             <Form.Control
