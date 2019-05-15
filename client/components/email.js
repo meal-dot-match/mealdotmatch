@@ -14,15 +14,17 @@ class Email extends Component {
   }
   emailSubmit(email, message) {
     this.afterSubmit()
-    const emailMessage = `Hey there,
+    const emailMessage = `
+    Hey there,
 
-    You've requested the missing ingredients for ${this.props.name}!
+      Here are the ingredients that you need to make ${this.props.name}!
 
-    ${this.props.missingIngredients}
+      ${this.props.missingIngredients}
 
-    Here's the link to the full recipe: ${this.props.url}
+      Here's the link to the full recipe: ${this.props.url}
 
     Warmest Regards,
+
     Meal.Match Team`
     try {
       const emailToSend = {
@@ -48,7 +50,7 @@ class Email extends Component {
     return (
       <>
         {this.state.sent ? (
-          <div padding="5px">
+          <div>
             <h4>Sent!</h4>
           </div>
         ) : (
@@ -56,6 +58,7 @@ class Email extends Component {
             <FormGroup>
               <Form.Label>Email Address</Form.Label>
               <Form.Control
+                id="emailForm"
                 type="phone"
                 placeholder="abc@email.com"
                 value={this.state.value}
@@ -65,6 +68,7 @@ class Email extends Component {
                 We will not share your email address.
               </Form.Text>
             </FormGroup>
+
             <Button
               className="single-recipe-btn"
               onClick={() => {
