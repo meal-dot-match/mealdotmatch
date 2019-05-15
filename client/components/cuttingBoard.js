@@ -22,14 +22,13 @@ export default class CuttingBoard extends React.Component {
                     <Button
                       size="sm"
                       type="button"
-                      className="close"
+                      className="close-me"
                       onClick={() => {
                         this.functionPassed(event)
                       }}
                       id={ingredient}
                     >
-                      {/* <strong id={ingredient}></strong> */}
-                      {ingredient}
+                      {ingredient} x
                     </Button>
                   </p>
                 )
