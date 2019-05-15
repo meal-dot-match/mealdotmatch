@@ -86,7 +86,6 @@ h2,
   background-position: center;
   background-size: cover;
   background-color: rgba(200, 0, 0, 2.5);
-  opacity: 0.8;
   color: #383838;
   width: auto;
   min-height: 500px;
@@ -295,7 +294,7 @@ h2,
 }
 
 .close-me:hover {
-  font-size: 22px;
+  font-size: 21px;
   background: #0cded7;
   border: 1px solid #80808079;
 }
