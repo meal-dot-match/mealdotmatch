@@ -3,6 +3,7 @@ import {CuttingBoard, MaxMessage, ProgressBar} from './index'
 import axios from 'axios'
 import {Alert, Container, Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import {AssistantFallbackActionsPage} from 'twilio/lib/rest/preview/understand/assistant/assistantFallbackActions'
 
 export default class Quiz extends React.Component {
   constructor() {
@@ -20,7 +21,8 @@ export default class Quiz extends React.Component {
       data: [],
       alert: false,
       selected: '',
-      matchMeDisabled: true
+      matchMeDisabled: true,
+      show: true
 
       // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
@@ -30,6 +32,7 @@ export default class Quiz extends React.Component {
     this.addToIngredients = this.addToIngredients.bind(this)
     this.filterOutIngredients = this.filterOutIngredients.bind(this)
     this.setTime = this.setTime.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
 
   async componentDidMount() {
@@ -137,6 +140,11 @@ export default class Quiz extends React.Component {
       })
     }
   }
+  handleClose() {
+    this.setState({
+      show: false
+    })
+  }
 
   render() {
     let foodType
@@ -144,7 +152,7 @@ export default class Quiz extends React.Component {
     if (questions !== undefined) {
       foodType = questions.question.split(' ')[1]
     }
-
+    let show = true
     return this.state.data[0] ? (
       <div className="quiz-background">
         <Container className="quiz-container" xs={12} md={12} lg={12}>
@@ -152,7 +160,8 @@ export default class Quiz extends React.Component {
             <Alert
               dismissible="true"
               className="quiz-alert"
-              onClose={() => (show = 'false')}
+              show={this.state.show}
+              onClose={this.handleClose}
             >
               <Alert.Heading>
                 Check Your Pantry and Make Your Selection!
@@ -263,7 +272,7 @@ export default class Quiz extends React.Component {
                       className="skipNextPrevButtons quiz-next-button"
                       onClick={() => this.increaseCount(foodType)}
                     >
-                      {this.state[foodType].length > 0 ? 'Next >>' : 'Skip'}
+                      {this.state[foodType].length > 0 ? 'Next >>' : 'Skip >>'}
                     </Button>
                   )}
                 </Col>

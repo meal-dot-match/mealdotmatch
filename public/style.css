@@ -232,18 +232,24 @@ h2,
 }
 
 .skipNextPrevButtons {
-    font-size: 20px;
+    font-size: 15px;
     line-height: 1.3333333;
     border-radius: 10px;
-    background: #0cded7;
-    border: none;
+    background: transparent;
+    border: 2px solid #0cded7;
     padding: 10px;
-    box-shadow: 1px 2px 4px rgb(197, 194, 194);
     margin: 3px;
+    color: #0cded7;
 }
 
 .skipNextPrevButtons:hover {
-    background-color: #1fcca3;
+    background-color: #0cded7;
+    border: 2px solid #0cded7;
+}
+
+.skipNextPrevButtons:focus {
+    outline: none !important;
+    box-shadow: none
 }
 
 .jumbotron {
