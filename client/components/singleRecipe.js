@@ -36,7 +36,11 @@ class SingleRecipe extends React.Component {
 
   render() {
     const recipe = this.props.location.state
-    return (
+    const recipeFromSearchBar = this.props.location
+    console.log('Back in SingleRecipe?', recipeFromSearchBar.image)
+    return recipeFromSearchBar.image ? (
+      <div>Hello</div>
+    ) : (
       <div className="single-recipe-background">
         <Container>
           <Row className="single-recipe-header">
