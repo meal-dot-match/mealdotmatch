@@ -34,15 +34,14 @@ export default class Home extends React.Component {
                 </Row>
                 <Row>
                   <Col>
-                    Been here before?
                     <Link to="/quiz">
                       <Button className="btn-responsive" size="lg">
-                        Take the Quiz
+                        Start Now
                       </Button>
                     </Link>
+                    <p>Been here before?</p>
                   </Col>
                   <Col>
-                    New to Meal.Match?
                     <GuidedTour />
                   </Col>
                 </Row>

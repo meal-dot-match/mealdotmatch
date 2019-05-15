@@ -220,6 +220,23 @@ h1 {
   background: #0cded7;
 }
 
+.btn-responsive-left-align {
+  padding: 10px 16px;
+  font-size: 20px;
+  line-height: 1.3333333;
+  border-radius: 10px;
+  background: #0cded7;
+  border: none;
+  padding: 10px;
+  box-shadow: 1px 2px 4px rgb(197, 194, 194);
+}
+
+.btn-responsive-left-align:hover {
+  background: #1fcca3;
+  border: none;
+  border-radius: 10px;
+}
+
 @media (max-width: 760px) {
   /* matches 'btn-xs' */
   .btn-responsive {
@@ -609,4 +626,16 @@ p strong {
 .single-page-highlight-text {
   color: #0cded7;
   font-size: 25px;
+}
+
+.tutorialModal {
+  background: '/1-intro.jpg';
+  max-height: 90vw;
+  max-width: 800px;
+  background-size: contain;
+}
+
+.tutorialImage {
+  height: 432px;
+  width: 768px;
 }
