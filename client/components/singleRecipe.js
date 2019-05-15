@@ -4,15 +4,20 @@ import Text from './text'
 import {Row, Col, Container, Button, Image, ListGroup} from 'react-bootstrap'
 import GroceryList from './groceryList'
 import RecipeList from './recipeList'
+import Email from './email'
+import axios from 'axios'
 
 class SingleRecipe extends React.Component {
   constructor() {
     super()
     this.state = {
       isShowing: false,
+      emailShowing: false,
       viewMissingIngredients: false
     }
+
     this.onSubmit = this.onSubmit.bind(this)
+    this.emailSubmit = this.emailSubmit.bind(this)
     this.viewMissing = this.viewMissing.bind(this)
   }
   onSubmit() {
@@ -21,16 +26,22 @@ class SingleRecipe extends React.Component {
     })
   }
 
+  emailSubmit() {
+    this.setState({
+      emailShowing: !this.state.emailShowing
+    })
+  }
   viewMissing() {
     this.setState({
       viewMissingIngredients: !this.state.viewMissingIngredients
     })
   }
+
   render() {
     // console.log('Props on SingleRecipe:', this.props.location)
     const recipe = this.props.location.state
-    console.log('this is my missing ingredients', recipe)
-    console.log('this is my times', recipe.totalTime)
+    // console.log('this is my missing ingredients', recipe)
+    // console.log('this is my times', recipe.totalTime)
     return (
       <div className="single-recipe-background">
         <Container>
@@ -117,7 +128,23 @@ class SingleRecipe extends React.Component {
                     <p className="single-recipe-missing-ingredients-text">
                       Send Missing Ingredients to Your Email
                     </p>
-                    <Button className="single-recipe-btn">Email Me</Button>
+                    <Button
+                      className="single-recipe-btn"
+                      onClick={this.emailSubmit}
+                    >
+                      Email Me
+                    </Button>
+                    {this.state.emailShowing ? (
+                      <Email
+                        missingIngredients={
+                          recipe.matchingRecipes[recipe.index]
+                            .missingIngredients
+                        }
+                        image={recipe.image}
+                        url={recipe.url}
+                        name={recipe.label}
+                      />
+                    ) : null}
                   </Col>
                 </Row>
               ) : null}

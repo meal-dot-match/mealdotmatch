@@ -17,7 +17,7 @@ class GroceryList extends Component {
     })
   }
   render() {
-    console.log('Made it into the Grocery List Component!', this.props)
+    // console.log('Made it into the Grocery List Component!', this.props)
 
     const chosenRecipe = this.props.recipe
 

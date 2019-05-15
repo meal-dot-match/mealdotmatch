@@ -1,38 +1,49 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Form, FormGroup, Button} from 'react-bootstrap'
 import axios from 'axios'
 
-class Text extends React.Component {
+class Email extends Component {
   constructor() {
     super()
     this.state = {
       value: '',
       sent: false
     }
+    this.emailSubmit = this.emailSubmit.bind(this)
     this.changeInput = this.changeInput.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
   }
-  onSubmit(phone) {
-    this.sentText()
-    const phoneNumber = '+1' + phone.replace(/-| (\(|\))/gi, '')
-    const textToSend = {
-      ingredients: this.props.missingIngredients,
-      url: this.props.url,
-      name: this.props.name,
-      to: phoneNumber
-    }
-    axios.post('/api/sendtext', textToSend)
-  }
+  emailSubmit(email, message) {
+    this.afterSubmit()
+    const emailMessage = `Hey there,
 
+    You've requested the missing ingredients for ${this.props.name}!
+
+    ${this.props.missingIngredients}
+
+    Here's the link to the full recipe: ${this.props.url}
+
+    Warmest Regards,
+    Meal.Match Team`
+    try {
+      const emailToSend = {
+        email: email,
+        message: emailMessage
+      }
+
+      axios.post('/api/send', emailToSend)
+    } catch (error) {
+      console.error(error)
+    }
+  }
   changeInput(event) {
     this.setState({
       value: event.target.value
     })
   }
-
-  sentText() {
+  afterSubmit() {
     this.setState({sent: !this.state.sent})
   }
+
   render() {
     return (
       <>
@@ -44,18 +55,22 @@ class Text extends React.Component {
         ) : (
           <Form>
             <FormGroup>
-              <Form.Label> Mobile Phone Number </Form.Label>
+              <Form.Label>Email Address</Form.Label>
               <Form.Control
                 type="phone"
-                placeholder="555-555-5555"
+                placeholder="abc@email.com"
                 value={this.state.value}
                 onChange={this.changeInput}
               />
               <Form.Text className="text-muted">
-                Don't worry, we won't share your phone number
+                We will not share your email address.
               </Form.Text>
             </FormGroup>
-            <Button onClick={() => this.onSubmit(this.state.value)}>
+            <Button
+              onClick={() => {
+                this.emailSubmit(this.state.value)
+              }}
+            >
               Submit
             </Button>
           </Form>
@@ -65,4 +80,4 @@ class Text extends React.Component {
   }
 }
 
-export default Text
+export default Email
