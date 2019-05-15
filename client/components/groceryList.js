@@ -25,17 +25,15 @@ class GroceryList extends Component {
       return 'ingredients are no longer here...'
     } else {
       return (
-        <div>
-          <ListGroup>
-            {chosenRecipe.missingIngredients.map(item => {
-              return (
-                <ListGroup.Item key={Math.random()} as="li">
-                  {item}
-                </ListGroup.Item>
-              )
-            })}
-          </ListGroup>
-        </div>
+        <ListGroup className="list-group-missing-ingredients">
+          {chosenRecipe.missingIngredients.map(item => {
+            return (
+              <ListGroup.Item key={Math.random()} as="li">
+                {item}
+              </ListGroup.Item>
+            )
+          })}
+        </ListGroup>
       )
     }
   }
