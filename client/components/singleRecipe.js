@@ -37,9 +37,103 @@ class SingleRecipe extends React.Component {
   render() {
     const recipe = this.props.location.state
     const recipeFromSearchBar = this.props.location
-    console.log('Back in SingleRecipe?', recipeFromSearchBar.image)
+    console.log('Back in SingleRecipe?', recipeFromSearchBar)
     return recipeFromSearchBar.image ? (
-      <div>Hello</div>
+      <div className="single-recipe-background">
+        <Container>
+          <Row className="single-recipe-header">
+            <h1> {recipeFromSearchBar.label} </h1>
+          </Row>
+
+          <Row>
+            <Col className="single-recipe-image-container">
+              <Row style={{justifyContent: 'center'}}>
+                <p>
+                  <strong>Total Calories: </strong>
+                  {recipeFromSearchBar.calories}
+                </p>
+              </Row>
+              <Row style={{justifyContent: 'center'}}>
+                <img src={recipeFromSearchBar.image} />
+              </Row>
+
+              <Row style={{padding: 25}} className="centered-btn">
+                <a
+                  href={recipeFromSearchBar.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Button variant="outline-info">
+                    {'View Full Recipe >>'}
+                  </Button>
+                </a>
+              </Row>
+              <Row style={{padding: 25}} className="centered-btn">
+                <Button variant="outline-info">{'<< Back to Results'}</Button>
+              </Row>
+            </Col>
+            <Col className="single-recipe-image-container">
+              <Row style={{justifyContent: 'center'}}>
+                <p>
+                  <strong>Recipe Ingredient List</strong>
+                  <ListGroup className="list-group-missing-ingredients">
+                    {recipeFromSearchBar.ingredients.map(item => {
+                      return (
+                        <ListGroup.Item
+                          key={Math.random()}
+                          as="li"
+                          className={recipeFromSearchBar.ingredients.includes(
+                            item.toLowerCase().replace(/,/gi, '')
+                          )}
+                        >
+                          {item}
+                        </ListGroup.Item>
+                      )
+                    })}
+                  </ListGroup>
+                </p>
+              </Row>
+
+              <Row>
+                <Col style={{paddingTop: 15}}>
+                  <p className="single-recipe-missing-ingredients-text">
+                    Text yourself the Recipe
+                  </p>
+                  <Button onClick={this.onSubmit} className="single-recipe-btn">
+                    Text Me
+                  </Button>
+                  {this.state.isShowing ? (
+                    <Text
+                      missingIngredients={recipeFromSearchBar.ingredients}
+                      url={recipeFromSearchBar.url}
+                      name={recipeFromSearchBar.label}
+                    />
+                  ) : null}
+                </Col>
+                <Col style={{paddingTop: 15}}>
+                  <p className="single-recipe-missing-ingredients-text">
+                    Send the recipe to your Email
+                  </p>
+                  <Button
+                    className="single-recipe-btn"
+                    onClick={this.emailSubmit}
+                  >
+                    Email Me
+                  </Button>
+                  {this.state.emailShowing ? (
+                    <Email
+                      missingIngredients={recipeFromSearchBar.ingredients}
+                      image={recipeFromSearchBar.image}
+                      url={recipeFromSearchBar.url}
+                      name={recipeFromSearchBar.label}
+                    />
+                  ) : null}
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     ) : (
       <div className="single-recipe-background">
         <Container>

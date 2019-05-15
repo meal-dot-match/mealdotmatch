@@ -7,10 +7,13 @@ import {Link} from 'react-router-dom'
 const searchBarQuery = gql`
   query($food: String) {
     searchRecipes(food: $food) {
+      uri
       url
       label
       image
+      calories
       totalTime
+      ingredientLines
     }
   }
 `
@@ -42,7 +45,9 @@ class SearchBarResults extends React.Component {
                               url: recipe.url,
                               image: recipe.image,
                               label: recipe.label,
-                              totalTime: recipe.totalTime
+                              calories: recipe.calories,
+                              ingredients: recipe.ingredientLines,
+                              
                             }}
                             className="results-img-overlay"
                           >
