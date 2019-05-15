@@ -57,7 +57,15 @@ class Results extends React.Component {
       <Query query={getMealsQuery} variables={{food}}>
         {({loading, error, data}) => {
           if (loading) return 'Loading...'
-          if (error) return `Error! ${error.message}`
+          if (error)
+            return (
+              <div>
+                <h3>
+                  Apologies, we've encountered an error! Please go back and try
+                  again!
+                </h3>
+              </div>
+            )
           const tracker = []
           const ourIngredientsArr = theIngredients
           const totalRecipesArr = data.searchRecipes
