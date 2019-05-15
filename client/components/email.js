@@ -49,6 +49,7 @@ class Email extends Component {
       <>
         {this.state.sent ? (
           <div>
+            {console.log(this.state.value)}
             <h4>Sent!</h4>
           </div>
         ) : (
@@ -80,21 +81,3 @@ class Email extends Component {
 }
 
 export default Email
-
-/* <Form>
-          <FormGroup>
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="phone"
-              placeholder="abc@email.com"
-              value={this.state.value}
-              // onChange={this.changeInput}
-            />
-            <Form.Text className="text-muted">
-              We will not share your email address.
-            </Form.Text>
-          </FormGroup>
-          <Button onClick={() => this.emailSubmit(this.state.value)}>
-            Submit
-          </Button>
-        </Form> */
