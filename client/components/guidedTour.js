@@ -8,6 +8,7 @@ import {
   Button,
   Modal
 } from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 class GuidedTour extends React.Component {
   constructor(props, context) {
@@ -45,7 +46,7 @@ class GuidedTour extends React.Component {
           <Modal.Header closeButton>
             <Modal.Title>Join us for a Tour of Meal.Match</Modal.Title>
           </Modal.Header>
-          <Carousel>
+          <Carousel interval="null">
             <Carousel.Item className="carousel-item">
               <Carousel.Caption className="about">
                 <h3>
@@ -85,26 +86,28 @@ class GuidedTour extends React.Component {
                 </h3>
                 <p>Click on the buttons!</p>
               </Carousel.Caption>
+              <Modal.Footer>
+                <Link to="/howitworks">
+                  <Button
+                    className="btn-responsive"
+                    size="md"
+                    variant="secondary"
+                  >
+                    How It Works
+                  </Button>
+                </Link>
+                <Link to="/quiz">
+                  <Button
+                    className="btn-responsive"
+                    size="md"
+                    variant="primary"
+                  >
+                    Take the Quiz
+                  </Button>
+                </Link>
+              </Modal.Footer>
             </Carousel.Item>
           </Carousel>
-          <Modal.Footer>
-            <Button
-              className="btn-responsive"
-              size="md"
-              variant="secondary"
-              onClick={this.handleClose}
-            >
-              How It Works
-            </Button>
-            <Button
-              className="btn-responsive"
-              size="md"
-              variant="primary"
-              onClick={this.handleClose}
-            >
-              Take the Quiz
-            </Button>
-          </Modal.Footer>
         </Modal>
       </>
     )
