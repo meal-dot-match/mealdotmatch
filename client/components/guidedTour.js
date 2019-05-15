@@ -65,6 +65,12 @@ class GuidedTour extends React.Component {
             <Carousel.Item className="carousel-item">
               <Modal.Body />
               <img src="/1-progressbar.jpg" className="tutorialImage" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <Modal.Body>
+                Ready to take the quiz? Go ahead! If you'd like to learn more,
+                click "How It Works."
+              </Modal.Body>
               <Modal.Footer>
                 <Link to="/howitworks">
                   <Button
@@ -75,17 +81,15 @@ class GuidedTour extends React.Component {
                     How It Works
                   </Button>
                 </Link>
-                <div className="text-left">
-                  <Link to="/quiz">
-                    <Button
-                      className="btn-responsive"
-                      size="md"
-                      variant="primary"
-                    >
-                      Take the Quiz
-                    </Button>
-                  </Link>
-                </div>
+                <Link to="/quiz">
+                  <Button
+                    className="btn-responsive"
+                    size="md"
+                    variant="primary"
+                  >
+                    Take the Quiz
+                  </Button>
+                </Link>
               </Modal.Footer>
             </Carousel.Item>
           </Carousel>
