@@ -22,8 +22,8 @@ class RecipeList extends Component {
                 as="li"
                 className={
                   missingIngredients.includes(item) && this.props.viewMissing
-                    ? 'test-class-yes'
-                    : ''
+                    ? 'test-class-yes missing-ingredients-text'
+                    : 'missing-ingredients-text'
                 }
               >
                 {item}
