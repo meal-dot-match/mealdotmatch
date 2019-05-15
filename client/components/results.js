@@ -139,7 +139,7 @@ class Results extends React.Component {
           return (
             <div className="matches-background">
               <Jumbotron className="matches-banner">
-                <Container xs={6} md={6} lg={6}>
+                <Container>
                   <Row>
                     <Col className="matches-text">
                       <h1>Here Are Your Top 5 Recipe Matches!</h1>
@@ -161,11 +161,10 @@ class Results extends React.Component {
                 {totalRecipesArr.length !== 0 ? (
                   <div>
                     <Container style={{padding: 35}}>
-                      <Col xs={4} md={4} lg={4}>
+                      <Col>
                         <Row className="matches-group">
                           {renderArr.map((x, idx) => (
                             <Col key={Math.random()}>
-                              {/* {console.log('what is my x?', x)} */}
                               <Row className="matches-background">
                                 <Image
                                   src={x.image}
