@@ -46,6 +46,10 @@ h1 {
   color: #066562;
 }
 
+h2 {
+  text-align: center;
+  color: #066562;
+}
 .container-img {
   position: relative;
   text-align: center;
@@ -59,19 +63,15 @@ h1 {
   background-image: url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1955&q=80');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   background-color: rgba(200, 0, 0, 2.5);
   opacity: 0.8;
   color: #383838;
-  width: 500px;
-  height: 500px;
+  width: auto;
+  min-height: 500px;
   border: 0px;
   border-radius: 15px;
   /* background-size: 250px 500px; */
-}
-
-.cutting-board-ingredients {
-  border-color: transparent;
-  background-color: transparent;
 }
 
 .centered {
@@ -95,13 +95,13 @@ h1 {
 }
 
 .label {
-  width: 100px;
-  height: 100px;
+  width: auto;
+  height: auto;
   position: absolute;
-  top: 30%;
-  left: 0;
+  padding: 25px;
   color: #0cded7;
   text-align: center;
+  font-size: 1.5rem;
 }
 
 .options {
@@ -114,7 +114,6 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
 }
 
 .options:focus {
@@ -125,13 +124,6 @@ h1 {
 
 .options:hover {
   opacity: 1;
-}
-
-.cuttingboardoptions {
-  /* transform: rotate(90deg); */
-  width: 250px;
-  height: 300px;
-  opacity: 0.3;
 }
 
 .button {
@@ -156,13 +148,6 @@ h1 {
 .topcenter {
   position: absolute;
   top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.cuttingboardcenter {
-  position: absolute;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -279,6 +264,7 @@ body {
 
 .center-text {
   justify-content: center;
+  margin-top: 25px;
 }
 
 .list-group {
@@ -474,13 +460,30 @@ img {
   margin-bottom: 10px;
 }
 
-#matchMe {
-  font-size: 27px;
-  margin-top: 20px;
+.progress-bar {
+  background-color: #0cded796;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
-.progress-bar {
-  background-color: #0cded7;
+.quiz-background {
+  position: relative;
+  z-index: 1;
+}
+
+.quiz-background:before {
+  background: url('https://images.pexels.com/photos/1414131/pexels-photo-1414131.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 top right');
+  margin: none;
+  opacity: 0.55;
+  width: 100%;
+  min-height: 750px;
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .quiz-container {
@@ -489,9 +492,13 @@ img {
 }
 
 .quiz-columns {
-  margin: 40px;
+  margin: 15px;
   padding: 25px;
-  height: 500px;
+  min-height: 500px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 7px;
+  text-align: center;
 }
 
 .quiz-row-options {
@@ -609,4 +616,9 @@ p strong {
 .single-page-highlight-text {
   color: #0cded7;
   font-size: 25px;
+}
+
+.cutting-board-ingredients {
+  padding: 25px;
+  font-size: 1.5em;
 }

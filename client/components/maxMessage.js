@@ -13,7 +13,7 @@ class MaxMessage extends React.Component {
     return this.props.foodType === 'meats' ||
       this.props.foodType === 'seafood' ? (
       this.props.alert === true ? (
-        <div className="alert alert-warning" role="alert">
+        <div className="alert alert-warning centered" role="alert">
           You have already selected the max total of 2 meats and seafoods.
         </div>
       ) : (

@@ -12,54 +12,34 @@ export default class CuttingBoard extends React.Component {
 
   render() {
     return (
-      <Container>
+      <>
         <Row className="center-text">
-          <h3>Your Ingredients Board</h3>
+          <h3>Prep Time: {this.props.time}</h3>
         </Row>
 
-        <Row>
-          <h4>Prep Time: {this.props.time}</h4>
+        <Row className="container-class">
+          {this.props.ingredients[0]
+            ? this.props.ingredients.map(ingredient => {
+                return (
+                  <p key={Math.random()} className="cutting-board-ingredients">
+                    {ingredient}
+                    <Button
+                      size="sm"
+                      type="button"
+                      className="close"
+                      onClick={() => {
+                        this.functionPassed(event)
+                      }}
+                      id={ingredient}
+                    >
+                      <strong id={ingredient}>x</strong>
+                    </Button>
+                  </p>
+                )
+              })
+            : null}
         </Row>
-        <Row>
-          <div className="container-class">
-            <Row className="center-text">
-              <h5>Ingredients:</h5>
-            </Row>
-            <Row>
-              <Col xs={4} md={4} lg={4}>
-                <ListGroup variant="flush">
-                  {this.props.ingredients[0]
-                    ? this.props.ingredients.map(ingredient => {
-                        return (
-                          <ListGroup.Item
-                            key={Math.random()}
-                            className="cutting-board-ingredients"
-                          >
-                            <Col>{ingredient}</Col>
-                            <Col>
-                              <Button
-                                type="button"
-                                className="close"
-                                aria-label="Close"
-                                onClick={() => {
-                                  this.functionPassed(event)
-                                }}
-                              >
-                                <span aria-hidden="true" id={ingredient}>
-                                  ×
-                                </span>
-                              </Button>
-                            </Col>
-                          </ListGroup.Item>
-                        )
-                      })
-                    : null}
-                </ListGroup>
-              </Col>
-            </Row>
-          </div>
-        </Row>
-      </Container>
+      </>
     )
   }
 }
