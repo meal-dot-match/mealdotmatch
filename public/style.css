@@ -529,12 +529,10 @@ img {
   grid-auto-flow: column;
 }
 
-.test-class {
-  background-color: red;
-}
-
 .test-class-yes {
-  background-color: blue;
+  border: 1px solid rgb(197, 194, 194);
+  box-shadow: 0 0 10px #0cded7;
+  z-index: 10;
 }
 .matches-background {
   background: rgb(248, 248, 248);
@@ -568,4 +566,9 @@ img {
 
 .matches-image {
   border-radius: 10px;
+}
+
+.single-recipe-missing-ingredients-text {
+  padding-top: 25px;
+  font-size: 15px;
 }
