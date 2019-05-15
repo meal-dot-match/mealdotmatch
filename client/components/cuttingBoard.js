@@ -1,5 +1,5 @@
 import React from 'react'
-import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
+import {Button, Row} from 'react-bootstrap'
 
 export default class CuttingBoard extends React.Component {
   constructor(props) {
@@ -22,7 +22,6 @@ export default class CuttingBoard extends React.Component {
             ? this.props.ingredients.map(ingredient => {
                 return (
                   <p key={Math.random()} className="cutting-board-ingredients">
-                    {ingredient}
                     <Button
                       size="sm"
                       type="button"
@@ -34,6 +33,7 @@ export default class CuttingBoard extends React.Component {
                     >
                       <strong id={ingredient}>x</strong>
                     </Button>
+                    {ingredient}
                   </p>
                 )
               })

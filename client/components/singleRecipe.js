@@ -1,11 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import Text from './text'
 import {Row, Col, Container, Button, Image, ListGroup} from 'react-bootstrap'
-import GroceryList from './groceryList'
 import RecipeList from './recipeList'
 import Email from './email'
-import axios from 'axios'
 
 class SingleRecipe extends React.Component {
   constructor() {
@@ -38,10 +35,7 @@ class SingleRecipe extends React.Component {
   }
 
   render() {
-    // console.log('Props on SingleRecipe:', this.props.location)
     const recipe = this.props.location.state
-    // console.log('this is my missing ingredients', recipe)
-    // console.log('this is my times', recipe.totalTime)
     return (
       <div className="single-recipe-background">
         <Container>
