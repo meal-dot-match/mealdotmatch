@@ -165,7 +165,7 @@ class Results extends React.Component {
                         <Row className="matches-group">
                           {renderArr.map((x, idx) => (
                             <Col key={Math.random()}>
-                              {console.log('what is my x?', x)}
+                              {/* {console.log('what is my x?', x)} */}
                               <Row className="matches-background">
                                 <Image
                                   src={x.image}
@@ -214,7 +214,7 @@ class Results extends React.Component {
                 ) : (
                   <div>
                     <h3>
-                      No recipes found :( Please go back and fill out your
+                      No recipes found : Please go back and fill out your
                       choices again!
                     </h3>
                     <Link to="/quiz">
