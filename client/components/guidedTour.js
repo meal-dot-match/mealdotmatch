@@ -60,11 +60,11 @@ class GuidedTour extends React.Component {
               <img src="/1-choices.jpg" className="tutorialImage" />
             </Carousel.Item>
             <Carousel.Item className="carousel-item">
-              <img />
+              <img src="/1-cuttingboard.jpg" className="tutorialImage" />
             </Carousel.Item>
             <Carousel.Item className="carousel-item">
               <Modal.Body />
-              <img />
+              <img src="/1-progressbar.jpg" className="tutorialImage" />
               <Modal.Footer>
                 <Link to="/howitworks">
                   <Button
