@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
-import Text from './text'
-import {Button, ListGroup} from 'react-bootstrap'
+import {ListGroup} from 'react-bootstrap'
 
 class RecipeList extends Component {
   render() {
@@ -21,9 +19,11 @@ class RecipeList extends Component {
                 key={Math.random()}
                 as="li"
                 className={
-                  missingIngredients.includes(item) && this.props.viewMissing
-                    ? 'test-class-yes'
-                    : ''
+                  missingIngredients.includes(
+                    item.toLowerCase().replace(/,/gi, '')
+                  ) && this.props.viewMissing
+                    ? 'test-class-yes missing-ingredients-text'
+                    : 'missing-ingredients-text'
                 }
               >
                 {item}

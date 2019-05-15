@@ -1,8 +1,9 @@
 import React from 'react'
 import {CuttingBoard, MaxMessage, ProgressBar} from './index'
 import axios from 'axios'
-import {ListGroup, Container, Row, Col, Button} from 'react-bootstrap'
+import {Alert, Container, Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import {AssistantFallbackActionsPage} from 'twilio/lib/rest/preview/understand/assistant/assistantFallbackActions'
 
 export default class Quiz extends React.Component {
   constructor() {
@@ -20,7 +21,9 @@ export default class Quiz extends React.Component {
       data: [],
       alert: false,
       selected: '',
-      matchMeDisabled: true
+      matchMeDisabled: true,
+      show: true
+
       // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
     this.removeIngredient = this.removeIngredient.bind(this)
@@ -29,6 +32,7 @@ export default class Quiz extends React.Component {
     this.addToIngredients = this.addToIngredients.bind(this)
     this.filterOutIngredients = this.filterOutIngredients.bind(this)
     this.setTime = this.setTime.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
 
   async componentDidMount() {
@@ -136,6 +140,11 @@ export default class Quiz extends React.Component {
       })
     }
   }
+  handleClose() {
+    this.setState({
+      show: false
+    })
+  }
 
   render() {
     let foodType
@@ -143,21 +152,37 @@ export default class Quiz extends React.Component {
     if (questions !== undefined) {
       foodType = questions.question.split(' ')[1]
     }
-
+    let show = true
     return this.state.data[0] ? (
-      <Container className="quiz-container" sm={12} md={12} lg={12}>
-        <Row>
-          <Col sm={4} md={4} lg={4} className="quiz-columns">
-            <CuttingBoard
-              sendFunction={this.removeIngredient}
-              ingredients={this.state.ingredients}
-              time={this.state.time}
-            />
-          </Col>
-          <Col sm={6} md={6} lg={6} className="quiz-columns">
-            <ProgressBar count={this.state.count} />
-            <Row>
-              <h2 className="question"> {questions.question} </h2>
+      <div className="quiz-background">
+        <Container className="quiz-container" xs={12} md={12} lg={12}>
+          {this.state.count === 0 ? (
+            <Alert
+              dismissible="true"
+              className="quiz-alert"
+              show={this.state.show}
+              onClose={this.handleClose}
+            >
+              <Alert.Heading>
+                Check Your Pantry and Make Your Selection!
+              </Alert.Heading>
+              <p>
+                Help Meal.Match best match you to recipes using ingredients
+                already in your pantry and fridge!<br /> First, take a look at
+                your pantry and fridge, then choose the options you want to cook
+                with in our survey below.
+              </p>
+            </Alert>
+          ) : null}
+          <Row style={{paddingTop: 25}}>
+            <Col xs={3} />
+            <Col className="quiz-questions-count">
+              <h3>{this.state.count + 1}/7</h3>
+            </Col>
+            <Col xs={8} className="quiz-questions-question">
+              <h2>
+                Q.{this.state.count + 1} {questions.question}
+              </h2>
               <MaxMessage
                 max={this.state.data[this.state.count].max}
                 foodType={
@@ -167,73 +192,95 @@ export default class Quiz extends React.Component {
                 length={this.state[foodType].length}
                 food={foodType}
               />
-            </Row>
-            <Row className="quiz-row-options">
-              {questions.image.map((picture, index) => {
-                return (
-                  <div key={Math.random()}>
-                    <div className="option-with-label ">
-                      <div className="label"> {questions.name[index]} </div>
-                      <img
-                        className={`${
-                          this.state.ingredients.includes(questions.name[index])
-                            ? 'selected'
-                            : 'options'
-                        }`}
-                        src={picture}
-                        alt={questions.name[index]}
-                        onClick={() =>
-                          foodType !== 'time'
-                            ? this.filterOutIngredients(event, foodType)
-                            : this.setTime(event)
-                        }
-                      />
+            </Col>
+            <Col xs={1} />
+          </Row>
+          <ProgressBar count={this.state.count} />
+          <Row>
+            <Col sm={4} md={4} lg={4} className="quiz-columns">
+              <CuttingBoard
+                sendFunction={this.removeIngredient}
+                ingredients={this.state.ingredients}
+                time={this.state.time}
+              />
+            </Col>
+            <Col className="quiz-columns">
+              <Row className="quiz-row-options">
+                {questions.image.map((picture, index) => {
+                  return (
+                    <div key={Math.random()}>
+                      <div className="option-with-label ">
+                        <strong className="label">
+                          {questions.name[index]}
+                        </strong>
+
+                        <img
+                          className={`${
+                            this.state.ingredients.includes(
+                              questions.name[index]
+                            )
+                              ? 'selected'
+                              : 'options'
+                          }`}
+                          src={picture}
+                          alt={questions.name[index]}
+                          onClick={() =>
+                            foodType !== 'time'
+                              ? this.filterOutIngredients(event, foodType)
+                              : this.setTime(event)
+                          }
+                        />
+                      </div>
                     </div>
-                  </div>
-                )
-              })}
-            </Row>
-            <Row className="quiz-prev-next-buttons">
-              {this.state.count > 0 ? (
-                <Button
-                  className="skipNextPrevButtons"
-                  onClick={() => this.decreaseCount()}
-                >
-                  Previous
-                </Button>
-              ) : null}
-              <Link
-                to={{
-                  pathname: '/results',
-                  state: {
-                    theIngredients: this.state.ingredients,
-                    theMeats: this.state.meats,
-                    theSeafood: this.state.seafood,
-                    time: this.state.time
-                  }
-                }}
-              >
-                <Button
-                  className="btn-responsive"
-                  size="lg"
-                  id="matchMe"
-                  disabled={this.state.matchMeDisabled}
-                >
-                  Match Me
-                </Button>
-              </Link>
-              {this.state.count === this.state.data.length - 1 ? null : (
-                <Button
-                  className="skipNextPrevButtons quiz-next-button"
-                  onClick={() => this.increaseCount(foodType)}
-                >
-                  {this.state[foodType].length > 0 ? 'Next' : 'Skip'}
-                </Button>
-              )}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+                  )
+                })}
+              </Row>
+              <Row className="quiz-prev-next-buttons">
+                <Col>
+                  {this.state.count > 0 ? (
+                    <Button
+                      className="skipNextPrevButtons"
+                      onClick={() => this.decreaseCount()}
+                    >
+                      {'<< Previous'}
+                    </Button>
+                  ) : null}
+                </Col>
+                <Col>
+                  <Link
+                    to={{
+                      pathname: '/results',
+                      state: {
+                        theIngredients: this.state.ingredients,
+                        theMeats: this.state.meats,
+                        theSeafood: this.state.seafood,
+                        time: this.state.time
+                      }
+                    }}
+                  >
+                    <Button
+                      className="btn-responsive"
+                      disabled={this.state.matchMeDisabled}
+                    >
+                      Submit
+                    </Button>
+                  </Link>
+                </Col>
+                <Col>
+                  {this.state.count === this.state.data.length - 1 ? null : (
+                    <Button
+                      className="skipNextPrevButtons quiz-next-button"
+                      onClick={() => this.increaseCount(foodType)}
+                    >
+                      {this.state[foodType].length > 0 ? 'Next >>' : 'Skip >>'}
+                    </Button>
+                  )}
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     ) : (
       'Loading'
     )

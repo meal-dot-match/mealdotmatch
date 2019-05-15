@@ -36,6 +36,11 @@ h5 {
   color: #066562;
 }
 
+.quiz-alert-choices {
+  text-align-last: center;
+  color: #066562;
+}
+
 h6 {
   text-align: center;
   color: #066562;
@@ -44,6 +49,17 @@ h6 {
 h1 {
   text-align: center;
   color: #066562;
+}
+
+h2 {
+  text-align: center;
+  color: #066562;
+}
+
+h2,
+.quiz-questions-header {
+  color: #066562;
+  text-align: left;
 }
 
 .container-img {
@@ -55,23 +71,28 @@ h1 {
   height: 100px;
 }
 
+.quiz-alert {
+  border: 1px solid #0cded744;
+  padding: 15px;
+  width: 100%;
+  color: #1d1f1fbe;
+  text-align: center;
+  background: #b4f0ee38;
+}
+
 .container-class {
   background-image: url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1955&q=80');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   background-color: rgba(200, 0, 0, 2.5);
   opacity: 0.8;
   color: #383838;
-  width: 500px;
-  height: 500px;
+  width: auto;
+  min-height: 500px;
   border: 0px;
   border-radius: 15px;
   /* background-size: 250px 500px; */
-}
-
-.cutting-board-ingredients {
-  border-color: transparent;
-  background-color: transparent;
 }
 
 .centered {
@@ -87,26 +108,21 @@ h1 {
 
 .option-with-label {
   margin: 7px;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   position: relative;
   background: black;
   border-radius: 7px;
 }
 
 .label {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 30%;
-  left: 0;
   color: #0cded7;
-  text-align: center;
+  font-size: 1.25rem;
 }
 
 .options {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   opacity: 0.3;
   box-shadow: 2px 3px 5px #888888;
   border-radius: 7px;
@@ -114,7 +130,6 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
 }
 
 .options:focus {
@@ -127,13 +142,6 @@ h1 {
   opacity: 1;
 }
 
-.cuttingboardoptions {
-  /* transform: rotate(90deg); */
-  width: 250px;
-  height: 300px;
-  opacity: 0.3;
-}
-
 .button {
   border: none;
 }
@@ -142,8 +150,8 @@ h1 {
   outline: none;
   border-color: #0cded7;
   box-shadow: 0 0 30px #0cded7;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   opacity: 1;
   border-radius: 7px;
   /* styles below added by katie */
@@ -156,13 +164,6 @@ h1 {
 .topcenter {
   position: absolute;
   top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.cuttingboardcenter {
-  position: absolute;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -248,18 +249,24 @@ h1 {
 }
 
 .skipNextPrevButtons {
-  font-size: 20px;
+  font-size: 15px;
   line-height: 1.3333333;
   border-radius: 10px;
-  background: #0cded7;
-  border: none;
+  background: transparent;
+  border: 2px solid #0cded7;
   padding: 10px;
-  box-shadow: 1px 2px 4px rgb(197, 194, 194);
   margin: 3px;
+  color: #0cded7;
 }
 
 .skipNextPrevButtons:hover {
-  background-color: #1fcca3;
+  background-color: #0cded7;
+  border: 2px solid #0cded7;
+}
+
+.skipNextPrevButtons:focus {
+  outline: none !important;
+  box-shadow: none;
 }
 
 .jumbotron {
@@ -296,6 +303,21 @@ body {
 
 .center-text {
   justify-content: center;
+}
+
+.quiz-questions-question {
+  text-align-first: center;
+}
+
+.quiz-questions-count {
+  border: 2px solid #0cded7;
+}
+
+.quiz-questions-count,
+h3 {
+  position: relative;
+  text-align: center;
+  padding-top: 10px;
 }
 
 .list-group {
@@ -491,24 +513,32 @@ img {
   margin-bottom: 10px;
 }
 
-#matchMe {
-  font-size: 27px;
-  margin-top: 20px;
+.progress-bar {
+  background-color: #0cded796;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
-.progress-bar {
-  background-color: #0cded7;
+.quiz-background {
+  position: relative;
+  z-index: 1;
+  background-color: #f7f7f7;
+  height: auto;
+  min-height: 1000px;
 }
 
 .quiz-container {
-  margin-top: 35px;
   padding: none;
 }
 
 .quiz-columns {
-  margin: 40px;
+  margin: 15px;
   padding: 25px;
-  height: 500px;
+  min-height: 500px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 7px;
+  text-align: center;
 }
 
 .quiz-row-options {
@@ -556,6 +586,11 @@ img {
   box-shadow: 0 0 15px #0cded7;
   z-index: 10;
 }
+
+.missing-ingredients-text {
+  font-size: 0.85rem;
+}
+
 .matches-background {
   background: rgb(248, 248, 248);
   padding: 10px;
@@ -638,4 +673,8 @@ p strong {
 .tutorialImage {
   height: 432px;
   width: 768px;
+}
+.cutting-board-ingredients {
+  padding: 25px;
+  font-size: 1.5em;
 }
