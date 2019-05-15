@@ -13,6 +13,7 @@ class SingleRecipe extends React.Component {
       viewMissingIngredients: false
     }
 
+    this.goBack = this.goBack.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.emailSubmit = this.emailSubmit.bind(this)
     this.viewMissing = this.viewMissing.bind(this)
@@ -34,10 +35,14 @@ class SingleRecipe extends React.Component {
     })
   }
 
+  goBack() {
+    this.props.history.goBack()
+  }
+
   render() {
     const recipe = this.props.location.state
     const recipeFromSearchBar = this.props.location
-    console.log('Back in SingleRecipe?', recipeFromSearchBar)
+
     return recipeFromSearchBar.image ? (
       <div className="single-recipe-background">
         <Container>
@@ -69,7 +74,9 @@ class SingleRecipe extends React.Component {
                 </a>
               </Row>
               <Row style={{padding: 25}} className="centered-btn">
-                <Button variant="outline-info">{'<< Back to Results'}</Button>
+                <Button variant="outline-info" onClick={() => this.goBack()}>
+                  {'<< Back to Results'}
+                </Button>
               </Row>
             </Col>
             <Col className="single-recipe-image-container">
@@ -170,7 +177,9 @@ class SingleRecipe extends React.Component {
                 </a>
               </Row>
               <Row style={{padding: 25}} className="centered-btn">
-                <Button variant="outline-info">{'<< Back to Results'}</Button>
+                <Button variant="outline-info" onClick={() => this.goBack()}>
+                  {'<< Back to Results'}
+                </Button>
               </Row>
             </Col>
 
