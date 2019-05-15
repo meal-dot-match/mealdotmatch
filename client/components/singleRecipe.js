@@ -11,9 +11,11 @@ class SingleRecipe extends React.Component {
   constructor() {
     super()
     this.state = {
-      isShowing: false
+      isShowing: false,
+      emailShowing: false
     }
     this.onSubmit = this.onSubmit.bind(this)
+    this.emailSubmit = this.emailSubmit.bind(this)
   }
   onSubmit() {
     this.setState({
@@ -21,22 +23,13 @@ class SingleRecipe extends React.Component {
     })
   }
 
-  // sendEmail(name, email, message) {
-  //   try {
-  //     const emailToSend = {
-  //       name: name,
-  //       email: email,
-  //       message: message
-  //     }
-  //     console.log('Inside the sendEmail method', emailToSend)
-  //     axios.post('/api/send', emailToSend)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+  emailSubmit() {
+    this.setState({
+      emailShowing: !this.state.emailShowing
+    })
+  }
 
   render() {
-
     const recipe = this.props.location.state
     // console.log('Logging "recipe" in SingleRecipe', recipe)
     return (
@@ -50,43 +43,34 @@ class SingleRecipe extends React.Component {
               <h3> {recipe.label} </h3>
             </Row>
             <Row className="single-recipe-row">
+              
               Recipe Url: <a href={recipe.url}> {recipe.url} </a>
             </Row>
             <Row className="single-recipe-row">
               <h5>Ingredients Still Needed to Cook Recipe:</h5>
               <GroceryList recipe={recipe.matchingRecipes[recipe.index]} />
             </Row>
-            <Row>
-              <Col>
-                <Button onClick={this.onSubmit}> Send via Text </Button>
-              </Col>
-              <Col>
-                <Button
-                  onClick={() => {
-                    this.sendEmail(
-                      'Amy',
-                      'a.liao.uey@gmail.com',
-                      `Carrots and Ranch`
-                    )
-                  }}
-                >
-                  Send via Email
-                </Button>
-              </Col>
-            </Row>
             <Row className="single-recipe-row">
               <h5>Total Ingredients List:</h5>
               <RecipeList recipe={recipe.matchingRecipes[recipe.index]} />
             </Row>
-            {this.state.isShowing ? (
-              <Text
-                missingIngredients={
-                  recipe.matchingRecipes[recipe.index].missingIngredients
-                }
-                url={recipe.url}
-                name={recipe.label}
-              />
-            ) : null}
+            <Row>
+              <Col>
+                <Button onClick={this.onSubmit}> Send via Text </Button>
+              </Col>
+              {this.state.isShowing ? (
+                <Text
+                  missingIngredients={
+                    recipe.matchingRecipes[recipe.index].missingIngredients
+                  }
+                  url={recipe.url}
+                  name={recipe.label}
+                />
+              ) : null}
+
+              <Button onClick={this.emailSubmit}> Send via Email </Button>
+              {this.state.emailShowing ? <Email /> : null}
+            </Row>
           </Col>
         </Row>
       </Container>

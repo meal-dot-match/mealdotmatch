@@ -8,8 +8,9 @@ class Email extends Component {
     this.state = {
       value: ''
     }
+    this.emailSubmit = this.emailSubmit.bind(this)
   }
-  sendEmail(name, email, message) {
+  emailSubmit(name, email, message) {
     try {
       const emailToSend = {
         name: name,
@@ -22,26 +23,31 @@ class Email extends Component {
       console.error(error)
     }
   }
-  
+
   render() {
     return (
-      <Form>
-        <FormGroup>
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type="phone"
-            placeholder="abc@email.com"
-            value={this.state.value}
-            onChange={this.changeInput}
-          />
-          <Form.Text className="text-muted">
-            We will not share your email address.
-          </Form.Text>
-        </FormGroup>
-        <Button onClick={() => this.onSubmit(this.state.value)}>Submit</Button>
-      </Form>
+
+      <div>Hello</div>
     )
   }
 }
 
 export default Email
+
+ /* <Form>
+          <FormGroup>
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="phone"
+              placeholder="abc@email.com"
+              value={this.state.value}
+              // onChange={this.changeInput}
+            />
+            <Form.Text className="text-muted">
+              We will not share your email address.
+            </Form.Text>
+          </FormGroup>
+          <Button onClick={() => this.emailSubmit(this.state.value)}>
+            Submit
+          </Button>
+        </Form> */
