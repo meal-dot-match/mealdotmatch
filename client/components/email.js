@@ -48,8 +48,7 @@ class Email extends Component {
     return (
       <>
         {this.state.sent ? (
-          <div>
-            {console.log(this.state.value)}
+          <div padding="5px">
             <h4>Sent!</h4>
           </div>
         ) : (
@@ -67,6 +66,7 @@ class Email extends Component {
               </Form.Text>
             </FormGroup>
             <Button
+              className="single-recipe-btn"
               onClick={() => {
                 this.emailSubmit(this.state.value)
               }}

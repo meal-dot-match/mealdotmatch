@@ -30,9 +30,9 @@ export default class CuttingBoard extends React.Component {
                       }}
                       id={ingredient}
                     >
-                      <strong id={ingredient}>x</strong>
+                      {/* <strong id={ingredient}></strong> */}
+                      {ingredient}
                     </Button>
-                    {ingredient}
                   </p>
                 )
               })
