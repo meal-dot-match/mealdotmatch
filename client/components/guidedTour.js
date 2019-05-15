@@ -39,10 +39,10 @@ class GuidedTour extends React.Component {
           variant="primary"
           onClick={this.handleShow}
         >
-          Take a Tour
+          Take Tour
         </Button>
-        <p>New to Meal.Match?</p>
 
+        <p className="homepage-btn-text">New to Meal.Match?</p>
         <Modal
           show={this.state.show}
           onHide={this.handleClose}
