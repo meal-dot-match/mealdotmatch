@@ -6,8 +6,8 @@ class MaxMessage extends React.Component {
   }
 
   render() {
-    console.log('in Max-----------------------------------------------')
-    console.log('what is the alerttttt????????', this.props.alert)
+    // console.log('in Max-----------------------------------------------')
+    // console.log('what is the alerttttt????????', this.props.alert)
     // console.log('what is the foooooddd????????', this.props.food)
     // console.log('what is the length????????', this.props.length)
     return this.props.foodType === 'meats' ||

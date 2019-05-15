@@ -4,6 +4,8 @@ import Text from './text'
 import {Row, Col, Container, Button, Image} from 'react-bootstrap'
 import GroceryList from './groceryList'
 import RecipeList from './recipeList'
+import Email from './email'
+import axios from 'axios'
 
 class SingleRecipe extends React.Component {
   constructor() {
@@ -19,32 +21,24 @@ class SingleRecipe extends React.Component {
     })
   }
 
-  sendEmail(name, email, message) {
-    fetch('/send', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        message: message
-      })
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log('here is the response: ', res)
-      })
-      .catch(err => {
-        console.error('here is the error: ', err)
-      })
-  }
+  // sendEmail(name, email, message) {
+  //   try {
+  //     const emailToSend = {
+  //       name: name,
+  //       email: email,
+  //       message: message
+  //     }
+  //     console.log('Inside the sendEmail method', emailToSend)
+  //     axios.post('/api/send', emailToSend)
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
 
   render() {
-    console.log('Props on SingleRecipe:', this.props.location)
+
     const recipe = this.props.location.state
-    console.log(recipe)
+    // console.log('Logging "recipe" in SingleRecipe', recipe)
     return (
       <Container className="single-recipe-container">
         <Row>
@@ -69,10 +63,13 @@ class SingleRecipe extends React.Component {
               <Col>
                 <Button
                   onClick={() => {
-                    this.sendEmail()
+                    this.sendEmail(
+                      'Amy',
+                      'a.liao.uey@gmail.com',
+                      `Carrots and Ranch`
+                    )
                   }}
                 >
-                  {' '}
                   Send via Email
                 </Button>
               </Col>
