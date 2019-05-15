@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Row, Col, Button} from 'react-bootstrap'
+import {GuidedTour} from './index'
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -32,11 +33,17 @@ export default class Home extends React.Component {
                   </p>
                 </Row>
                 <Row>
-                  <Link to="/quiz">
-                    <Button className="btn-responsive" size="lg">
-                      Start Now
-                    </Button>
-                  </Link>
+                  <Col>
+                    <Link to="/quiz">
+                      <Button className="btn-responsive" size="lg">
+                        Start Now
+                      </Button>
+                    </Link>
+                    <p>Been here before?</p>
+                  </Col>
+                  <Col>
+                    <GuidedTour />
+                  </Col>
                 </Row>
               </Col>
               <Col sm={1} />
