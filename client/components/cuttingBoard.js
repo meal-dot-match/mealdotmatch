@@ -1,5 +1,6 @@
 import React from 'react'
-import {Button, Row} from 'react-bootstrap'
+import {Button, Row, Col} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 export default class CuttingBoard extends React.Component {
   constructor(props) {
@@ -13,9 +14,6 @@ export default class CuttingBoard extends React.Component {
   render() {
     return (
       <>
-        {/* <Row className="center-text">
-          <h3>Prep Time: {this.props.time}</h3>
-        </Row> */}
         <Row className="container-class">
           {this.props.ingredients[0]
             ? this.props.ingredients.map(ingredient => {
@@ -38,6 +36,22 @@ export default class CuttingBoard extends React.Component {
               })
             : null}
         </Row>
+        <Col>
+          <p style={{fontSize: 15}}>Done adding ingredients?</p>
+          <Link
+            to={{
+              pathname: '/results',
+              state: {
+                theIngredients: this.props.ingredients,
+                theMeats: this.props.meats,
+                theSeafood: this.props.seafood,
+                time: this.props.time
+              }
+            }}
+          >
+            <Button className="skipNextPrevButtons">Submit Now</Button>
+          </Link>
+        </Col>
       </>
     )
   }

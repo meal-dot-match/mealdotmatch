@@ -82,6 +82,8 @@ export default class Quiz extends React.Component {
   }
 
   removeIngredient(event) {
+    console.log('what is the event?', event.target)
+    console.log('what is my state????', this.state)
     const ingredientsLeft = this.state.ingredients.filter(item => {
       return item !== event.target.id
     })
@@ -202,6 +204,8 @@ export default class Quiz extends React.Component {
                 sendFunction={this.removeIngredient}
                 ingredients={this.state.ingredients}
                 time={this.state.time}
+                meats={this.state.meats}
+                seafood={this.state.seafood}
               />
             </Col>
             <Col className="quiz-columns">
@@ -224,10 +228,13 @@ export default class Quiz extends React.Component {
                           }`}
                           src={picture}
                           alt={questions.name[index]}
+                          id={questions.name[index]}
                           onClick={() =>
-                            foodType !== 'time'
-                              ? this.filterOutIngredients(event, foodType)
-                              : this.setTime(event)
+                            this.state.ingredients.includes(event.target.alt)
+                              ? this.removeIngredient(event)
+                              : foodType !== 'time'
+                                ? this.filterOutIngredients(event, foodType)
+                                : this.setTime(event)
                           }
                         />
                       </div>
@@ -247,27 +254,23 @@ export default class Quiz extends React.Component {
                   ) : null}
                 </Col>
                 <Col>
-                  <Link
-                    to={{
-                      pathname: '/results',
-                      state: {
-                        theIngredients: this.state.ingredients,
-                        theMeats: this.state.meats,
-                        theSeafood: this.state.seafood,
-                        time: this.state.time
-                      }
-                    }}
-                  >
-                    <Button
-                      className="btn-responsive"
-                      disabled={this.state.matchMeDisabled}
+                  {this.state.count === this.state.data.length - 1 ? (
+                    <Link
+                      to={{
+                        pathname: '/results',
+                        state: {
+                          theIngredients: this.state.ingredients,
+                          theMeats: this.state.meats,
+                          theSeafood: this.state.seafood,
+                          time: this.state.time
+                        }
+                      }}
                     >
-                      Submit
-                    </Button>
-                  </Link>
-                </Col>
-                <Col>
-                  {this.state.count === this.state.data.length - 1 ? null : (
+                      <Button className="btn-submit quiz-next-button">
+                        Submit
+                      </Button>
+                    </Link>
+                  ) : (
                     <Button
                       className="skipNextPrevButtons quiz-next-button"
                       onClick={() => this.increaseCount(foodType)}
