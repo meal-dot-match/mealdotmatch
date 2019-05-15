@@ -54,17 +54,70 @@ class GuidedTour extends React.Component {
           </Modal.Header>
           <Carousel interval={null}>
             <Carousel.Item className="carousel-item">
-              <img src="/1-intro.jpg" className="tutorialImage" />
+              <img
+                src="/guidedTourPhotos/1-intro.jpg"
+                className="tutorialImage"
+              />
             </Carousel.Item>
             <Carousel.Item className="carousel-item">
-              <img src="/1-choices.jpg" className="tutorialImage" />
+              <img
+                src="/guidedTourPhotos/1-choices.jpg"
+                className="tutorialImage"
+              />
             </Carousel.Item>
             <Carousel.Item className="carousel-item">
-              <img src="/1-cuttingboard.jpg" className="tutorialImage" />
+              <img
+                src="/guidedTourPhotos/1-cuttingboard.jpg"
+                className="tutorialImage"
+              />
             </Carousel.Item>
             <Carousel.Item className="carousel-item">
-              <Modal.Body />
-              <img src="/1-progressbar.jpg" className="tutorialImage" />
+              <img
+                src="/guidedTourPhotos/1-progressbar.jpg"
+                className="tutorialImage"
+              />
+            </Carousel.Item>
+            <Carousel.Item className="carousel-item">
+              <img
+                src="/guidedTourPhotos/1-buttons.jpg"
+                className="tutorialImage"
+              />
+            </Carousel.Item>
+            <Carousel.Item className="carousel-item">
+              <img
+                src="/guidedTourPhotos/2-intro.jpg"
+                className="tutorialImage"
+              />
+            </Carousel.Item>
+            <Carousel.Item className="carousel-item">
+              <img
+                src="/guidedTourPhotos/2-results.jpg"
+                className="tutorialImage"
+              />
+            </Carousel.Item>
+            <Carousel.Item className="carousel-item">
+              <img
+                src="/guidedTourPhotos/3-intro.jpg"
+                className="tutorialImage"
+              />
+            </Carousel.Item>
+            <Carousel.Item className="carousel-item">
+              <img
+                src="/guidedTourPhotos/3-resultssingle.jpg"
+                className="tutorialImage"
+              />
+            </Carousel.Item>
+            <Carousel.Item className="carousel-item">
+              <img
+                src="/guidedTourPhotos/4-intro.jpg"
+                className="tutorialImage"
+              />
+            </Carousel.Item>
+            <Carousel.Item className="carousel-item">
+              <img
+                src="/guidedTourPhotos/4-searchbar.jpg"
+                className="tutorialImage"
+              />
             </Carousel.Item>
             <Carousel.Item>
               <Modal.Body>
