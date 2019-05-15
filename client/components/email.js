@@ -13,6 +13,7 @@ class Email extends Component {
     this.changeInput = this.changeInput.bind(this)
   }
   emailSubmit(email, message) {
+    this.afterSubmit()
     const emailMessage = `Hey there,
 
     You've requested the missing ingredients for ${this.props.name}!
@@ -46,23 +47,33 @@ class Email extends Component {
   render() {
     return (
       <>
-        <Form>
-          <FormGroup>
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="phone"
-              placeholder="abc@email.com"
-              value={this.state.value}
-              onChange={this.changeInput}
-            />
-            <Form.Text className="text-muted">
-              We will not share your email address.
-            </Form.Text>
-          </FormGroup>
-          <Button onClick={() => {this.emailSubmit(this.state.value)}}>
-            Submit
-          </Button>
-        </Form>
+        {this.state.sent ? (
+          <div>
+            <h4>Sent!</h4>
+          </div>
+        ) : (
+          <Form>
+            <FormGroup>
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control
+                type="phone"
+                placeholder="abc@email.com"
+                value={this.state.value}
+                onChange={this.changeInput}
+              />
+              <Form.Text className="text-muted">
+                We will not share your email address.
+              </Form.Text>
+            </FormGroup>
+            <Button
+              onClick={() => {
+                this.emailSubmit(this.state.value)
+              }}
+            >
+              Submit
+            </Button>
+          </Form>
+        )}
       </>
     )
   }
