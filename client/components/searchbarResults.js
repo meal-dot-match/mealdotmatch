@@ -2,14 +2,18 @@ import React from 'react'
 import {graphql, Query} from 'react-apollo'
 import {gql} from 'apollo-boost'
 import {Row, Col, Container, Image, Button} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 const searchBarQuery = gql`
   query($food: String) {
     searchRecipes(food: $food) {
+      uri
       url
       label
       image
+      calories
       totalTime
+      ingredientLines
     }
   }
 `
@@ -19,6 +23,7 @@ class SearchBarResults extends React.Component {
   }
 
   render() {
+    // console.log('What are the props in searchBar', this.props)
     const food = this.props.location.searchBar
     return (
       <Query query={searchBarQuery} variables={{food}}>
@@ -30,14 +35,20 @@ class SearchBarResults extends React.Component {
             <Container style={{padding: 35}}>
               <Col xs={4} md={4} lg={4}>
                 <Row className="results-group">
-                  {data.searchRecipes.map(recipe => {
+                  {data.searchRecipes.map((recipe, index) => {
                     return (
                       <Col key={Math.random()}>
                         <Row className="results-background">
-                          <a
-                            href={recipe.url}
-                            rel="noopener"
-                            target="_blank"
+                          <Link
+                            to={{
+                              pathname: '/recipes',
+                              url: recipe.url,
+                              image: recipe.image,
+                              label: recipe.label,
+                              calories: recipe.calories,
+                              ingredients: recipe.ingredientLines,
+                              
+                            }}
                             className="results-img-overlay"
                           >
                             <Button
@@ -47,7 +58,7 @@ class SearchBarResults extends React.Component {
                             >
                               View Recipe
                             </Button>
-                          </a>
+                          </Link>
                           <Image src={recipe.image} className="results-image" />
                         </Row>
                         <Row> {recipe.label} </Row>

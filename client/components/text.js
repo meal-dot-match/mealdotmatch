@@ -38,7 +38,6 @@ class Text extends React.Component {
       <>
         {this.state.sent ? (
           <div>
-            {console.log(this.state.value)}
             <h4>Sent!</h4>
           </div>
         ) : (
@@ -55,7 +54,10 @@ class Text extends React.Component {
                 Don't worry, we won't share your phone number
               </Form.Text>
             </FormGroup>
-            <Button onClick={() => this.onSubmit(this.state.value)}>
+            <Button
+              className="single-recipe-btn"
+              onClick={() => this.onSubmit(this.state.value)}
+            >
               Submit
             </Button>
           </Form>

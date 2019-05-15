@@ -108,7 +108,7 @@ app.post('/send', function(req, res, next) {
     const mailOptions = {
       from: `${req.body.email}`,
       to: `${req.body.email}`,
-      subject: `Meal.Match: Here are the ingredients that you are missing!`,
+      subject: `Meal.Match: List of ingredients!`,
       text: `${req.body.message}`,
       replyTo: Email.user
     }
@@ -131,14 +131,9 @@ app.post('/sendtext', (req, res, next) => {
   const accountSid = Twilio.accountSID
   const authToken = Twilio.authToken
   const text = require('twilio')(accountSid, authToken)
-  const messageToSend =
-    'Thanks for using Meal.Match!\nHere are your missing ingredients for' +
-    req.body.name +
-    '.\n' +
-    req.body.ingredients.join(',') +
-    '.\nFull recipe:' +
-    req.body.url +
-    '.'
+  const messageToSend = `Thanks for using Meal.Match! Here are the ingredients that you need for ${
+    req.body.name
+  }! ${req.body.ingredients.join(',')} Full recipe: ${req.body.url}`
 
   text.messages
     .create({
