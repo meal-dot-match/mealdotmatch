@@ -30,38 +30,64 @@ class SingleRecipe extends React.Component {
     // console.log('Props on SingleRecipe:', this.props.location)
     const recipe = this.props.location.state
     console.log('this is my missing ingredients', recipe)
+    console.log('this is my times', recipe.totalTime)
     return (
       <div className="single-recipe-background">
         <Container>
           <Row className="single-recipe-header">
             <h1> {recipe.label} </h1>
           </Row>
+          <Row className="single-recipe-header">
+            <p>
+              You have{' '}
+              <strong className="single-page-highlight-text">
+                {Math.round(recipe.percent)}%
+              </strong>{' '}
+              of the ingredients needed to make this recipe
+            </p>
+          </Row>
+
           <Row>
             <Col className="single-recipe-image-container">
-              <Row>
-                <h4>{Math.round(recipe.percent)}% Match</h4>
+              <Row style={{justifyContent: 'center'}}>
+                <p>
+                  <strong>Ready In: </strong>
+                  {recipe.time} minutes (approx. time)
+                </p>
               </Row>
               <Row style={{justifyContent: 'center'}}>
                 <img src={recipe.image} />
               </Row>
-              <Row style={{padding: 25}}>
-                <Button className="btn-responsive">View Full Recipe</Button>
+
+              <Row style={{padding: 25}} className="centered-btn">
+                <a href={recipe.url} target="_blank" rel="noreferrer">
+                  <Button variant="outline-info">
+                    {'View Full Recipe >>'}
+                  </Button>
+                </a>
+              </Row>
+              <Row style={{padding: 25}} className="centered-btn">
+                <Button variant="outline-info">{'<< Back to Results'}</Button>
               </Row>
             </Col>
 
             <Col className="single-recipe-image-container">
               <Row style={{justifyContent: 'center'}}>
-                <h5>Full Ingredient List</h5>
+                <p>
+                  <strong>Recipe Ingredient List</strong>
+                </p>
 
                 <RecipeList
                   recipe={recipe.matchingRecipes[recipe.index]}
                   viewMissing={this.state.viewMissingIngredients}
                 />
-                <p className="single-recipe-missing-ingredients-text">
-                  Want to see the ingredients you don't have?
-                </p>
+              </Row>
+              <Row className="single-recipe-missing-ingredients-text">
+                <p>Want us to highlight the ingredients you don't have? </p>
+              </Row>
+              <Row className="single-recipe-missing-ingredients-button">
                 <Button variant="outline-info" onClick={this.viewMissing}>
-                  View Missing Ingredients
+                  Yes, Show Me
                 </Button>
               </Row>
               {this.state.viewMissingIngredients ? (
@@ -70,8 +96,11 @@ class SingleRecipe extends React.Component {
                     <p className="single-recipe-missing-ingredients-text">
                       Send Missing Ingredients to Your Phone
                     </p>
-                    <Button onClick={this.onSubmit} className="btn-responsive">
-                      Send via Text
+                    <Button
+                      onClick={this.onSubmit}
+                      className="single-recipe-btn"
+                    >
+                      Text Me
                     </Button>
                     {this.state.isShowing ? (
                       <Text
@@ -88,7 +117,7 @@ class SingleRecipe extends React.Component {
                     <p className="single-recipe-missing-ingredients-text">
                       Send Missing Ingredients to Your Email
                     </p>
-                    <Button className="btn-responsive"> Send via Email</Button>
+                    <Button className="single-recipe-btn">Email Me</Button>
                   </Col>
                 </Row>
               ) : null}

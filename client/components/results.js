@@ -165,6 +165,7 @@ class Results extends React.Component {
                         <Row className="matches-group">
                           {renderArr.map((x, idx) => (
                             <Col key={Math.random()}>
+                              {console.log('what is my x?', x)}
                               <Row className="matches-background">
                                 <Image
                                   src={x.image}
@@ -187,6 +188,7 @@ class Results extends React.Component {
                                         url: x.url,
                                         ingredients: x.ingredients,
                                         image: x.image,
+                                        time: x.totalTime,
                                         percent: (
                                           Number(x.percentage) * 100
                                         ).toFixed(2)

@@ -16,12 +16,6 @@ class RecipeList extends Component {
       return (
         <ListGroup className="list-group-missing-ingredients">
           {allIngredients.map(item => {
-            {
-              console.log(
-                'this is mny console log',
-                missingIngredients.includes(item) && this.props.viewMissing
-              )
-            }
             return (
               <ListGroup.Item
                 key={Math.random()}
@@ -29,7 +23,7 @@ class RecipeList extends Component {
                 className={
                   missingIngredients.includes(item) && this.props.viewMissing
                     ? 'test-class-yes'
-                    : 'test-class'
+                    : ''
                 }
               >
                 {item}
