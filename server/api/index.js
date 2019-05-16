@@ -14,7 +14,6 @@ const socketio = require('socket.io')
 const cors = require('cors')
 const schema = require('./schema')
 const Question = require('../db/models/questions')
-const {Twilio, Email} = require('../../secrets')
 const nodemailer = require('nodemailer')
 
 module.exports = app
@@ -100,8 +99,8 @@ app.post('/send', function(req, res, next) {
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: Email.user,
-        pass: Email.password
+        user: process.env.EmailUser,
+        pass: process.env.EmailPassword
       }
     })
 
@@ -110,7 +109,7 @@ app.post('/send', function(req, res, next) {
       to: `${req.body.email}`,
       subject: `Meal.Match: List of ingredients!`,
       text: `${req.body.message}`,
-      replyTo: Email.user
+      replyTo: process.env.EmailUser
     }
 
     transporter.sendMail(mailOptions, function(err, res) {
@@ -128,8 +127,8 @@ app.post('/send', function(req, res, next) {
 })
 
 app.post('/sendtext', (req, res, next) => {
-  const accountSid = Twilio.accountSID
-  const authToken = Twilio.authToken
+  const accountSid = process.env.TwilioAccountSID
+  const authToken = process.env.TwilioAuthToken
   const text = require('twilio')(accountSid, authToken)
   const messageToSend = `Thanks for using Meal.Match! Here are the ingredients that you need for ${
     req.body.name
@@ -138,7 +137,7 @@ app.post('/sendtext', (req, res, next) => {
   text.messages
     .create({
       body: JSON.stringify(messageToSend),
-      from: Twilio.from,
+      from: process.env.TwilioFrom,
       to: JSON.stringify(req.body.to)
     })
     .then(message => console.log(message.sid))
