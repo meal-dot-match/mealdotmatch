@@ -1,5 +1,4 @@
 const axios = require('axios')
-const {ApiKey3} = require('../../secrets')
 
 const {
   GraphQLObjectType,
@@ -37,8 +36,8 @@ const RootQuery = new GraphQLObjectType({
         return axios
           .get(
             `https://api.edamam.com/search?q=${args.food}&from=0&to=50&app_id=${
-              ApiKey3.ID
-            }&app_key=${ApiKey3.KEY}`
+              process.env.ApiKey3Id
+            }&app_key=${process.env.ApiKey3Key}`
           )
           .then(res => res.data)
           .then(data => data.hits.map(recipes => recipes.recipe))
