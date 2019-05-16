@@ -55,7 +55,7 @@ class SingleRecipe extends React.Component {
               <Row style={{justifyContent: 'center'}}>
                 <p>
                   <strong>Total Calories: </strong>
-                  {recipeFromSearchBar.calories}
+                  {Math.round(recipeFromSearchBar.calories)}
                 </p>
               </Row>
               <Row style={{justifyContent: 'center'}}>
