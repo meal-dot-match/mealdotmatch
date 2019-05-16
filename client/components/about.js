@@ -78,7 +78,7 @@ const About = () => {
           </Col>
           <Col xs={4} md={3}>
             <Image
-              src="https://media.licdn.com/dms/image/C4E03AQGbgYoFK8BEMA/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=UiKMymrYQZDx1BsGOVjhehN5xkx44vsbkCtsXjaqqEA"
+              src="https://media.licdn.com/dms/image/C4D03AQGZqm6RFr5l7w/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=BUAunY5qwTczppWMaZpEBlYtzjaFz9mbZjyuEI7YxGM"
               roundedCircle
               height="171"
               width="180"
