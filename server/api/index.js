@@ -81,10 +81,8 @@ app.use(
     graphiql: true
   })
 )
-app.listen('http://meal-dot-match.herokuapp.com', () =>
-  console.log(
-    'Express GraphQL Server Now Running On meal-dot-match.herokuapp.com/graphql'
-  )
+app.listen(4000, () =>
+  console.log('Express GraphQL Server Now Running On localhost:4000/graphql')
 )
 
 app.get('/questions', async (req, res, next) => {
