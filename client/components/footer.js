@@ -9,9 +9,7 @@ const Footer = () => {
           <MDBRow>
             <MDBCol>
               &copy; {new Date().getFullYear()} Copyright:{' '}
-              <a href="https://meal-dot-match.herokuapp.com">
-                meal-dot-match.herokuapp.com
-              </a>
+              <a href="www.mealdotmatch.com">www.mealdotmatch.com</a>
             </MDBCol>
             <MDBCol>Contact Us: mealdotmatch@gmail.com</MDBCol>
           </MDBRow>
