@@ -30,6 +30,15 @@ const createApp = () => {
   app.use(express.urlencoded({extended: true}))
   app.use(compression())
 
+  app.use(
+    '/graphql',
+    express_graphql({
+      schema: schema,
+      // root: resolvers,
+      graphiql: true
+    })
+  )
+
   // session middleware with passport
   app.use(
     session({
@@ -39,6 +48,7 @@ const createApp = () => {
       saveUninitialized: false
     })
   )
+
   app.use(passport.initialize())
   app.use(passport.session())
 
@@ -72,18 +82,9 @@ const createApp = () => {
     res.status(err.status || 500).send(err.message || 'Internal server error.')
   })
 }
-
-app.use(
-  '/graphql',
-  express_graphql({
-    schema: schema,
-    // root: resolvers,
-    graphiql: true
-  })
-)
-app.listen(4000, () =>
-  console.log('Express GraphQL Server Now Running On localhost:4000/graphql')
-)
+// app.listen(4000, () =>
+//   console.log('Express GraphQL Server Now Running On localhost:4000/graphql')
+// )
 
 app.get('/questions', async (req, res, next) => {
   const questions = await Question.findAll({
