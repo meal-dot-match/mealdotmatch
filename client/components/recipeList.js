@@ -3,8 +3,6 @@ import {ListGroup} from 'react-bootstrap'
 
 class RecipeList extends Component {
   render() {
-    // console.log('Made it into the Recipe List Component!', this.props)
-
     const allIngredients = this.props.recipe.ingredients
     const missingIngredients = this.props.recipe.missingIngredients
 

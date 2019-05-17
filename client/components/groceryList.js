@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
-import Text from './text'
-import {Button, ListGroup} from 'react-bootstrap'
+import {ListGroup} from 'react-bootstrap'
 
 class GroceryList extends Component {
   constructor() {

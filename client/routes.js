@@ -11,7 +11,6 @@ import {
   GroceryList,
   GroceryBag
 } from './components/index'
-import HomePage from './components/homepage'
 import Results from './components/results'
 import SearchBarResults from './components/searchbarResults'
 

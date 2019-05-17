@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  Carousel,
-  Container,
-  Row,
-  Col,
-  Image,
-  Button,
-  Modal
-} from 'react-bootstrap'
+import {Carousel, Button, Modal} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 class GuidedTour extends React.Component {

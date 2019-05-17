@@ -1,10 +1,6 @@
 import React from 'react'
 
 class ProgressBar extends React.Component {
-  constructor(props) {
-    super()
-  }
-
   render() {
     let value = Math.floor((this.props.count + 1) / 7 * 100)
 

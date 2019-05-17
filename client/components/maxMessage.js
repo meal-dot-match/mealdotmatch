@@ -1,10 +1,6 @@
 import React from 'react'
 
 class MaxMessage extends React.Component {
-  constructor(props) {
-    super()
-  }
-
   render() {
     return this.props.foodType === 'meats' ||
       this.props.foodType === 'seafood' ? (
