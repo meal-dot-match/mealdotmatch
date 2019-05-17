@@ -140,7 +140,7 @@ class GuidedTour extends React.Component {
                     size="md"
                     variant="primary"
                   >
-                    Get Started
+                    Start Now
                   </Button>
                 </Link>
               </Modal.Footer>
