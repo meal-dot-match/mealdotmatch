@@ -179,11 +179,11 @@ class Results extends React.Component {
                                   className="matches-image"
                                 />
                                 <Container>
-                                  <h2 className="matches-title">{x.label}</h2>
                                   <h3 className="matches-title">
-                                    {(Number(x.percentage) * 100).toFixed(2)} %
+                                    {Math.round(Number(x.percentage) * 100)}%
                                     match
                                   </h3>
+                                  <h2 className="matches-title">{x.label}</h2>
                                   <Link
                                     className="matches-img-overlay"
                                     to={{
