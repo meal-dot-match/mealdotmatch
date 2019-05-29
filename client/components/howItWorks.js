@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Container, Row, Col, Image, Jumbotron, Button} from 'react-bootstrap'
+import {Container, Row, Col, Jumbotron, Button} from 'react-bootstrap'
 
 class HowItWorks extends React.Component {
   render() {

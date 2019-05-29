@@ -1,6 +1,6 @@
 import React from 'react'
 import Text from './text'
-import {Row, Col, Container, Button, Image, ListGroup} from 'react-bootstrap'
+import {Row, Col, Container, Button, ListGroup} from 'react-bootstrap'
 import RecipeList from './recipeList'
 import Email from './email'
 

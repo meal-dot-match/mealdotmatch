@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import {Navbar, Nav, FormControl, Form, Button} from 'react-bootstrap'
 

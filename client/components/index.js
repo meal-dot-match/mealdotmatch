@@ -4,8 +4,6 @@
  * having to figure out which file they belong to!
  */
 export {default as Navigation} from './navbar'
-export {default as UserHome} from './user-home'
-export {Login, Signup} from './auth-form'
 export {default as HomePage} from './homepage'
 export {default as Home} from './home'
 export {default as Quiz} from './quiz'
@@ -19,6 +17,5 @@ export {default as SingleRecipe} from './singleRecipe'
 export {default as Text} from './text'
 export {default as MaxMessage} from './maxMessage'
 export {default as ProgressBar} from './progressBar'
-export {default as GroceryBag} from './groceryBag'
 export {default as GuidedTour} from './guidedTour'
 export {default as Footer} from './footer'

@@ -3,7 +3,6 @@ import {CuttingBoard, MaxMessage, ProgressBar} from './index'
 import axios from 'axios'
 import {Alert, Container, Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import {AssistantFallbackActionsPage} from 'twilio/lib/rest/preview/understand/assistant/assistantFallbackActions'
 
 export default class Quiz extends React.Component {
   constructor() {
