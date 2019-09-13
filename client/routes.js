@@ -11,9 +11,6 @@ import {
 import Results from './components/results'
 import SearchBarResults from './components/searchbarResults'
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   render() {
     return (
@@ -31,6 +28,4 @@ class Routes extends Component {
   }
 }
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
 export default Routes

@@ -4,11 +4,11 @@ import Routes from './routes'
 
 const App = () => {
   return (
-    <div>
+    <>
       <Navigation />
       <Routes />
       <Footer />
-    </div>
+    </>
   )
 }
 
