@@ -27,7 +27,6 @@ const Navigation = () => {
             value={searchInput}
             onChange={handleInput}
           />
-          {console.log(searchInput)}
           <Link
             to={{
               pathname: '/searchbarresults',

@@ -16,8 +16,6 @@ const SingleRecipe = ({history, location}) => {
   const recipe = location.state
   const recipeFromSearchBar = location
 
-  console.log('what is the recipeFromSearchBar', recipeFromSearchBar)
-
   return recipeFromSearchBar.image ? (
     <div className="single-recipe-background">
       <Container>
