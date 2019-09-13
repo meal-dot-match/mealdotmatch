@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router} from 'react-router-dom'
-import history from './history'
 import App from './app'
 import {ApolloProvider} from 'react-apollo'
 import ApolloClient from 'apollo-boost'
+import {createBrowserHistory} from 'history'
+
+const history = createBrowserHistory()
 
 const client = new ApolloClient({
   uri: '/api/graphql',
