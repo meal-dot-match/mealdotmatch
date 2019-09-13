@@ -1,5 +1,4 @@
 import React from 'react'
-
 import {Navigation, Footer} from './components'
 import Routes from './routes'
 
