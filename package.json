@@ -38,7 +38,7 @@
   "dependencies": {
     "apollo-boost": "^0.3.1",
     "apollo-link-error": "^1.1.10",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bootstrap": "^4.3.1",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
