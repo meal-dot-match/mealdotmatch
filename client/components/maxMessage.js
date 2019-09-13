@@ -1,26 +1,23 @@
 import React from 'react'
 
-class MaxMessage extends React.Component {
-  render() {
-    return this.props.foodType === 'meats' ||
-      this.props.foodType === 'seafood' ? (
-      this.props.alert === true ? (
-        <div className="alert alert-warning " role="alert">
-          You have already selected the max total of 2 meats and seafoods.
-        </div>
-      ) : (
-        <div className="quiz-alert-choices">
-          (you may choose a total of 2 meats and seafoods)
-        </div>
-      )
-    ) : this.props.alert === true ? (
-      <div className="alert alert-warning" role="alert">
-        You have already selected the max total of {this.props.max}{' '}
-        {this.props.foodType}
+const MaxMessage = ({foodType, alert, max}) => {
+  const meatsOrSeafood = foodType === 'meats' || foodType === 'seafood'
+
+  const warningMsg = meatsOrSeafood
+    ? `You have already selected the max total of 2 meats and seafoods.`
+    : ` You have already selected the max total of ${max} ${foodType}`
+  const alertMsg = meatsOrSeafood
+    ? `(you may choose a total of 2 meats and seafoods)`
+    : `(choose up to ${max})`
+
+  if (alert) {
+    return (
+      <div className="alert alert-warning " role="alert">
+        {warningMsg}
       </div>
-    ) : (
-      <div className="quiz-alert-choices">(choose up to {this.props.max})</div>
     )
+  } else {
+    return <div className="quiz-alert-choices">{alertMsg}</div>
   }
 }
 
