@@ -31,6 +31,7 @@ h4 {
 }
 
 h5 {
+  text-shadow: 1px 0.5px rgba(22, 37, 39, 0.178);
   padding: 10px;
   text-align: center;
   color: #066562;
@@ -375,7 +376,7 @@ body {
 }
 
 .quiz-questions-question {
-  text-align-first: center;
+  text-align: center;
 }
 
 .quiz-questions-count {
@@ -397,23 +398,40 @@ h3 {
   grid-auto-flow: column;
 }
 
+.searchbar-results-background {
+  box-sizing: border-box;
+  background-image: url('karly-gomez-lK1Q5RyD6tc-unsplash.jpg');
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.searchbar-results-label {
+  box-sizing: border-box;
+  margin: 1em;
+  background-color: hsla(180, 23%, 85%, 0.774);
+  border: 1px solid white;
+  padding: 5px;
+}
 .results-image {
-  height: 250px;
-  width: 175px;
-  box-shadow: 1px 2px 4px rgb(197, 194, 194);
-  border-radius: 7px;
+  text-shadow: 3px 1px white;
+  height: 275px;
+  width: 200px;
+  border-radius: 10px;
 }
 
 .results-group {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 2em;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 10%;
   grid-auto-flow: row;
+  border-radius: 10px;
 }
 
 .results-background {
   background: black;
+  border-radius: 10px;
+  box-shadow: 2px 2px hsla(180, 7%, 14%, 0.589);
 }
 
 .results-img-overlay {
@@ -422,7 +440,7 @@ h3 {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 100px 35px;
+  padding: 60% 25%;
   justify-content: center;
 }
 
