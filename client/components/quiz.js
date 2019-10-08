@@ -50,8 +50,7 @@ export default class Quiz extends React.Component {
     ) {
       if (foodType !== 'meats' && foodType !== 'seafood') {
         this.addToIngredients(event.target.alt, true, foodType)
-      }
-      if (foodType === 'meats' || foodType === 'seafood') {
+      } else if (foodType === 'meats' || foodType === 'seafood') {
         meatAndSeafoodLength < 2
           ? this.addToIngredients(event.target.alt, true, foodType)
           : this.addToIngredients(null, false)
@@ -199,6 +198,7 @@ export default class Quiz extends React.Component {
           <ProgressBar count={this.state.count} />
           <Row>
             <Col sm={4} md={4} lg={4} className="quiz-columns">
+              <h3>{!this.state.time ? '' : this.state.time}</h3>
               <CuttingBoard
                 sendFunction={this.removeIngredient}
                 ingredients={this.state.ingredients}
@@ -216,25 +216,26 @@ export default class Quiz extends React.Component {
                         <strong className="label">
                           {questions.name[index]}
                         </strong>
-
                         <img
                           className={`${
                             this.state.ingredients.includes(
                               questions.name[index]
-                            )
+                            ) || this.state.time.includes(questions.name[index])
                               ? 'selected'
                               : 'options'
                           }`}
                           src={picture}
                           alt={questions.name[index]}
                           id={questions.name[index]}
-                          onClick={() =>
-                            this.state.ingredients.includes(event.target.alt)
+                          onClick={() => {
+                            return this.state.ingredients.includes(
+                              event.target.alt
+                            )
                               ? this.removeIngredient(event)
                               : foodType !== 'time'
                                 ? this.filterOutIngredients(event, foodType)
                                 : this.setTime(event)
-                          }
+                          }}
                         />
                       </div>
                     </div>
@@ -284,7 +285,7 @@ export default class Quiz extends React.Component {
         </Container>
       </div>
     ) : (
-      'Loading'
+      'Loading...'
     )
   }
 }
