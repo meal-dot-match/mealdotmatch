@@ -51,7 +51,7 @@ const About = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <Container style={{padding: '50px'}}>
+      <Container style={{padding: '2rem'}}>
         <Row className="center-text">
           <h1> Meet Our Founders </h1>
         </Row>
@@ -59,6 +59,7 @@ const About = () => {
           Meet the female software engineers who brought Meal.Match from an idea
           to an application.
         </Row>
+        <br></br>
         <Row>
           <Col xs={4} md={3}>
             <Image
@@ -98,7 +99,7 @@ const About = () => {
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container style={{padding: '2rem'}}>
         <Row className="center-text">
           <h1> Our Vision </h1>
           <p>

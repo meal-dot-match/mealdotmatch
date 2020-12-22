@@ -744,7 +744,6 @@ p strong {
   position: bottom;
   width: auto;
   text-align: center;
-  height: 30rem;
 }
 
 @media all and (max-width: 600px) {
