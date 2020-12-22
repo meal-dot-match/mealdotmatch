@@ -24,7 +24,6 @@ const Recipe = new GraphQLObjectType({
 })
 
 const RootQuery = new GraphQLObjectType({
-  //searchrecipes(food){ axios.get request http://{food} }
   name: 'RootQueryType',
   fields: {
     searchRecipes: {

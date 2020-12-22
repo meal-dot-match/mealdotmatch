@@ -46,6 +46,7 @@
     "express-graphql": "^0.8.0",
     "express-session": "^1.17.1",
     "graphql": "^14.7.0",
+    "graphql-playground-html": "^1.6.29",
     "graphql-yoga": "^1.18.3",
     "history": "^4.10.1",
     "mdbreact": "^4.27.0",
