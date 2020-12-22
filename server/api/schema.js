@@ -1,7 +1,6 @@
 const axios = require('axios')
 const {ApiKey3Id, ApiKey3Key} = require('../../secrets.js')
 
-console.log(ApiKey3Id, ApiKey3Id)
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -32,8 +31,6 @@ const RootQuery = new GraphQLObjectType({
         food: {type: GraphQLString},
       },
       resolve(parentValue, args) {
-        console.log('IN THE RESOLVER:', args.food)
-
         return axios
           .get(
             `https://api.edamam.com/search?q=${args.food}&from=0&to=50&app_id=${ApiKey3Id}&app_key=${ApiKey3Key}`
