@@ -4,8 +4,8 @@ Meal.Match is a full stack web application that matches users with recipes. User
 
 ## To run the app
 
-1. `npm install`
-2. `npm run start-dev`
-3. navigate to `http://localhost:8080/` to view the app
+1.  `npm install`
+2.  `npm run start-dev`
+3.  navigate to `http://localhost:8080/` to view the app
 
 ## Or, visit our deployed app at: www.mealdotmatch.com

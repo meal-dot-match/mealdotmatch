@@ -21,7 +21,7 @@ export default class Quiz extends React.Component {
       alert: false,
       selected: '',
       matchMeDisabled: true,
-      show: true
+      show: true,
 
       // if any additional fields are added to state, they may need to be included as exclusions in the removeIngredient function
     }
@@ -66,38 +66,38 @@ export default class Quiz extends React.Component {
           ingredients: [...this.state.ingredients, food],
           [foodType]: [...this.state[foodType], food],
           alert: false,
-          matchMeDisabled: false
+          matchMeDisabled: false,
         })
       : this.setState({
-          alert: true
+          alert: true,
         })
   }
 
   setTime(event) {
     this.setState({
-      time: event.target.alt
+      time: event.target.alt,
     })
   }
 
   removeIngredient(event) {
     console.log('what is the event?', event.target)
     console.log('what is my state????', this.state)
-    const ingredientsLeft = this.state.ingredients.filter(item => {
+    const ingredientsLeft = this.state.ingredients.filter((item) => {
       return item !== event.target.id
     })
     const foodType = Object.keys(this.state)
-      .filter(food => {
+      .filter((food) => {
         return (
           Array.isArray(this.state[food]) &&
           food !== 'data' &&
           food !== 'ingredients'
         )
       })
-      .filter(food => {
+      .filter((food) => {
         return this.state[food].includes(event.target.id)
       })[0]
 
-    const foodTypeIngredientsLeft = this.state[foodType].filter(item => {
+    const foodTypeIngredientsLeft = this.state[foodType].filter((item) => {
       return item !== event.target.id
     })
 
@@ -106,12 +106,12 @@ export default class Quiz extends React.Component {
           ingredients: ingredientsLeft,
           [foodType]: foodTypeIngredientsLeft,
           alert: false,
-          matchMeDisabled: true
+          matchMeDisabled: true,
         })
       : this.setState({
           ingredients: ingredientsLeft,
           [foodType]: foodTypeIngredientsLeft,
-          alert: false
+          alert: false,
         })
   }
 
@@ -123,7 +123,7 @@ export default class Quiz extends React.Component {
     } else {
       this.setState({
         count: newCount,
-        alert: false
+        alert: false,
       })
     }
   }
@@ -136,13 +136,13 @@ export default class Quiz extends React.Component {
     } else {
       this.setState({
         count: newCount,
-        alert: false
+        alert: false,
       })
     }
   }
   handleClose() {
     this.setState({
-      show: false
+      show: false,
     })
   }
 
@@ -168,9 +168,9 @@ export default class Quiz extends React.Component {
               </Alert.Heading>
               <p>
                 Help Meal.Match best match you to recipes using ingredients
-                already in your pantry and fridge!<br /> First, take a look at
-                your pantry and fridge, then choose the options you want to cook
-                with in our survey below.
+                already in your pantry and fridge!
+                <br /> First, take a look at your pantry and fridge, then choose
+                the options you want to cook with in our survey below.
               </p>
             </Alert>
           ) : null}
@@ -233,8 +233,8 @@ export default class Quiz extends React.Component {
                             )
                               ? this.removeIngredient(event)
                               : foodType !== 'time'
-                                ? this.filterOutIngredients(event, foodType)
-                                : this.setTime(event)
+                              ? this.filterOutIngredients(event, foodType)
+                              : this.setTime(event)
                           }}
                         />
                       </div>
@@ -262,8 +262,8 @@ export default class Quiz extends React.Component {
                           theIngredients: this.state.ingredients,
                           theMeats: this.state.meats,
                           theSeafood: this.state.seafood,
-                          time: this.state.time
-                        }
+                          time: this.state.time,
+                        },
                       }}
                     >
                       <Button className="btn-submit quiz-next-button">
