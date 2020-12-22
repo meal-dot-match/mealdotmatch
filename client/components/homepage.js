@@ -21,8 +21,8 @@ class HomePage extends React.Component {
     this.getStuff = this.getStuff.bind(this)
   }
   async getStuff() {
-    // const { data } = await client.query({
-    //     query: getMealsQuery,
+    // const {data} = await client.query({
+    //   query: getMealsQuery,
     // })
     // console.log('this data within the GET STUFF FUNCTION', this.props)
   }

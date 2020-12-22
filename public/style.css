@@ -339,7 +339,7 @@ body {
 
 .about {
   background-color: #000000;
-  background: rgba(5, 4, 4, 0.5);
+  background: rgba(5, 4, 4, 0.75);
 }
 
 .center-text {
@@ -488,8 +488,7 @@ h5 {
   text-align: center;
 }
 
-.single-recipe-row,
-img {
+.single-recipe-row {
   border-radius: 7px;
 }
 
