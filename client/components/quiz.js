@@ -80,8 +80,6 @@ export default class Quiz extends React.Component {
   }
 
   removeIngredient(event) {
-    console.log('what is the event?', event.target)
-    console.log('what is my state????', this.state)
     const ingredientsLeft = this.state.ingredients.filter((item) => {
       return item !== event.target.id
     })

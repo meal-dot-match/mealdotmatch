@@ -32,13 +32,10 @@ const createApp = () => {
     '/graphql',
     express_graphql({
       schema: schema,
-      // root: resolvers,
       graphiql: true
     })
   )
-  // auth and api routes
-  // app.use('/auth', require('./auth'))
-  // app.use('/api', require('./api'))
+
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))

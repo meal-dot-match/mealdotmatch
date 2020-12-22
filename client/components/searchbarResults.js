@@ -23,7 +23,6 @@ class SearchBarResults extends React.Component {
   }
 
   render() {
-    // console.log('What are the props in searchBar', this.props)
     const food = this.props.location.searchBar
     return (
       <Query query={searchBarQuery} variables={{food}}>

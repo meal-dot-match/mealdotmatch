@@ -20,19 +20,10 @@ class HomePage extends React.Component {
     super(props)
     this.getStuff = this.getStuff.bind(this)
   }
-  async getStuff() {
-    // const {data} = await client.query({
-    //   query: getMealsQuery,
-    // })
-    // console.log('this data within the GET STUFF FUNCTION', this.props)
-  }
-  render() {
-    // console.log('In RENDER', this.props)
 
+  render() {
     return (
       <Query query={getMealsQuery}>
-        {' '}
-        {/*must have <Query>*/}
         {({loading, error, data}) => {
           if (loading) return null
           if (error) return `Error! ${error}`
@@ -44,5 +35,5 @@ class HomePage extends React.Component {
   }
 }
 
-//must have
+
 export default graphql(getMealsQuery)(HomePage)
