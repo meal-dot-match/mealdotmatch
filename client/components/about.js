@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from './footer'
 import {Carousel, Container, Row, Col, Image} from 'react-bootstrap'
 
 const About = () => {
@@ -55,12 +56,13 @@ const About = () => {
           <h1> Meet Our Founders </h1>
         </Row>
         <Row className="center-text">
-          <p>Meet the software engineers who built Meal.Match.</p>
+          Meet the female software engineers who brought Meal.Match from an idea
+          to an application.
         </Row>
         <Row>
           <Col xs={4} md={3}>
             <Image
-              src="https://media.licdn.com/dms/image/C4E03AQGYdwq4BGOlEA/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=OTaezQD1fgjg3zPKgSWemzf2txMFXp5uO8FOuG1b-Eg"
+              src="../Amy.jpeg"
               roundedCircle
               height="171"
               width="180"
@@ -69,7 +71,7 @@ const About = () => {
           </Col>
           <Col xs={4} md={3}>
             <Image
-              src="https://media.licdn.com/dms/image/C4E03AQEH5FZZ7G69zA/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=O990QMghkIrJF0G2OeGXfkjcTDwsGsPSrZWLAp1KH7A"
+              src="../Ann.jpeg"
               roundedCircle
               height="171"
               width="180"
@@ -78,7 +80,7 @@ const About = () => {
           </Col>
           <Col xs={4} md={3}>
             <Image
-              src="https://media.licdn.com/dms/image/C4D03AQGZqm6RFr5l7w/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=BUAunY5qwTczppWMaZpEBlYtzjaFz9mbZjyuEI7YxGM"
+              src="../Katie.jpeg"
               roundedCircle
               height="171"
               width="180"
@@ -87,7 +89,7 @@ const About = () => {
           </Col>
           <Col xs={4} md={3}>
             <Image
-              src="https://media.licdn.com/dms/image/C4D03AQFEDOfd93Owww/profile-displayphoto-shrink_800_800/0?e=1563408000&v=beta&t=9Jm_jwq5ArhToxc_0ZDep-47IAX03pN-AvBflnXO9xQ"
+              src="../KV.jpeg"
               roundedCircle
               height="171"
               width="180"
@@ -99,11 +101,12 @@ const About = () => {
       <Container>
         <Row className="center-text">
           <h1> Our Vision </h1>
-        </Row>
-        <Row className="center-text">
           <p>
-            Meet the female software engineers who brought Meal.Match from an
-            idea to an application.
+            Mealdotmatch was created for you to be resourceful with the food
+            that you already have. Take a glimpse at the ingredients in your
+            refridgerator, enter them into our app and we will pair you with
+            some quick and easy meals. Don't let that head of lettuce go to
+            waste!
           </p>
         </Row>
       </Container>
